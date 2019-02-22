@@ -27,7 +27,7 @@
 #########################################################################################
 .SILENT:
 ## Main document
-MAINFILE = base_document
+MAINFILE = 01_intro_datentypen
 
 # Build Ordner
 BUILDDIR = build/

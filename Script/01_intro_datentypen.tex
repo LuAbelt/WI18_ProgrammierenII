@@ -1,0 +1,83 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Description:		This is an example presentation using the beamerthemedhbw
+%%
+%%					The beamerthemedhbw is based on jacksbeamertheme
+%%					(https://github.com/JacknJo/jacksbeamertheme)
+%%
+%% Author:			Hannes Bartle																				
+%% 					DHBW Ravensburg Campus Friedrichshafen		
+%%					September 2016	
+%% 
+%% The beamerthemedhbw is free software: you can redistribute it and/or modify
+%% it under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 3 of the License, or
+%% (at your option) any later version.
+%% 
+%% The beamerthemedhbw is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+%% 
+%% You should have received a copy of the GNU General Public License
+%% along with the beamerthemedhbw.  If not, see <http://www.gnu.org/licenses/>.
+%% 
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[	12pt, 				
+				t,					
+				aspectratio=169,
+				%handout
+				]{beamer}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, ngerman]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage[draft]{qrcode}
+
+
+\title{Programmieren II}
+\date{Ravensburg\\\today}
+\author{Lukas Abelt \\\texttt{lukas.abelt@airbus.com}}
+\institute{DHBW Ravensburg \\ Wirtschaftsinformatik}
+
+\usetheme{dhbw}
+\renewcommand{\usecompanylogo}{1}
+
+\newcommand{\printcompanylogo}{\includegraphics[width=4cm]{graph/airbus_logo.png}}
+
+\newcommand{\middleText}{Lukas Abelt}
+\newcommand{\outlineSection}{Inhalt}
+
+\setlength{\framesubtitleoffset}{0pt}
+\setlength{\frametitleoffset}{0.05cm}
+\setlength{\frametextoffset}{0.1cm}
+\setlength{\framefootlineoffset}{0cm}
+
+
+\begin{document}
+	
+	\begin{frame}[noframenumbering]
+		\titlepage
+	\end{frame}
+
+
+	\begin{frame}{Outline}
+		\tableofcontents
+	\end{frame}
+
+	\outlineFrame{Über mich}
+	
+	\input{texfiles/aboutme}
+	
+	\outlineFrame{Vorlesung}
+	
+	\input{texfiles/vorlesung}
+	
+	
+
+\end{document}
