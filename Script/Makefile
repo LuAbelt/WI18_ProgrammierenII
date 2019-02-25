@@ -29,19 +29,19 @@
 ## Main document
 MAINFILE = 01_intro_datentypen
 
+TESTING = $(wildcard *.tex)
+
 # Build Ordner
 BUILDDIR = build/
 # Latex-Files Ordner
 TEXFILES = texfiles/
 
 
-
-
 # Commands
 TEX = pdflatex  
 TEXFLAGS =-file-line-error -interaction=batchmode -synctex=1 -output-directory=$(BUILDDIR)
 DEL = rm -rf 
-ECHO = echo -e 
+ECHO = echo 
 ECHOCOLOR = \033[1;32m
 ECHONC = \033[0m
 MOVE = mv
@@ -49,8 +49,6 @@ MKDIR	= mkdir
 GIT	= git
 VIEWPDF = firefox
 PARSELOG = grep --color -E ".*:[0-9]*:.*|Warning:|Error:" $(BUILDDIR)$(MAINFILE).log
-
-
 
 
 
@@ -135,7 +133,11 @@ viewlog:
 	@$(ECHO) "Warnings:\\n"
 	@$(PARSELOG)
 	@$(ECHO) "\\n=======================================================================""$(ECHONC)"
+	
+test: $(TESTING)
 
+$(TESTING): %.tex: build-%
 
-
- 
+build-%:
+	@$(ECHO) $@
+	@$(ECHO) $*
