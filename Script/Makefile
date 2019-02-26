@@ -29,7 +29,7 @@
 ## Main document
 MAINFILE = 01_intro_datentypen
 
-TEXDOCS = $(wildcard *.tex)
+MAINFILES = $(wildcard *.tex)
 
 # Build Ordner
 BUILDDIR = build/
@@ -48,13 +48,20 @@ MOVE = mv
 MKDIR	= mkdir
 GIT	= git
 VIEWPDF = firefox
-PARSELOG = grep --color -E ".*:[0-9]*:.*|Warning:|Error:" $(BUILDDIR)$(MAINFILE).log
-
+PARSELOG = grep --color -E ".*:[0-9]*:.*|Warning:|Error:" $(BUILDDIR)
+TRANSFORM = tr " " "\n"
 
 
 .PHONY: all 
 
-all: $(TEXDOCS)
+all: listfiles $(MAINFILES)
+
+listfiles:
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Building PDFs for TeX-Files:"
+	@$(ECHO) "$(MAINFILES)" | $(TRANSFORM)
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
 
 .PHONY: bib
 bib:
@@ -94,25 +101,37 @@ mrproper:
 	@$(ECHO) "$(ECHOCOLOR)""Done!"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 	
-# View PDF document
+# View all PDF documents
 view: viewpdf
 
 viewpdf:
 	@$(ECHO) "$(ECHOCOLOR)""======================================================================="
 	@$(ECHO) "View PDF..."
 	@$(ECHO) "=======================================================================""$(ECHONC)"
-	@$(VIEWPDF) $(EXAMPLE)$(MAINFILE).pdf &
+	@$(VIEWPDF) *.pdf &
+
+# View specific PDF document
+%-view:
+	@$(ECHO) "$(ECHOCOLOR)""======================================================================="
+	@$(ECHO) "View PDF..."
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	@$(VIEWPDF) $*.pdf &
 	
-# View Warning/Error Messages
+# View Warning/Error Messages for all logfiles
 viewlog:
 	@$(ECHO) "$(ECHOCOLOR)""======================================================================="
 	@$(ECHO) "Warnings:\\n"
-	@$(PARSELOG)
+	@$(PARSELOG)*.log
 	@$(ECHO) "\\n=======================================================================""$(ECHONC)"
 	
-test: $(TEXDOCS)
-
-$(TEXDOCS): %.tex: %-pdf
+	
+%-viewlog:
+	@$(ECHO) "$(ECHOCOLOR)""======================================================================="
+	@$(ECHO) "Warnings:\\n"
+	@$(PARSELOG)$*.log
+	@$(ECHO) "\\n=======================================================================""$(ECHONC)"
+	
+$(MAINFILES): %.tex: %-pdf
 
 %-pdf:  %-pdf1 %-pdf2
 	@$(MOVE) $(BUILDDIR)$*.pdf ./
