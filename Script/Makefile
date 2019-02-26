@@ -27,9 +27,7 @@
 #########################################################################################
 .SILENT:
 ## Main document
-MAINFILE = 01_intro_datentypen
-
-MAINFILES = $(wildcard *.tex)
+MAINFILES = $(patsubst %.tex,%,$(wildcard *.tex))
 
 # Build Ordner
 BUILDDIR = build/
@@ -51,8 +49,6 @@ VIEWPDF = firefox
 PARSELOG = grep --color -E ".*:[0-9]*:.*|Warning:|Error:" $(BUILDDIR)
 TRANSFORM = tr " " "\n"
 
-
-.PHONY: all 
 
 all: listfiles $(MAINFILES)
 
@@ -131,9 +127,9 @@ viewlog:
 	@$(PARSELOG)$*.log
 	@$(ECHO) "\\n=======================================================================""$(ECHONC)"
 	
-$(MAINFILES): %.tex: %-pdf
+$(MAINFILES): %: %.pdf
 
-%-pdf:  %-pdf1 %-pdf2
+%.pdf: %.tex texfiles/contact.tex %-pdf1 %-pdf2
 	@$(MOVE) $(BUILDDIR)$*.pdf ./
 
 %-pdf1:
@@ -155,27 +151,7 @@ $(MAINFILES): %.tex: %-pdf
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Done!!"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
-	
 
-.PHONY: pdf
-pdf: pdf1
 	
-pdf1:
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build PDF..."
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
-	
-	$(TEX) $(TEXFLAGS) $(MAINFILE).tex 
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Done!!"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-
-pdf2:
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build PDF..."
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	$(TEX) $(TEXFLAGS) $(MAINFILE).tex 
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Done!!"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
+test:
+	@$(ECHO) "$(TESTING)"
