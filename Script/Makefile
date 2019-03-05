@@ -129,7 +129,7 @@ viewlog:
 	
 $(MAINFILES): %: %.pdf
 
-%.pdf: %.tex texfiles/contact.tex %-pdf1 %-pdf2
+%.pdf: %.tex texfiles/%/*.tex texfiles/contact.tex %-pdf1 %-pdf2
 	@$(MOVE) $(BUILDDIR)$*.pdf ./
 
 %-pdf1:

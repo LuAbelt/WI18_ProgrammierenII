@@ -1,0 +1,60 @@
+\begin{frame}{Datentypen}{Unterscheidung}
+	\begin{itemize}
+		\item Primitive Datentypen
+		\item Objektorientierte Datentypen
+		\item Strukturierte Datentypen
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Primitive Datentypen}{Beispiele}
+	\begin{itemize}
+	\item Beispiele:
+		\begin{itemize}
+			\item int
+			\item boolean
+			\item char
+			\item float
+			\item double
+			\item long
+			\item byte
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Primitive Datentypen}{Eigenschaften}
+	\begin{itemize}
+		\item Speichern "einfache" Daten
+		\item Feste Speichergröße
+		\item Feste Präzision $\Rightarrow$ Diskret
+		\item Fest definierte Ober- und Untergrenze
+		\item Menge an Operationen beschränkt
+		\begin{itemize}
+			\item Und nicht erweiterbar
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Primitive Datentypen}{Eigenschaften}
+	\begin{tabular}{|c|c|c|c|}
+	\hline
+	\textbf{Typ} & \textbf{Größe (Bits)} & \textbf{Minimum} & \textbf{Maximum} 
+	\\
+	\hline
+	\visible<+->{\textbf{byte}} & \visible<+->{8} & \visible<+->{$ -128 $} & \visible<+->{$ 127 $}  \\
+	\hline
+	\textbf{char} & \visible<+->{16} & \visible<+->{$ 0 $} & \visible<+->{$ 2^{16}-1 $} \\
+	\hline
+	\textbf{short} & \visible<+->{16} & \visible<+->{$ -2^{15} $} & \visible<+->{$ 2^{15}-1 $} \\
+	\hline
+	\textbf{int} & \visible<+->{32} & \visible<+->{$ -2^{31} $} & \visible<+->{$ 2^{31}-1 $} \\
+	\hline
+	\textbf{long} & \visible<+->{64} & \visible<+->{$ -2^{63} $} & \visible<+->{$ 2^{63}-1 $} \\
+	\hline
+	\textbf{float} & \visible<+->{32} & \visible<+->{$ \pm 1.4\text{E-}45 $} & \visible<+->{$ \pm 3.4\text{E+}38 $}\\
+	\hline
+	\textbf{double} & \visible<+->{64} & \visible<+->{$ \pm 4.9\text{E-}324 $} & \visible<+->{$ \pm 1.7\text{E+}324 $}\\
+	\hline
+	\textbf{boolean} & \visible<+->{Undefiniert} & \multicolumn{2}{c|}{\visible<+->{Nur \tt{true} und \tt{false}}} \\
+	\hline
+	\end{tabular}
+\end{frame}
