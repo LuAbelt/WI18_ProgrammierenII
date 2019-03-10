@@ -79,7 +79,7 @@
 \end{frame}
 
 \begin{frame}{Objektorientierte Datentypen}{Grundlegendes}
-	\begin{itemize}<+->
+	\begin{itemize}
 		\item Zusammenfassen von Daten und Algorithmen in eine gemeinsame Instanz $\Rightarrow$ \textbf{Klasse}
 		\item Von einer Klasse können mehrere unabhängige Instanzen existieren $\Rightarrow$ \textbf{Objekt}
 		\item Entwickler entscheidet wie mit der Klasse interagiert werden muss $\Rightarrow$ \textbf{Datenkapselung}
@@ -91,10 +91,76 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}Objektorientierte Datentypen}{Vererbung}
+\begin{frame}{Objektorientierte Datentypen}{Vererbung}
+	\begin{itemize}
+		\item Grundpfeiler der Objektorientierung
+		\item Unterklassen \textbf{müssen} die Schnittstellen der Superklasse übernehmen
+		\begin{itemize}
+			\item Können neue Methoden und Variablen hinzufügen
+			\item Können vorhandene Methoden überschreiben $\Rightarrow$ Implementieren spezifischer Logik
+			\item Variablen bzw. Methoden können durch Vererbung \textbf{NICHT} entfernt werden
+		\end{itemize}
+		\item Objekte der Unterklassen können anstelle der Oberklasse treten
+		\begin{itemize}
+			\item Frage: Warum nicht umgekehrt?
+		\end{itemize}
+	\end{itemize}
 \end{frame}
-% TODO:
-% Objektorientierte Datentypen
-%	-Basics
-%	-Vererbung
-%	-Interfaces
+
+%TODO: Hier evtl. Codebeispiel Vererbung?
+
+\begin{frame}{Objektorientierte Datentypen}{Vererbung}
+	\begin{itemize}
+		\item Formales OOP erlaubt Mehrfachvererbung, nutzbar in z.B.:
+		\begin{itemize}
+			\item C++
+			\item Python
+			\item Perl
+		\end{itemize}
+		\item In Java: Nur Einfachvererbung erlaubt
+		\begin{itemize}
+			\item Weitere Sprachen mit Einfachvererbung:
+			\item C\#
+			\item Ruby
+		\end{itemize}
+		\item Einige Funktionalitäten lassen sich über Interfaces abbilden
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Objektorientierte Datentypen}{Interfaces}
+	\begin{minipage}{0.4\textwidth}
+			\begin{figure}
+				\includegraphics[height=3.35cm]{graph/judt}
+				\caption*{Quelle: \url{https://www.researchgate.net/profile/Andreas_Judt}}
+				\label{fig:ll}
+			\end{figure}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.55\textwidth}
+			\textit{„Java hat das Konzept der Mehrfachvererbung über die Nutzung von Interfaces durch die Hintertür eingeführt.“} \\\\Andreas Judt
+		\end{minipage}
+\end{frame}
+
+\begin{frame}{Objektorientierte Datentypen}{Interfaces}
+	\item Definieren einen Satz an Methoden
+	\item Implementierung der Funktionen erfolgt auf Klassenebene
+	\begin{itemize}
+		\item Seit Java 8: Definition von Standardimplementierung im Interface möglich
+	\end{itemize}
+	\item Klassen implementieren beliebig viele Interfaces
+	\item Java bietet viele Standardinterfaces wie z.B.:
+	\begin{itemize}
+		\item Comparable
+		\item Iterable
+		\item Serializable
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Strukturierte Datentypen}{Allgemeines}
+	
+\end{frame}
+
+% Strukturierte Datentypen
+% Enum
+% Structs
+% Union
