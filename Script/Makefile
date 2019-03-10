@@ -32,7 +32,8 @@ MAINFILES = $(patsubst %.tex,%,$(wildcard *.tex))
 # Build Ordner
 BUILDDIR = build/
 SLIDESDIR = slides/
-HANDOUTDIR = handouts/
+HANDOUTDIR = handout/
+DIRECTORIES = $(patsubst ./texfiles/%/,%,$(dir $(wildcard ./texfiles/*/.)))
 
 # Latex-Files Ordner
 TEXFILES = texfiles/
@@ -40,7 +41,7 @@ TEXFILES = texfiles/
 
 # Commands
 TEX = pdflatex  
-TEXFLAGS =-file-line-error -interaction=batchmode -synctex=1 -output-directory=$(BUILDDIR)
+TEXFLAGS =-file-line-error -interaction=batchmode -synctex=1 -output-directory=$(BUILDDIR) -jobname $*
 DEL = rm -rf 
 ECHO = echo 
 ECHOCOLOR = \033[1;32m
@@ -51,9 +52,11 @@ GIT	= git
 VIEWPDF = firefox
 PARSELOG = grep --color -E ".*:[0-9]*:.*|Warning:|Error:" $(BUILDDIR)
 TRANSFORM = tr " " "\n"
+SEDMAKEHANDOUT = sed -i -e 's/%handout-PLACEHOLDER/handout%PLACEHOLDER/g' ./texfiles/$*/main.tex
+SEDMAKESLIDES = sed -i -e 's/handout%PLACEHOLDER/%handout-PLACEHOLDER/g' ./texfiles/$*/main.tex
 
 
-all: listfiles $(MAINFILES)
+all: listfiles $(DIRECTORIES)
 
 listfiles:
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
@@ -130,31 +133,58 @@ viewlog:
 	@$(PARSELOG)$*.log
 	@$(ECHO) "\\n=======================================================================""$(ECHONC)"
 	
-$(MAINFILES): %: $(SLIDESDIR)%.pdf
+$(DIRECTORIES): %: $(SLIDESDIR)%.pdf $(HANDOUTDIR)%.pdf
 
-$(SLIDESDIR)%.pdf: %.tex texfiles/%/*.tex texfiles/contact.tex %-pdf1 %-pdf2
+$(SLIDESDIR)%.pdf: texfiles/%/*.tex texfiles/contact.tex %-slides1 %-slides2
 	@$(MOVE) $(BUILDDIR)$*.pdf $(SLIDESDIR)
+	@$(ECHO) "Move done for slide"
 
-%-pdf1:
+%-slides1:
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build PDF(""$*"", 1/2)"
+	@$(ECHO) "Build PDF(""$*""(Slides), 1/2)"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
 	
-	$(TEX) $(TEXFLAGS) $*.tex 
+	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex 
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Done!!"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 
-%-pdf2:
+%-slides2:
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build PDF(""$*"", 2/2)"
+	@$(ECHO) "Build PDF(""$*""(Slides), 2/2)"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
-	$(TEX) $(TEXFLAGS) $*.tex 
+	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Done!!"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
-
 	
-test:
-	@$(ECHO) "$(TESTING)"
+%-handout1:
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Build PDF(""$*""(Handout), 1/2)"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
+	
+	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex 
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Done!!"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+
+%-handout2:
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Build PDF(""$*""(Handout), 2/2)"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Done!!"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	
+$(HANDOUTDIR)%.pdf: texfiles/%/*.tex texfiles/contact.tex %-makehandout %-handout1 %-handout2 %-makeslide
+	@$(MOVE) $(BUILDDIR)$*.pdf $(HANDOUTDIR)
+	
+%-makehandout:
+	$(SEDMAKEHANDOUT)
+	
+%-makeslide:
+	$(SEDMAKESLIDES)
+	
