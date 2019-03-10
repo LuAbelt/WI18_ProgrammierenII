@@ -31,6 +31,9 @@ MAINFILES = $(patsubst %.tex,%,$(wildcard *.tex))
 
 # Build Ordner
 BUILDDIR = build/
+SLIDESDIR = slides/
+HANDOUTDIR = handouts/
+
 # Latex-Files Ordner
 TEXFILES = texfiles/
 
@@ -127,10 +130,10 @@ viewlog:
 	@$(PARSELOG)$*.log
 	@$(ECHO) "\\n=======================================================================""$(ECHONC)"
 	
-$(MAINFILES): %: %.pdf
+$(MAINFILES): %: $(SLIDESDIR)%.pdf
 
-%.pdf: %.tex texfiles/%/*.tex texfiles/contact.tex %-pdf1 %-pdf2
-	@$(MOVE) $(BUILDDIR)$*.pdf ./
+$(SLIDESDIR)%.pdf: %.tex texfiles/%/*.tex texfiles/contact.tex %-pdf1 %-pdf2
+	@$(MOVE) $(BUILDDIR)$*.pdf $(SLIDESDIR)
 
 %-pdf1:
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="

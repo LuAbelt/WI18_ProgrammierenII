@@ -23,38 +23,78 @@
 
 \begin{frame}{Primitive Datentypen}{Eigenschaften}
 	\begin{itemize}
-		\item Speichern "einfache" Daten
+		\item Rein zum speichern von Daten
 		\item Feste Speichergröße
 		\item Feste Präzision $\Rightarrow$ Diskret
 		\item Fest definierte Ober- und Untergrenze
-		\item Menge an Operationen beschränkt
+		\item Implementieren selbst keine Algorithmen, sondern nur simple Operationen
+		\item Menge an Operationen beschränkt (+,-,*,/ und ggf. Bitwise Operations)
 		\begin{itemize}
-			\item Und nicht erweiterbar
+			\item Und nicht erweiterbar (Vgl. Objektorientierte Datentypen)
 		\end{itemize}
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Primitive Datentypen}{Eigenschaften}
+\begin{frame}{Primitive Datentypen}{Eigenschaften (In Java)}
 	\begin{tabular}{|c|c|c|c|}
 	\hline
-	\textbf{Typ} & \textbf{Größe (Bits)} & \textbf{Minimum} & \textbf{Maximum} 
+	\textbf{Typ} & \textbf{Größe (Bits)} & \textbf{Minimum} & \textbf{Maximum}
 	\\
 	\hline
-	\visible<+->{\textbf{byte}} & \visible<+->{8} & \visible<+->{$ -128 $} & \visible<+->{$ 127 $}  \\
+	\visible<+->{\textbf{byte}} & \visible<+->{8} & \visible<+->{$ -128 $} & \visible<+->{$ 127 $}\\
 	\hline
-	\textbf{char} & \visible<+->{16} & \visible<+->{$ 0 $} & \visible<+->{$ 2^{16}-1 $} \\
+	\textbf{char} & \visible<+->{16} & \visible<+->{$ 0 $} & \visible<+->{$ 2^{16}-1 $}\\
 	\hline
-	\textbf{short} & \visible<+->{16} & \visible<+->{$ -2^{15} $} & \visible<+->{$ 2^{15}-1 $} \\
+	\textbf{short} & \visible<+->{16} & \visible<+->{$ -2^{15} $} & \visible<+->{$ 2^{15}-1 $}\\
 	\hline
-	\textbf{int} & \visible<+->{32} & \visible<+->{$ -2^{31} $} & \visible<+->{$ 2^{31}-1 $} \\
+	\textbf{int} & \visible<+->{32} & \visible<+->{$ -2^{31} $} & \visible<+->{$ 2^{31}-1 $}\\
 	\hline
-	\textbf{long} & \visible<+->{64} & \visible<+->{$ -2^{63} $} & \visible<+->{$ 2^{63}-1 $} \\
+	\textbf{long} & \visible<+->{64} & \visible<+->{$ -2^{63} $} & \visible<+->{$ 2^{63}-1 $}\\
 	\hline
 	\textbf{float} & \visible<+->{32} & \visible<+->{$ \pm 1.4\text{E-}45 $} & \visible<+->{$ \pm 3.4\text{E+}38 $}\\
 	\hline
 	\textbf{double} & \visible<+->{64} & \visible<+->{$ \pm 4.9\text{E-}324 $} & \visible<+->{$ \pm 1.7\text{E+}324 $}\\
 	\hline
-	\textbf{boolean} & \visible<+->{Undefiniert} & \multicolumn{2}{c|}{\visible<+->{Nur \tt{true} und \tt{false}}} \\
+	\textbf{boolean} & \visible<+->{Undefiniert} & \multicolumn{2}{c|}{\visible<+->{Nur \tt{true} und \tt{false}}}\\
 	\hline
 	\end{tabular}
 \end{frame}
+
+\begin{frame}{Primitive Datetypen}{Umwandlung}
+	\begin{alertblock}{Implizite Umwandlung}
+		Für die meisten Fälle gilt: Primitive Datentypen lassen sich grundsätzlich implizit umwandeln, wenn die Präzision des Zieldatentyps höher ist als die des Ursprungsdatentyps. Also:
+		
+		\begin{center}
+		\tt{byte} $\Rightarrow$ \tt{short} $\Rightarrow$ \tt{int} $\Rightarrow$ \tt{long} $\Rightarrow$ \tt{float} $\Rightarrow$ \tt{double}
+		\end{center}
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{Primitive Datentypen}{Umwandlung}
+	\begin{alertblock}{Explizite Umwandlung}
+		Alle anderen Umwandlungen müssen explizit durchgeführt werden zum Beispiel durch nutzen von Casting.
+		
+		\textbf{Achtung:} Dies kann zu Datenverlust führen. Beispiel: Umwandlung von \tt{float} in \tt{int} $\Rightarrow$ Dezimalstellen gehen verloren.
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{Objektorientierte Datentypen}{Grundlegendes}
+	\begin{itemize}<+->
+		\item Zusammenfassen von Daten und Algorithmen in eine gemeinsame Instanz $\Rightarrow$ \textbf{Klasse}
+		\item Von einer Klasse können mehrere unabhängige Instanzen existieren $\Rightarrow$ \textbf{Objekt}
+		\item Entwickler entscheidet wie mit der Klasse interagiert werden muss $\Rightarrow$ \textbf{Datenkapselung}
+		\item Klassen lassen sich wiederverwenden $\Rightarrow$ Verringerter Arbeitsaufwand durch gut designete Klassen
+		\begin{itemize}
+			\item Durch Verwendung weiterführender Konzepte (wie z.B. Design Patterns) noch gestärkt
+		\end{itemize}
+		\item Bilden die Grundlage von Java
+	\end{itemize}
+\end{frame}
+
+\begin{frame}Objektorientierte Datentypen}{Vererbung}
+\end{frame}
+% TODO:
+% Objektorientierte Datentypen
+%	-Basics
+%	-Vererbung
+%	-Interfaces
