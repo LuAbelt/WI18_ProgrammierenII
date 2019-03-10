@@ -142,24 +142,98 @@
 \end{frame}
 
 \begin{frame}{Objektorientierte Datentypen}{Interfaces}
-	\item Definieren einen Satz an Methoden
-	\item Implementierung der Funktionen erfolgt auf Klassenebene
 	\begin{itemize}
-		\item Seit Java 8: Definition von Standardimplementierung im Interface möglich
-	\end{itemize}
-	\item Klassen implementieren beliebig viele Interfaces
-	\item Java bietet viele Standardinterfaces wie z.B.:
-	\begin{itemize}
-		\item Comparable
-		\item Iterable
-		\item Serializable
+		\item Definieren einen Satz an Methoden
+		\item Implementierung der Funktionen erfolgt auf Klassenebene
+		\begin{itemize}
+			\item Seit Java 8: Definition von Standardimplementierung im Interface möglich
+		\end{itemize}
+		\item Klassen implementieren beliebig viele Interfaces
+		\item Java bietet viele Standardinterfaces wie z.B.:
+		\begin{itemize}
+			\item Comparable
+			\item Iterable
+			\item Serializable
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Strukturierte Datentypen}{Allgemeines}
-	
+	\begin{itemize}
+		\item Sind irgendwo zwischen Primitiven und Objektorientierten Datentypen einzuordnen
+		\item In Java jedoch als Klassen umgesetzt (Sofern vorhanden)
+		\item Wir betrachten folgende:
+		\begin{itemize}
+			\item Enumerations
+			\item Structs
+			\item Union
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
+\begin{frame}{Strukturierte Datentypen}{Enumerations}
+	\begin{itemize}
+		\item Ist eine Menge von geordneten, benannten Werten
+		\item Werte der Enumeration können über Namen geprüft werden
+		\item Anwendung:
+		\begin{itemize}
+			\item Beschränken einer Variable auf bestimmte definierte Werte
+			\item Vermeiden von „Magic Numbers“ $\Rightarrow$ Code-Lesbarkeit
+		\end{itemize}
+		\item In den meisten Sprachen sind Enum Werte im Hintergrund nur Integer Konstanten
+		\item In Java: Automatisch Klasse
+		\begin{itemize}
+			\item Dadurch höhere Flexibilität
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Enumerations}{Beispiel I}
+Enumeration zur Repräsentation der Wochentage sieht zum Beispiel so aus:
+%TODO: Codestyle verbessern
+\begin{lstlisting}
+	enum Weekday {
+		MONDAY,
+		TUESDAY,
+		WEDNESDAY,
+		THURSDAY,
+		FRIDAY,
+		SATURDAY,
+		SUNDAY
+	}
+	[...]
+	Weekday myDay = Weekday.TUESDAY;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Enumerations}{Beispiel II}
+Java Enumeration-Klassen erlauben nun aber auch komplexere Konstrukte. Beispiel anhand der Planeten unseres Sonnensystems:
+%TODO: Code Beispiel Planeten (Siehe Javadocs)
+\end{frame}
+
+\begin{frame}{Strukturierte Datentypen}{Structs}
+	\begin{itemize}
+		\item Fassen mehrere Einzelvariablen zu einer Struktur zusammen
+		\item Reine Datenstruktur zum erfassen von Daten
+		\begin{itemize}
+			\item Keine Methoden
+			\item Keine Zugriffsspezifizierer
+		\end{itemize}
+		\item In Java kein separates Konzept $\Rightarrow$ Sonderfall einer Klasse
+	\end{itemize}
+\end{frame}
+%TODO: Codebeispiele Vergleich Struct C++/Java
+
+\begin{frame}{Strukturierte Datentypen}{Unions}
+	\begin{itemize}
+		\item Enthält mehrere Variablen
+		\item Diese teilen sich den gleichen Speicher
+		\item Variablen können demnach nicht unabhängig voneinander verändert werden
+		\item Kein (mir bekanntes) äquivalent in Java
+	\end{itemize}
+\end{frame}
+
+%TODO: Codebeispiel Union
 % Strukturierte Datentypen
 % Enum
 % Structs
