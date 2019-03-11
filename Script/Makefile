@@ -26,14 +26,14 @@
 ## 
 #########################################################################################
 .SILENT:
-## Main document
-MAINFILES = $(patsubst %.tex,%,$(wildcard *.tex))
+## Main documents
+DIRECTORIES = $(patsubst ./texfiles/%/,%,$(dir $(wildcard ./texfiles/*/.)))
 
 # Build Ordner
 BUILDDIR = build/
 SLIDESDIR = slides/
 HANDOUTDIR = handout/
-DIRECTORIES = $(patsubst ./texfiles/%/,%,$(dir $(wildcard ./texfiles/*/.)))
+
 
 # Latex-Files Ordner
 TEXFILES = texfiles/
@@ -61,7 +61,7 @@ all: listfiles $(DIRECTORIES)
 listfiles:
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Building PDFs for TeX-Files:"
-	@$(ECHO) "$(MAINFILES)" | $(TRANSFORM)
+	@$(ECHO) "$(DIRECTORIES)" | $(TRANSFORM)
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
 
@@ -97,9 +97,8 @@ mrproper:
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Clean Working Directory...""$(ECHONC)"
 	$(DEL) $(BUILDDIR)*
-	$(DEL) $(EXAMPLE)*.bak
-	$(DEL) $(EXAMPLE)*.~	
-	$(DEL) $(MAINFILE).pdf
+	$(DEL) $(HANDOUTDIR)*.pdf
+	$(DEL) $(SLIDESDIR)*.pdf
 	@$(ECHO) "$(ECHOCOLOR)""Done!"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 	
@@ -183,8 +182,11 @@ $(HANDOUTDIR)%.pdf: texfiles/%/*.tex texfiles/contact.tex %-makehandout %-handou
 	@$(MOVE) $(BUILDDIR)$*.pdf $(HANDOUTDIR)
 	
 %-makehandout:
+	touch "$(BUILDDIR)reffile" -r ./texfiles/$*/main.tex
 	$(SEDMAKEHANDOUT)
 	
 %-makeslide:
 	$(SEDMAKESLIDES)
+	touch ./texfiles/$*/main.tex -r "$(BUILDDIR)reffile"
+	rm "$(BUILDDIR)reffile"
 	
