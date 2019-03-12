@@ -136,7 +136,6 @@ $(DIRECTORIES): %: $(SLIDESDIR)%.pdf $(HANDOUTDIR)%.pdf
 
 $(SLIDESDIR)%.pdf: texfiles/%/*.tex texfiles/contact.tex %-slides1 %-slides2
 	@$(MOVE) $(BUILDDIR)$*.pdf $(SLIDESDIR)
-	@$(ECHO) "Move done for slide"
 
 %-slides1:
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="

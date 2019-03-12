@@ -1,0 +1,58 @@
+\begin{frame}{Java-Klassenbibliothek}{Kurzüberblick}
+	\begin{itemize}
+		\item Java bietet Vielzahl an "`fertigen"' Klassen
+		\item Zusammengefasst in Packages
+		\item Diese implementieren Standardfunktionalitäten wie z.B.
+		\begin{itemize}
+			\item Ein- und Ausgabefunktionalitäten
+			\item Grafische Oberflächen
+			\item Netzwerkkommunikation
+			\item Datum- und Zeit, Internationalisierung
+			\item Und viele mehr...
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Wichtige Packages}{... der Klassenbibliothek}
+Die wichtigsten Standardpackages im schnellen Überblick:
+	\begin{itemize}
+		\item \textit{java.lang}: Integriert die fundamentalen Klassen, die in der Regel immer zur Java Entwicklung benötigt werden wie zum Beispiel \texttt{String} \texttt{Object} oder auch die Wrapper Klassen der primitiven
+		Datentypen (\texttt{Integer}, \texttt{Boolean}, \texttt{Double} usw.). \textbf{Muss nicht explizit importiert werden!}
+		\item \textit{java.util}: Häufig benötigte Klassen, wie Listenstrukturen (\texttt{List}, \texttt{Stack}), Klassen zur Verarbeitung von Datum und Uhrzeit (\texttt{Calendar}) oder Zufallszahlengeneratoren (\texttt{Random})
+		\item \textit{java.io}: Klassen zur Ein- und Ausgabe über Streams
+		\item \textit{java.net}: Klasse zur Implementierung von Netzwerkkommunikation
+		\item \textit{java.rmi}: Klassen zur Entwicklung verteilter Programme unter Nutzung von Remote Method Invocation
+		\item \textit{java.awt}: Grundlegendes Package für die Entwicklung grafischer Oberflächen
+		\item \textit{java.swing}: Erweiterte Komponente zur Entwicklung von grafischen Oberflächen. Baut auf \textit{java.awt} auf, bietet jedoch mehr Funktionalität
+		\item \textit{javax.crypto} und \textit{java.security}: Klassen zur Umsetzung von sicherheitsrelevanten Aspekte (Zugriffsschutz, Rechteverwaltung etc.)
+		\item \textit{java.sql}: Package zur Interaktion mit SQL Datenbanken
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Arbeiten mit der Klassenbibliothek}
+	\begin{itemize}
+		\item Packages über \texttt{import} in Klasse einbinden
+		\item Oracle bietet umfangreiche Dokumentation zu allen Klassen der Standard-API
+		\item Schnellster Weg zur Doku:
+		\begin{itemize}
+			\item In den meisten IDEs sowieso integriert
+			\item Sonst Google: "`Java 8/9/10 API \textit{PackageName}"'
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{API-Dokumentation}{Links}
+	\vfill
+	\begin{block}{Java 8 API}
+		\url{https://docs.oracle.com/javase/8/docs/api/index.html}
+	\end{block}
+	
+	\begin{block}{Java 9 API}
+		\url{https://docs.oracle.com/javase/9/docs/api/index.html}
+	\end{block}
+	
+	\begin{block}{Java 10 API}
+		\url{https://docs.oracle.com/javase/10/docs/api/index.html}
+	\end{block}
+	\vfill
+\end{frame}
