@@ -190,19 +190,19 @@
 
 \begin{frame}[fragile]{Enumerations}{Beispiel I}
 Enumeration zur Repräsentation der Wochentage sieht zum Beispiel so aus:
-%TODO: Codestyle verbessern
+\lstset{style=javacode}
 \begin{lstlisting}
-	enum Weekday {
-		MONDAY,
-		TUESDAY,
-		WEDNESDAY,
-		THURSDAY,
-		FRIDAY,
-		SATURDAY,
-		SUNDAY
-	}
-	[...]
-	Weekday myDay = Weekday.TUESDAY;
+enum Weekday {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
+}
+//Spaetere Nutzung im Code:
+Weekday myDay = Weekday.TUESDAY;
 \end{lstlisting}
 \end{frame}
 
@@ -232,9 +232,3 @@ Java Enumeration-Klassen erlauben nun aber auch komplexere Konstrukte. Beispiel 
 		\item Kein (mir bekanntes) äquivalent in Java
 	\end{itemize}
 \end{frame}
-
-%TODO: Codebeispiel Union
-% Strukturierte Datentypen
-% Enum
-% Structs
-% Union

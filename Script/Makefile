@@ -40,7 +40,7 @@ TEXFILES = texfiles/
 
 
 # Commands
-TEX = pdflatex  
+TEX = TEXINPUTS=./sty:$(TEXINPUTS) pdflatex  
 TEXFLAGS =-file-line-error -interaction=batchmode -synctex=1 -output-directory=$(BUILDDIR) -jobname $*
 DEL = rm -rf 
 ECHO = echo 
