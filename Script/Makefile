@@ -28,6 +28,8 @@
 .SILENT:
 ## Main documents
 DIRECTORIES = $(patsubst ./texfiles/%/,%,$(dir $(wildcard ./texfiles/*/.)))
+HANDOUTS = $(patsubst ./texfiles/%/,%,$(dir $(wildcard ./texfiles/*/.)))
+SLIDES = $(patsubst ./texfiles/%/,%,$(dir $(wildcard ./texfiles/*/.)))
 
 # Build Ordner
 BUILDDIR = build/
@@ -188,4 +190,3 @@ $(HANDOUTDIR)%.pdf: texfiles/%/*.tex texfiles/contact.tex %-makehandout %-handou
 	$(SEDMAKESLIDES)
 	touch ./texfiles/$*/main.tex -r "$(BUILDDIR)reffile"
 	rm "$(BUILDDIR)reffile"
-	
