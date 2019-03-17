@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{dhbwstyle}
 
+% Packages
 \usepackage[utf8]{inputenc}
 \usepackage[english, ngerman]{babel}
 \usepackage[T1]{fontenc}
@@ -13,6 +14,7 @@
 \usepackage{listings}
 \usetikzlibrary{shadows.blur}
 
+% Custom Commands
 \newlength{\forkmeoffset}
 \setlength{\forkmeoffset}{12em}
 \definecolor{forkmebg}{HTML}{CC0000}
@@ -34,6 +36,7 @@
 	\end{tikzpicture}
 }
 
+% Custom Colors
 \definecolor{pblue}{rgb}{0.13,0.13,1}
 \definecolor{pgreen}{rgb}{0,0.5,0}
 \definecolor{pred}{rgb}{0.9,0,0}
@@ -43,6 +46,7 @@
 \definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
 \definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
 
+% Custom LST styles
 \lstdefinestyle{javacode}{
 	language=Java,
 	basicstyle=\ttfamily\footnotesize,
@@ -58,5 +62,25 @@
 	tabsize=4,
 	showspaces=false,
 	showstringspaces=false,
-	morekeywords={enum}
+	morekeywords={enum},
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+\lstdefinestyle{cpp}{
+	language=C,
+	basicstyle=\ttfamily\footnotesize,
+	breaklines=true,
+	keywordstyle=\color{pblue}\bfseries,
+	stringstyle=\color{javared},
+	commentstyle=\color{pgreen},
+	morecomment=[s][\color{javadocblue}]{/**}{*/},
+	numbers=left,
+	numberstyle=\tiny\color{black},
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+	morekeywords={Union},
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 }

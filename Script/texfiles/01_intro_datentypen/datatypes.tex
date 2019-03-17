@@ -1,191 +1,191 @@
 \begin{frame}{Datentypen}{Unterscheidung}
-	\begin{itemize}
-		\item Primitive Datentypen
-		\item Objektorientierte Datentypen
-		\item Strukturierte Datentypen
-	\end{itemize}
+    \begin{itemize}
+        \item Primitive Datentypen
+        \item Objektorientierte Datentypen
+        \item Strukturierte Datentypen
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Primitive Datentypen}{Beispiele}
-	\begin{itemize}
-	\item Beispiele:
-		\begin{itemize}
-			\item int
-			\item boolean
-			\item char
-			\item float
-			\item double
-			\item long
-			\item byte
-		\end{itemize}
-	\end{itemize}
+    \begin{itemize}
+    \item Beispiele:
+        \begin{itemize}
+            \item int
+            \item boolean
+            \item char
+            \item float
+            \item double
+            \item long
+            \item byte
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Primitive Datentypen}{Eigenschaften}
-	\begin{itemize}
-		\item Rein zum speichern von Daten
-		\item Feste Speichergröße
-		\item Feste Präzision $\Rightarrow$ Diskret
-		\item Fest definierte Ober- und Untergrenze
-		\item Implementieren selbst keine Algorithmen, sondern nur simple Operationen
-		\item Menge an Operationen beschränkt (+,-,*,/ und ggf. Bitwise Operations)
-		\begin{itemize}
-			\item Und nicht erweiterbar (Vgl. Objektorientierte Datentypen)
-		\end{itemize}
-	\end{itemize}
+    \begin{itemize}
+        \item Rein zum Speichern von Daten
+        \item Feste Speichergröße
+        \item Feste Präzision $\Rightarrow$ Diskret
+        \item Fest definierte Ober- und Untergrenze
+        \item Implementieren selbst keine Algorithmen, sondern nur simple Operationen
+        \item Menge an Operationen beschränkt (+,-,*,/ und ggf. Bitwise Operations)
+        \begin{itemize}
+            \item Und nicht erweiterbar (Vgl. Objektorientierte Datentypen)
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Primitive Datentypen}{Eigenschaften (In Java)}
-	\begin{tabular}{|c|c|c|c|}
-	\hline
-	\textbf{Typ} & \textbf{Größe (Bits)} & \textbf{Minimum} & \textbf{Maximum}
-	\\
-	\hline
-	\visible<+->{\textbf{byte}} & \visible<+->{8} & \visible<+->{$ -128 $} & \visible<+->{$ 127 $}\\
-	\hline
-	\textbf{char} & \visible<+->{16} & \visible<+->{$ 0 $} & \visible<+->{$ 2^{16}-1 $}\\
-	\hline
-	\textbf{short} & \visible<+->{16} & \visible<+->{$ -2^{15} $} & \visible<+->{$ 2^{15}-1 $}\\
-	\hline
-	\textbf{int} & \visible<+->{32} & \visible<+->{$ -2^{31} $} & \visible<+->{$ 2^{31}-1 $}\\
-	\hline
-	\textbf{long} & \visible<+->{64} & \visible<+->{$ -2^{63} $} & \visible<+->{$ 2^{63}-1 $}\\
-	\hline
-	\textbf{float} & \visible<+->{32} & \visible<+->{$ \pm 1.4\text{E-}45 $} & \visible<+->{$ \pm 3.4\text{E+}38 $}\\
-	\hline
-	\textbf{double} & \visible<+->{64} & \visible<+->{$ \pm 4.9\text{E-}324 $} & \visible<+->{$ \pm 1.7\text{E+}324 $}\\
-	\hline
-	\textbf{boolean} & \visible<+->{Undefiniert} & \multicolumn{2}{c|}{\visible<+->{Nur \tt{true} und \tt{false}}}\\
-	\hline
-	\end{tabular}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Typ} & \textbf{Größe (Bits)} & \textbf{Minimum} & \textbf{Maximum}
+    \\
+    \hline
+    \visible<+->{\textbf{byte}} & \visible<+->{8} & \visible<+->{$ -128 $} & \visible<+->{$ 127 $}\\
+    \hline
+    \textbf{char} & \visible<+->{16} & \visible<+->{$ 0 $} & \visible<+->{$ 2^{16}-1 $}\\
+    \hline
+    \textbf{short} & \visible<+->{16} & \visible<+->{$ -2^{15} $} & \visible<+->{$ 2^{15}-1 $}\\
+    \hline
+    \textbf{int} & \visible<+->{32} & \visible<+->{$ -2^{31} $} & \visible<+->{$ 2^{31}-1 $}\\
+    \hline
+    \textbf{long} & \visible<+->{64} & \visible<+->{$ -2^{63} $} & \visible<+->{$ 2^{63}-1 $}\\
+    \hline
+    \textbf{float} & \visible<+->{32} & \visible<+->{$ \pm 1.4\text{E-}45 $} & \visible<+->{$ \pm 3.4\text{E+}38 $}\\
+    \hline
+    \textbf{double} & \visible<+->{64} & \visible<+->{$ \pm 4.9\text{E-}324 $} & \visible<+->{$ \pm 1.7\text{E+}324 $}\\
+    \hline
+    \textbf{boolean} & \visible<+->{Undefiniert} & \multicolumn{2}{c|}{\visible<+->{Nur \tt{true} und \tt{false}}}\\
+    \hline
+    \end{tabular}
 \end{frame}
 
 \begin{frame}{Primitive Datetypen}{Umwandlung}
-	\begin{alertblock}{Implizite Umwandlung}
-		Für die meisten Fälle gilt: Primitive Datentypen lassen sich grundsätzlich implizit umwandeln, wenn die Präzision des Zieldatentyps höher ist als die des Ursprungsdatentyps. Also:
-		
-		\begin{center}
-		\tt{byte} $\Rightarrow$ \tt{short} $\Rightarrow$ \tt{int} $\Rightarrow$ \tt{long} $\Rightarrow$ \tt{float} $\Rightarrow$ \tt{double}
-		\end{center}
-	\end{alertblock}
+    \begin{alertblock}{Implizite Umwandlung}
+        Für die meisten Fälle gilt: Primitive Datentypen lassen sich grundsätzlich implizit umwandeln, wenn die Präzision des Zieldatentyps höher ist als die des Ursprungsdatentyps. Also:
+        
+        \begin{center}
+        \texttt{byte} $\Rightarrow$ \texttt{short} $\Rightarrow$ \texttt{int} $\Rightarrow$ \texttt{long} $\Rightarrow$ \texttt{float} $\Rightarrow$ \texttt{double}
+        \end{center}
+    \end{alertblock}
 \end{frame}
 
 \begin{frame}{Primitive Datentypen}{Umwandlung}
-	\begin{alertblock}{Explizite Umwandlung}
-		Alle anderen Umwandlungen müssen explizit durchgeführt werden zum Beispiel durch nutzen von Casting.
-		
-		\textbf{Achtung:} Dies kann zu Datenverlust führen. Beispiel: Umwandlung von \tt{float} in \tt{int} $\Rightarrow$ Dezimalstellen gehen verloren.
-	\end{alertblock}
+    \begin{alertblock}{Explizite Umwandlung}
+        Alle anderen Umwandlungen müssen explizit durchgeführt werden zum Beispiel durch nutzen von Casting.
+        
+        \textbf{Achtung:} Dies kann zu Datenverlust führen. Beispiel: Umwandlung von \texttt{float} in \texttt{int} $\Rightarrow$ Dezimalstellen gehen verloren.
+    \end{alertblock}
 \end{frame}
 
 \begin{frame}{Objektorientierte Datentypen}{Grundlegendes}
-	\begin{itemize}
-		\item Zusammenfassen von Daten und Algorithmen in eine gemeinsame Instanz $\Rightarrow$ \textbf{Klasse}
-		\item Von einer Klasse können mehrere unabhängige Instanzen existieren $\Rightarrow$ \textbf{Objekt}
-		\item Entwickler entscheidet wie mit der Klasse interagiert werden muss $\Rightarrow$ \textbf{Datenkapselung}
-		\item Klassen lassen sich wiederverwenden $\Rightarrow$ Verringerter Arbeitsaufwand durch gut designete Klassen
-		\begin{itemize}
-			\item Durch Verwendung weiterführender Konzepte (wie z.B. Design Patterns) noch gestärkt
-		\end{itemize}
-		\item Bilden die Grundlage von Java
-	\end{itemize}
+    \begin{itemize}
+        \item Zusammenfassen von Daten und Algorithmen in eine gemeinsame Instanz $\Rightarrow$ \textbf{Klasse}
+        \item Von einer Klasse können mehrere unabhängige Instanzen existieren $\Rightarrow$ \textbf{Objekt}
+        \item Entwickler entscheidet wie mit der Klasse interagiert werden muss $\Rightarrow$ \textbf{Datenkapselung}
+        \item Klassen lassen sich wiederverwenden $\Rightarrow$ Verringerter Arbeitsaufwand durch gut designete Klassen
+        \begin{itemize}
+            \item Durch Verwendung weiterführender Konzepte (wie z.B. Design Patterns) noch gestärkt
+        \end{itemize}
+        \item Bilden die Grundlage von Java
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Objektorientierte Datentypen}{Vererbung}
-	\begin{itemize}
-		\item Grundpfeiler der Objektorientierung
-		\item Unterklassen \textbf{müssen} die Schnittstellen der Superklasse übernehmen
-		\begin{itemize}
-			\item Können neue Methoden und Variablen hinzufügen
-			\item Können vorhandene Methoden überschreiben $\Rightarrow$ Implementieren spezifischer Logik
-			\item Variablen bzw. Methoden können durch Vererbung \textbf{NICHT} entfernt werden
-		\end{itemize}
-		\item Objekte der Unterklassen können anstelle der Oberklasse treten
-		\begin{itemize}
-			\item Frage: Warum nicht umgekehrt?
-		\end{itemize}
-	\end{itemize}
+    \begin{itemize}
+        \item Grundpfeiler der Objektorientierung
+        \item Unterklassen \textbf{müssen} die Schnittstellen der Superklasse übernehmen
+        \begin{itemize}
+            \item Können neue Methoden und Variablen hinzufügen
+            \item Können vorhandene Methoden überschreiben $\Rightarrow$ Implementieren spezifischer Logik
+            \item Variablen bzw. Methoden können durch Vererbung \textbf{NICHT} entfernt werden
+        \end{itemize}
+        \item Objekte der Unterklassen können anstelle der Oberklasse treten
+        \begin{itemize}
+            \item Frage: Warum nicht umgekehrt?
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 %TODO: Hier evtl. Codebeispiel Vererbung?
 
 \begin{frame}{Objektorientierte Datentypen}{Vererbung}
-	\begin{itemize}
-		\item Formales OOP erlaubt Mehrfachvererbung, nutzbar in z.B.:
-		\begin{itemize}
-			\item C++
-			\item Python
-			\item Perl
-		\end{itemize}
-		\item In Java: Nur Einfachvererbung erlaubt
-		\begin{itemize}
-			\item Weitere Sprachen mit Einfachvererbung:
-			\item C\#
-			\item Ruby
-		\end{itemize}
-		\item Einige Funktionalitäten lassen sich über Interfaces abbilden
-	\end{itemize}
+    \begin{itemize}
+        \item Formales OOP erlaubt Mehrfachvererbung, nutzbar in z.B.:
+        \begin{itemize}
+            \item C++
+            \item Python
+            \item Perl
+        \end{itemize}
+        \item In Java: Nur Einfachvererbung erlaubt
+        \begin{itemize}
+            \item Weitere Sprachen mit Einfachvererbung:
+            \item C\#
+            \item Ruby
+        \end{itemize}
+        \item Einige Funktionalitäten lassen sich über Interfaces abbilden
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Objektorientierte Datentypen}{Interfaces}
-	\begin{minipage}{0.4\textwidth}
-			\begin{figure}
-				\includegraphics[height=3.35cm]{graph/judt}
-				\caption*{Quelle: \url{https://www.researchgate.net/profile/Andreas_Judt}}
-				\label{fig:ll}
-			\end{figure}
-		\end{minipage}
-		\hfill
-		\begin{minipage}{0.55\textwidth}
-			\textit{„Java hat das Konzept der Mehrfachvererbung über die Nutzung von Interfaces durch die Hintertür eingeführt.“} \\\\Andreas Judt
-		\end{minipage}
+    \begin{minipage}{0.4\textwidth}
+            \begin{figure}
+                \includegraphics[height=3.35cm]{graph/judt}
+                \caption*{Quelle: \url{https://www.researchgate.net/profile/Andreas_Judt}}
+                \label{fig:ll}
+            \end{figure}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.55\textwidth}
+            \textit{„Java hat das Konzept der Mehrfachvererbung über die Nutzung von Interfaces durch die Hintertür eingeführt.“} \\\\Andreas Judt
+        \end{minipage}
 \end{frame}
 
 \begin{frame}{Objektorientierte Datentypen}{Interfaces}
-	\begin{itemize}
-		\item Definieren einen Satz an Methoden
-		\item Implementierung der Funktionen erfolgt auf Klassenebene
-		\begin{itemize}
-			\item Seit Java 8: Definition von Standardimplementierung im Interface möglich
-		\end{itemize}
-		\item Klassen implementieren beliebig viele Interfaces
-		\item Java bietet viele Standardinterfaces wie z.B.:
-		\begin{itemize}
-			\item Comparable
-			\item Iterable
-			\item Serializable
-		\end{itemize}
-	\end{itemize}
+    \begin{itemize}
+        \item Definieren einen Satz an Methoden
+        \item Implementierung der Funktionen erfolgt auf Klassenebene
+        \begin{itemize}
+            \item Seit Java 8: Definition von Standardimplementierung im Interface möglich
+        \end{itemize}
+        \item Klassen implementieren beliebig viele Interfaces
+        \item Java bietet viele Standardinterfaces wie z.B.:
+        \begin{itemize}
+            \item Comparable
+            \item Iterable
+            \item Serializable
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Strukturierte Datentypen}{Allgemeines}
-	\begin{itemize}
-		\item Sind irgendwo zwischen Primitiven und Objektorientierten Datentypen einzuordnen
-		\item In Java jedoch als Klassen umgesetzt (Sofern vorhanden)
-		\item Wir betrachten folgende:
-		\begin{itemize}
-			\item Enumerations
-			\item Structs
-			\item Union
-		\end{itemize}
-	\end{itemize}
+    \begin{itemize}
+        \item Sind irgendwo zwischen Primitiven und Objektorientierten Datentypen einzuordnen
+        \item In Java jedoch als Klassen umgesetzt (Sofern vorhanden)
+        \item Wir betrachten folgende:
+        \begin{itemize}
+            \item Enumerations
+            \item Structs
+            \item Union
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Strukturierte Datentypen}{Enumerations}
-	\begin{itemize}
-		\item Ist eine Menge von geordneten, benannten Werten
-		\item Werte der Enumeration können über Namen geprüft werden
-		\item Anwendung:
-		\begin{itemize}
-			\item Beschränken einer Variable auf bestimmte definierte Werte
-			\item Vermeiden von „Magic Numbers“ $\Rightarrow$ Code-Lesbarkeit
-		\end{itemize}
-		\item In den meisten Sprachen sind Enum Werte im Hintergrund nur Integer Konstanten
-		\item In Java: Automatisch Klasse
-		\begin{itemize}
-			\item Dadurch höhere Flexibilität
-		\end{itemize}
-	\end{itemize}
+    \begin{itemize}
+        \item Ist eine Menge von geordneten, benannten Werten
+        \item Werte der Enumeration können über Namen geprüft werden
+        \item Anwendung:
+        \begin{itemize}
+            \item Beschränken einer Variable auf bestimmte definierte Werte
+            \item Vermeiden von „Magic Numbers“ $\Rightarrow$ Code-Lesbarkeit
+        \end{itemize}
+        \item In den meisten Sprachen sind Enum Werte im Hintergrund nur Integer Konstanten
+        \item In Java: Automatisch Klasse
+        \begin{itemize}
+            \item Dadurch höhere Flexibilität
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Enumerations}{Beispiel I}
@@ -207,28 +207,152 @@ Weekday myDay = Weekday.TUESDAY;
 \end{frame}
 
 \begin{frame}{Enumerations}{Beispiel II}
-Java Enumeration-Klassen erlauben nun aber auch komplexere Konstrukte. Beispiel anhand der Planeten unseres Sonnensystems:
+	\begin{itemize}
+		\item Durch die Klassenstruktur können Enumerations in Java komplexer sein
+		\item Definition von mehreren Variablen der Enum-Werte
+		\item Definition von Konstruktoren
+		\item Definition von Methoden
+	\end{itemize}
 %TODO: Code Beispiel Planeten (Siehe Javadocs)
 \end{frame}
 
+\begin{frame}[fragile]{Enumerations}{Komplexes Beispiel I}
+\lstset{style=javacode}
+\begin{lstlisting}
+public enum Planet {
+    MERCURY (3.303e+23, 2.4397e6),
+    VENUS   (4.869e+24, 6.0518e6),
+    EARTH   (5.976e+24, 6.37814e6),
+    MARS    (6.421e+23, 3.3972e6),
+    JUPITER (1.9e+27,   7.1492e7),
+    SATURN  (5.688e+26, 6.0268e7),
+    URANUS  (8.686e+25, 2.5559e7),
+    NEPTUNE (1.024e+26, 2.4746e7);
+
+    private final double mass;   // in kilograms
+    private final double radius; // in meters
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Enumerations}{Komplexes Beispiel II}
+\lstset{style=javacode}
+\begin{lstlisting}[firstnumber=13]
+    Planet(double mass, double radius) {
+        this.mass = mass;
+        this.radius = radius;
+    }
+    private double mass() { return mass; }
+    private double radius() { return radius; }
+
+    // universal gravitational constant  (m3 kg-1 s-2)
+    public static final double G = 6.67300E-11;
+
+    double surfaceGravity() {
+        return G * mass / (radius * radius);
+    }
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Enumerations}{Komplexes Beispiel II}
+\lstset{style=javacode}
+\begin{lstlisting}[firstnumber=26]
+    double surfaceWeight(double otherMass) {
+        return otherMass * surfaceGravity();
+    }
+} // public enum Planet
+//Verwendung:
+Planet jup = Planet.JUPITER;
+double someMass = 10;
+double weightOnJupiter = jup.surfaceWeight(someMass);
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}{Strukturierte Datentypen}{Structs}
-	\begin{itemize}
-		\item Fassen mehrere Einzelvariablen zu einer Struktur zusammen
-		\item Reine Datenstruktur zum erfassen von Daten
-		\begin{itemize}
-			\item Keine Methoden
-			\item Keine Zugriffsspezifizierer
-		\end{itemize}
-		\item In Java kein separates Konzept $\Rightarrow$ Sonderfall einer Klasse
-	\end{itemize}
+    \begin{itemize}
+        \item Fassen mehrere Einzelvariablen zu einer Struktur zusammen
+        \item Reine Datenstruktur zum erfassen von Daten
+        \begin{itemize}
+            \item Keine Methoden
+            \item Keine Zugriffsspezifizierer
+        \end{itemize}
+        \item Kein separates Konzept in Java $\Rightarrow$ Sonderfall einer Klasse
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Structs}{Beispiel in C++}
+\lstset{style=cpp}
+\begin{lstlisting}
+struct Date{
+    int day;
+    int month;
+    int year;
+    
+    Date():day(1)
+            ,month(1)
+            ,year(1970){}
+};
+//Verwendung:
+struct Date oneDate = {17,3,2019}
+oneDate.month=7;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Structs}{Beispiel in Java}
+\lstset{style=javacode}
+\begin{lstlisting}
+public class DateStruct{
+    int day = 1;
+    int month = 1;
+    int year = 1970;
+}
+//Verwendung:
+DateStruct aDate = new DateStruct();
+aDate.day=1;
+aDate.month=4;
+aDate.year=2019;
+\end{lstlisting}
 \end{frame}
 %TODO: Codebeispiele Vergleich Struct C++/Java
 
+\begin{frame}{Structs}{Verwendung in Java}
+    \begin{alertblock}{Auszug der Java Code Conventions}
+    \textbf{10 - Programming Practices}
+    
+    \textbf{10.1 Providing Access to Instance and Class Variables}
+    
+    Don't make any instance or class variable public without good reason. Often, instance variables don't need to be explicitly set or gotten-often that happens as a side effect of method calls.
+    
+    \visible<2>{One example of appropriate public instance variables is the case where the class is essentially a data structure, with no behavior. In other words, if you would have used a \texttt{struct} instead of a class (if Java supported \texttt{struct}), then it's appropriate to make the class's instance variables public.}
+    \end{alertblock}
+\end{frame}
+
 \begin{frame}{Strukturierte Datentypen}{Unions}
-	\begin{itemize}
-		\item Enthält mehrere Variablen
-		\item Diese teilen sich den gleichen Speicher
-		\item Variablen können demnach nicht unabhängig voneinander verändert werden
-		\item Kein (mir bekanntes) äquivalent in Java
-	\end{itemize}
+    \begin{itemize}
+        \item Enthält mehrere Variablen
+        \item Diese teilen sich den gleichen Speicher
+        \item Variablen können demnach nicht unabhängig voneinander verändert werden
+        \item Streng genommen immer nur ein Member "`aktiv"'
+        \begin{itemize}
+            \item "`Aktiv"' ist immer das member, auf das zuletzt geschrieben wurde
+            \item Lesen von den anderen membern ist undefiniertes Verhalten
+            \item Von den meisten Compilern jedoch definiert
+        \end{itemize}
+        \item Kein (mir bekanntes) äquivalent in Java
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Unions}{Codebeispiel in C++}
+\lstset{style=cpp}
+\begin{lstlisting}
+Union Example{
+    std::int32_t n;     //Belegt 4 Byte
+    std::uint16_t s[2]  //Belegt 4 Byte
+    std::uint8_t c;     //Belegt 1 Byte
+};                      //Gesamte Union belegt 4 Byte
+//Verwendung:
+Example ex = {0x12345678};  //n wird initialisiert. Lesen von s und c ist undefiniertes Verhalten
+ex.s[0] = 0x0011;   //s wird zum aktiven member
+std::cout << ex.c << std::endl; //0x11 oder 0x00, Plattformspezifisch
+std::cout << ex.n << std::endl; //0x12340011 oder 0x00115678
+\end{lstlisting}
 \end{frame}
