@@ -28,8 +28,6 @@
 .SILENT:
 ## Main documents
 DIRECTORIES = $(patsubst ./texfiles/%/,%,$(dir $(wildcard ./texfiles/*/.)))
-HANDOUTS = $(patsubst ./texfiles/%/,%,$(dir $(wildcard ./texfiles/*/.)))
-SLIDES = $(patsubst ./texfiles/%/,%,$(dir $(wildcard ./texfiles/*/.)))
 
 # Build Ordner
 BUILDDIR = build/
