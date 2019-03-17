@@ -136,7 +136,7 @@ viewlog:
 	
 $(DIRECTORIES): %: $(SLIDESDIR)%.pdf $(HANDOUTDIR)%.pdf
 
-$(SLIDESDIR)%.pdf: texfiles/%/*.tex texfiles/contact.tex %-slides1 %-slides2
+$(SLIDESDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-slides1 %-slides2
 	@$(MOVE) $(BUILDDIR)$*.pdf $(SLIDESDIR)
 
 %-slides1:
@@ -159,6 +159,9 @@ $(SLIDESDIR)%.pdf: texfiles/%/*.tex texfiles/contact.tex %-slides1 %-slides2
 	@$(ECHO) "Done!!"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 	
+$(HANDOUTDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-makehandout %-handout1 %-handout2 %-makeslide
+	@$(MOVE) $(BUILDDIR)$*.pdf $(HANDOUTDIR)	
+	
 %-handout1:
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Build PDF(""$*""(Handout), 1/2)"
@@ -178,9 +181,6 @@ $(SLIDESDIR)%.pdf: texfiles/%/*.tex texfiles/contact.tex %-slides1 %-slides2
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Done!!"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
-	
-$(HANDOUTDIR)%.pdf: texfiles/%/*.tex texfiles/contact.tex %-makehandout %-handout1 %-handout2 %-makeslide
-	@$(MOVE) $(BUILDDIR)$*.pdf $(HANDOUTDIR)
 	
 %-makehandout:
 	touch "$(BUILDDIR)reffile" -r ./texfiles/$*/main.tex
