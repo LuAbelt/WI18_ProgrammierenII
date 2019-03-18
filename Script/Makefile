@@ -47,7 +47,7 @@ ECHO = echo
 ECHOCOLOR = \033[1;32m
 ECHONC = \033[0m
 MOVE = mv
-MKDIR	= mkdir
+MKDIR = mkdir
 GIT	= git
 VIEWPDF = firefox
 PARSELOG = grep --color -E ".*:[0-9]*:.*|Warning:|Error:" $(BUILDDIR)
@@ -142,6 +142,7 @@ $(SLIDESDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-slides1 %-slide
 	@$(ECHO) "Build PDF(""$*""(Slides), 1/2)"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
+	test -d $(SLIDESDIR) || mkdir $(SLIDESDIR)
 	
 	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex 
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
@@ -165,6 +166,7 @@ $(HANDOUTDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-makehandout %-
 	@$(ECHO) "Build PDF(""$*""(Handout), 1/2)"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
+	test -d $(HANDOUTDIR) || mkdir $(HANDOUTDIR)
 	
 	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex 
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
