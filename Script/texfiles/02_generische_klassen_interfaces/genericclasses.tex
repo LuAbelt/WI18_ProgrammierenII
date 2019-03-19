@@ -1,2 +1,134 @@
-\begin{frame}{Generische Klassen}{Was zum Fick?}
+\begin{frame}{Generische Klassen}{Was ist das und Warum?}
+	\begin{itemize}
+		\item Ist eine Methode Klassen deutlich versatiler zu machen
+		\begin{itemize}
+			\item Und dadurch wiederverwenbar
+			\item Bei geringerem Implementierungsaufwand
+		\end{itemize}
+		\item Bisher: Festlegen von Datentypen bei Design der Klasse
+		\item Jetzt: Festlegen von Datentypen bei Verwendung der Klasse \visible<2->{(Zumindest für einige)}
+		\item Funktioniert für:
+		\begin{itemize}
+			\item Member Variablen
+			\item Funktionsparameter
+			\item Rückgabewerte
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Generiche Klassen}{Beispiel: Benannte Werte}
+	\begin{itemize}
+		\item Angenommen man erhält folgende Anforderungen für eine Klasse
+		\begin{itemize}
+			\item Die Klasse soll einen Wert speichern
+            \item Dieser soll vom Typ \texttt{Integer}, \texttt{String} oder \texttt{Boolean} sein
+			\item Die Klasse soll einen Namen für diesen Wert als \texttt{String} speichern können
+		\end{itemize}
+		\item Mögliche Ansätze ohne generische Klassen:
+		\begin{itemize}
+			\item Implementierung einer Klasse \texttt{NamedValue}, die drei Member der entsprechenden Typen hat
+			\item Implementierung einzelner Klassen \texttt{NamedInteger}, \texttt{NamedString} und \texttt{NamedBoolean}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Variante 1: One class for all!}{Implementierung}
+\lstset{style=javacode}
+\begin{lstlisting}
+    class NamedValue{
+    private Integer intValue;
+    private String stringValue;
+    private Boolean boolValue;
+    private String name;
+
+    void set(Integer newInt);
+    void set(String newString);
+    void set(Boolean newBool);
+    void setName(String newName);
+
+    Integer getIntegerValue();
+    String getStringValue();
+    Boolean getBooleanValue();
+    String getName();
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Variante 1: One class for all!}{Probleme}
+    \begin{itemize}
+        \item Es sollte \textbf{ein} Wert gespeichert werden
+            \begin{itemize}
+                \item Unsere Klasse speichert (theoretisch) bis zu drei verschiedene Werte
+                \item \textit{Könnte} man abfangen
+                \item Erhöht jedoch weiter den Implementierungsaufwand
+            \end{itemize}
+            \item Keine einheitliche Schnittstelle um Wert abzurufen
+            \item Erhöhter Aufwand bei Erweiterung der Klasse
+            \begin{itemize}
+                \item Wert soll jetzt auch von Typ \texttt{Color} sein
+                \item Hinzufügen neuer Member Variable \texttt{colorValue}
+                \item Hinzufügen neuer set-/get-Methoden
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Implementierung \texttt{NamedInteger}}
+\begin{lstlisting}
+class NamedInteger{
+    private Integer value;
+    private String name;
+    
+    void set(Integer newValue);
+    Integer get();
+    
+    void setName(String newName);
+    String getName();
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Implementierung \texttt{NamedString}}
+\begin{lstlisting}
+class NamedString{
+    private String value;
+    private String name;
+    
+    void set(String newValue);
+    String get();
+    
+    void setName(String newName);
+    String getName();
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Implementierung \texttt{NamedBoolean}}
+\begin{lstlisting}
+class NamedString{
+    private Boolean value;
+    private String name;
+    
+    void set(Boolean newValue);
+    Boolean get();
+    
+    void setName(String newName);
+    String getName();
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Probleme}
+\begin{itemize}
+    \item Löst einige Probleme der ersten Variante...
+    \begin{itemize}
+        \item Tatsächlich nur ein Wert gespeichert
+        \item Einheitliche Schnittstelle
+    \end{itemize}
+    \item ...Aber eben nicht alle
+    \item Copy-Paste-Code $\rightarrow$ Nach Möglichkeit zu vermeiden
+    \item Problem bei Erweiterung bleibt ähnlich
+    \begin{itemize}
+        \item Würde hier neue Klasse erfordern
+    \end{itemize}
+\end{itemize}
 \end{frame}
