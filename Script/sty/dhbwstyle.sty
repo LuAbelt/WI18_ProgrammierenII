@@ -13,12 +13,29 @@
 \usepackage{multirow}
 \usepackage{listings}
 \usetikzlibrary{shadows.blur}
+% Standard definitions
+\date{Ravensburg\\\today}
+\author{Lukas Abelt \\\texttt{lukas.abelt@airbus.com}}
+\institute{DHBW Ravensburg \\ Wirtschaftsinformatik}
+\usetheme{dhbw}
 
+\setcounter{secnumdepth}{3}
 % Custom Commands
+\renewcommand{\usecompanylogo}{1}
+\newcommand{\printcompanylogo}{\includegraphics[width=4cm]{graph/airbus_logo.png}}
+
+\newcommand{\middleText}{Lukas Abelt}
+\newcommand{\outlineSection}{Inhalt}
 \newlength{\forkmeoffset}
 \setlength{\forkmeoffset}{12em}
 \definecolor{forkmebg}{HTML}{CC0000}
 \definecolor{forkmefg}{HTML}{EEEEEE}
+\setlength{\framesubtitleoffset}{0pt}
+\setlength{\frametitleoffset}{0.05cm}
+\setlength{\frametextoffset}{0.1cm}
+\setlength{\framefootlineoffset}{0cm}
+
+
 
 \newcommand{\forkme}[1][west]{
 	\ifthenelse{\equal{#1}{east}}{%

@@ -1,3 +1,4 @@
+\outlineSubframe{Motivation}
 \begin{frame}{Generische Klassen}{Was ist das und Warum?}
 	\begin{itemize}
 		\item Ist eine Methode Klassen deutlich versatiler zu machen
@@ -35,7 +36,7 @@
 \begin{frame}[fragile]{Variante 1: One class for all!}{Implementierung}
 \lstset{style=javacode}
 \begin{lstlisting}
-    class NamedValue{
+class NamedValue{
     private Integer intValue;
     private String stringValue;
     private Boolean boolValue;
@@ -73,6 +74,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Implementierung \texttt{NamedInteger}}
+\lstset{style=javacode}
 \begin{lstlisting}
 class NamedInteger{
     private Integer value;
@@ -88,6 +90,7 @@ class NamedInteger{
 \end{frame}
 
 \begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Implementierung \texttt{NamedString}}
+\lstset{style=javacode}
 \begin{lstlisting}
 class NamedString{
     private String value;
@@ -103,6 +106,7 @@ class NamedString{
 \end{frame}
 
 \begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Implementierung \texttt{NamedBoolean}}
+\lstset{style=javacode}
 \begin{lstlisting}
 class NamedString{
     private Boolean value;
@@ -117,7 +121,7 @@ class NamedString{
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Probleme}
+\begin{frame}{Variante 2: Viel hilft viel!}{Probleme}
 \begin{itemize}
     \item Löst einige Probleme der ersten Variante...
     \begin{itemize}
@@ -132,3 +136,70 @@ class NamedString{
     \end{itemize}
 \end{itemize}
 \end{frame}
+
+
+\outlineSubframe{Syntax\&Eigenschaften}
+
+\begin{frame}{Generische Klassen}{Die Lösung des Problems!}
+    \begin{itemize}
+        \item Angabe von "`Platzhaltern"' bei Definition der Klasse
+        \begin{itemize}
+            \item Namen sind theoretisch beliebig wählbar
+            \item ...Es gibt jedoch Naming conventions dazu
+        \end{itemize}
+        \item Diese repräsentieren den Datentypen
+        \item Die Spezifizierung des Typs erfolgt erst bei Deklaration einer Variable vom Typ der Klasse
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Generische Klassen}{Syntax}
+\lstset{style=javacode}
+\begin{lstlisting}
+class NamedValue<T>{
+    private T value;
+    private String name;
+    
+    void set(T newValue);
+    T get();
+    
+    void setName(String newName);
+    String getName();
+}
+//Verwendung:
+NamedValue<Integer> namedInteger;
+NamedValue<String> namedString;
+NamedValue<Boolean> namedBoolean;
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Eigenschaften von generischen Klassen}
+\begin{itemize}
+    \item Schnittstellen bleiben einheitlich (Im Rahmen des spezifizierten Typs)
+    \item Kein Problem mit Anpassungen an neue Typen $\rightarrow$ Keine Änderung notwendig
+    \item Definieren mehrerer generischer Typen möglich:
+\end{itemize}%
+\lstset{style=javacode}%
+\begin{lstlisting}
+class name<T1, T2, ..., Tn> {/*Klasseninhalt*/}
+\end{lstlisting}
+\framebreak
+\begin{itemize}
+\item Naming Conventions für Typen:
+    \begin{itemize}
+        \item In der Regel ein Buchstabe
+        \item \texttt{T} - Type
+        \item \texttt{E} - Element
+        \item \texttt{N} - Number
+        \item \texttt{K} - Key
+        \item \texttt{V} - Value
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\outlineSubframe{Generische Interfaces}
+\outlineSubframe{Wildcards}
+\outlineSubframe{Einschränkungen}
+%TODO:
+%Bounded Type generics
+%Generic Interfaces
+%Wildcards
