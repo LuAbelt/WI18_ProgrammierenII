@@ -196,10 +196,123 @@ class name<T1, T2, ..., Tn> {/*Klasseninhalt*/}
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Generische Klassen}{Begrenzen von Typen}
+    \begin{itemize}
+        \item Problem: Generics bieten nur begrenzte Funktionalität
+        \begin{itemize}
+            \item Garantiert sind nur Methoden die in \texttt{Object} implementiert sind
+            \item \texttt{equals()}, \texttt{toString()}, \texttt{hashCode()}...
+        \end{itemize}
+        \item In manchen Fällen werden aber mehr Funktionalitäten benötigt
+        \item Hierfür lassen sich Generics einschränken
+        \begin{itemize}
+            \item Nach benötigter Superklasse
+            \item Nach benötigten Interfaces
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Begrenzung von Typen}{Beispiel 1: Spezifizieren der Superklasse}
+\lstset{style=javacode}
+\begin{lstlisting}
+class BoxedNumber<T extends Number>{
+    private T number;
+    
+    void set(T newNumber);
+    T get();
+}
+//Verwendung:
+BoxedNumber<Interger> boxInt = new BoxedNumber<>();     //OK, Integer erbt von Number
+BoxedNumber<Double> boxDbl = new BoxedNumber<>();       //OK, Double erbt von Number
+BoxedNumber<String> error = new BoxedNumber<>();     //Compilerfehler, String ist keine Unterklasse von Number
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Begrenzung von Typen}{Beispiel 2: Spezifizieren von Interfaces}
+\lstset{style=javacode}
+\begin{lstlisting}
+class BoxedComparable<T extends Comparable<T>>{
+    private T value;
+    /* set()-/get()-Methoden */
+    boolean isSmaller(T other){
+        return value.compareTo(other)<0;
+    }
+}
+//Verwendung:
+BoxedComparable<Interger> boxInt;     //OK, Integer implementiert Comparable
+BoxedComparable<String> boxString;    //OK
+BoxedComparable<Color> error;         //Compilerfehler
+\end{lstlisting}
+\textbf{Achtung:} Auch für Interfaces wird in diesem Fall das keyword \texttt{extends} genutzt!
+\end{frame}
+
+\begin{frame}[fragile]{Begrenzung von Typen}{Beispiel 3: Spezifizieren von Superklasse\&Interfaces}
+\lstset{style=javacode}
+\begin{lstlisting}
+class ComparableNumber<T extends Number&Comparable<T>>{
+    private T value;
+    
+    void set(T newValue);
+    T get();
+    boolean isSmaller(T other){
+        return value.compareTo(other)<0;
+    }
+}
+//Verwendung:
+ComparableNumber<Interger> compInt;      //OK
+ComparableNumber<Double>  compDbl;        //OK
+ComparableNumber<AtomicInteger> error;    //Compilerfehler
+\end{lstlisting}
+\end{frame}
+
 \outlineSubframe{Generische Interfaces}
-\outlineSubframe{Wildcards}
-\outlineSubframe{Einschränkungen}
-%TODO:
-%Bounded Type generics
-%Generic Interfaces
-%Wildcards
+
+\begin{frame}{Generische Interfaces}{...Gibt es natürlich auch noch}
+    \begin{itemize}
+        \item Das ganze funktioniert analog mit Interfaces
+        \item Spezifizierung des Typen erfolgt bei Implementierung
+        \begin{itemize}
+            \item Entweder direkte Angabe des Typen
+            \item ...oder "`durchreichen"' von Typparametern der Klasse
+        \end{itemize}
+        \item Bekanntester Vertreter aus der Standardbibliothek: \texttt{Comparable<T>}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Implementierung generischer Interfaces}{Beispiel 1: Direkte Angabe des Typen}
+\lstset{style=javacode}
+\begin{lstlisting}
+class BoxedInt implements Comparable<Integer>{
+    private Integer number;
+    
+    void set(Integer newNumber);
+    Integer get();
+    
+    int compareTo(Integer i){
+        return number.compareTo(i)
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Implementierung generischer Interfaces}{Beispiel 2: Durchreichen von Typparametern}
+\lstset{style=javacode}
+\begin{lstlisting}
+class BoxedValue<T> implements Comparable<T>{
+    private T value;
+    
+    void set(T newValue);
+    T get();
+    
+    int compareTo(T o){
+        if(number.hashCode()<i.hashCode()){
+            return -1;
+        } else if(number.hashCode()>i.hashCode()){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+}
+\end{lstlisting}
+\end{frame}
