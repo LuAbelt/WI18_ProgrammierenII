@@ -1,0 +1,100 @@
+\begin{frame}{Wildcards}{Was ist das jetzt schon wieder?}
+    \begin{itemize}
+        \item Weiteres Werkzeug für generischen Code, wenn der Typ nicht explizit bekannt sein muss
+        \item Dargestellt über \texttt{<?>} im Code
+        \item Wildcards können nach "`oben"' oder "`unten"' (Im Sinne der Vererbungshierarchie) eingeschränkt werden
+        \item Vereinfacht die Implementierung von Methoden, die Generische Klassen verwenden
+        \item Wird \textbf{nicht} verwendet für:
+        \begin{itemize}
+            \item Erzeugung von Objekten einer generischen Klasse
+            \item Als Typargument bei Aufruf generischer Methoden
+            \item Zur spezifizierung eines Supertyps
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Unbounded Wildcards}
+    \begin{itemize}
+        \item Schränken den Typ nicht ein
+        \item Nützlich, wenn:
+        \begin{itemize}
+            \item Die Methode sich allein über die Funktionalitäten der \texttt{Object} Klasse realisieren lässt
+            \item Die verwendeten Methode der generischen Klasse nicht vom Typ abhängig sind
+            \begin{itemize}
+                \item Zum Beispiel: \texttt{List.size()} oder \texttt{List.clear()}
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Unbounded Wildcards}{Codebeispiel}
+\lstset{style=javacode}
+\begin{lstlisting}
+public static void printList(List<?> list){
+    for (Object elem : List){
+        System.out.println(elem.toString);
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Upper-Bounded Wildcards}{Du und alle unter dir}
+    \begin{itemize}
+        \item Schränkt die Wildcard auf eine Klasse sowie alle ihre Subklassen ein
+        \item Definition erfolgt über die Nutzung des \texttt{extends} Keywords
+        \begin{itemize}
+            \item Beispiel: \texttt{List<? extends Number>}
+        \end{itemize}
+        \item Upper-Bounded Wildcards stellen sicher, dass Methoden der Superklasse verwendet werden können
+        \item Vereinfachen somit Implementierung von Methoden, die für eine gesamte "`Klassenfamilie"' funktionieren sollen (Beispielsweise alle \texttt{Number} Klassen)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Upper-Bounded Wildcards}{Codebeispiel: Summe einer Liste}
+\lstset{style=javacode}
+\begin{lstlisting}
+public static double sumOfList(List<? extends Number> list){
+    double s = 0.;
+    for (Number n : list){
+        s += n.doubleValue();
+    }
+    return s;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Lower-Bounded Wildcards}{Du und alle über dir!}
+    \begin{itemize}
+        \item Schränkt die Wildcard auf eine Klasse und all ihre Superklassen ein
+        \item Definition erfolgt über das Keyword \texttt{super}
+        \begin{itemize}
+            \item Beispiel \texttt{List<? super Double>}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Upper-Bounded Wildcards}{Codebeispiel: Summe einer Liste}
+\lstset{style=javacode}
+\begin{lstlisting}
+public static void addNumbers(List<? super Integer> list) {
+    for (int i = 1; i <= 10; i++) {
+        list.add(i);
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Wildcards}{Guidelines zur Benutzung}
+\begin{itemize}
+    \item Wildcards sollten nicht in Rückgabewerten verwendet werden
+    \item Generell lassen sich die zu verwendenen Wildcards nach Art der Variable unterscheiden:
+    \begin{itemize}
+        \item \texttt{in} Variable: Upper-Bounded
+        \begin{itemize}
+            \item Falls ausschließlich Methoden aus \texttt{Object} benötigt werden: Unbounded
+        \end{itemize}
+        \item \texttt{out} Variable: Lower-Bounded
+        \item Wenn die Variable sowohl als \texttt{in} und \texttt{out} verwendet wird: Keine Wildcard nutzen
+    \end{itemize}
+\end{itemize}
+\end{frame}
