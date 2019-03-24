@@ -1,0 +1,83 @@
+\begin{frame}{Einschränkungen von Generics}{Keine Verwendung von primitiven Typen}
+    \begin{itemize}
+        \item Typparameter müssen immer Klassen sein
+        \item Dadurch keine Nutzung von primitiven Typen bei Instanziierung möglich
+        \item Stattdessen müssen die entsprechenden Wrapper-Klassen (\texttt{Integer}, \texttt{Boolean}, \texttt{Double} etc.) verwendet werden
+        \item Beispiel: Pair Klasse
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Einschränkungen von Generics}{Beispiel}
+\lstset{style=javacode}
+\begin{lstlisting}
+class Pair<K, V>{
+    private K key;
+    private V value;
+
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    // ...
+}
+
+Pair<int, char> p = new Pair<>(8, 'a');  //Compilerfehler
+Pair<Integer, Character> p = new Pair<>(8, 'a');  //OK
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Einschränkung von Generics}{Instanziieren von Typparametern}
+    \begin{itemize}
+        \item Instanziieren von Typparametern ist nicht erlaubt
+        \item Kann umgangen werden über Reflection API
+    \end{itemize}
+    \lstset{style=javacode}
+    \begin{lstlisting}
+    public <E> void append(List<E> list){
+        E elem = new E();   //Compilerfehler
+        list.add(elem);
+    }
+    {public <E> void append(List<E> list, Class<E> cls) throws Exception{
+        E elem = cls.newInstance();   //OK
+        list.add(elem);
+    }
+    //Verwendung:
+    List<String> ls = new ArrayList<>();
+    append(ls, String.class);}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Einschränkungen von Generics}{Statische Variablen}
+    \begin{itemize}
+        \item Typparameter können nicht für statische Variablen verwendet werden
+        \item Kommt dadurch, dass die Variable für alle Instanzen der Klasse gleich sein muss
+        \item Unterschiedliche Instanzen der Klasse könnten sonst die Variable unterschiedlich typisieren
+    \end{itemize}
+    \lstset{style=javacode}
+    \pause
+    \begin{lstlisting}
+    class StaticGeneric<T>{
+        private static T var;
+        //...
+    }
+    StaticGeneric<Integer> intS = new StaticGeneric();
+    StaticGeneric<String> strS = new StaticGeneric();
+    StaticGeneric<Boolean> boolS = new StaticGeneric();
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Einschränkungen generischer Klassen}{Weitere Einschränkungen}
+    \begin{itemize}
+        \item Keine Arrays von parametrisierten Typen möglich
+        \begin{itemize}
+            \item Runtime könnte bestimmte Fehlerfälle nicht mehr korrekt abfangen
+        \end{itemize}
+        \item Generische Klassen können nicht direkt oder indirekt von \texttt{Throwable} ableiten
+        \item \texttt{catch} und \texttt{throw} können nicht mit parametrisierten Typen verwendet werden
+        \begin{itemize}
+            \item \textbf{\texttt{throws} jedoch schon!}
+        \end{itemize}
+        \item Funktionssignaturen können nicht allein durch einen anderes Typargument überladen werden
+    \end{itemize}
+\end{frame}
