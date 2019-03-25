@@ -317,3 +317,79 @@ class BoxedValue<T> implements Comparable<T>{
 }
 \end{lstlisting}
 \end{frame}
+
+\outlineSubframe{Vererbung in Generischen Klassen}
+
+\begin{frame}[fragile]{Vererbung}{Kurze Wiederholung}
+\begin{minipage}{0.6\textwidth}
+    \begin{itemize}
+        \item Objekte von Subklassen können einem Objekt der Superklasse zugewiesen werden 
+        \item So kann ein \texttt{Integer} beispielsweise einem \texttt{Object} zugewiesen werden
+    \end{itemize}
+    \lstset{style=javacode}
+    \begin{onlyenv}<2->
+    \begin{lstlisting}
+Integer someInt = new Integer(42);
+Object someObject = new Object();
+someObject = someInt;   //OK
+    \end{lstlisting}
+    \end{onlyenv}
+\end{minipage}%
+\begin{minipage}{0.35\textwidth}
+\centering
+    \begin{figure}
+        \centering
+        \visible<3->{\includegraphics[width=2.5cm]{graph/int2obj}}
+    \end{figure}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]{Vererbung}{In generischen Klassen}
+    \begin{itemize}
+        \item Gleiches gilt natürlich auch für den generischen Typ selbst
+        \item<2-> Zum Beispiel bei Funktionsaufrufen können auch Objekte der Subklasse übergeben werden:
+    \end{itemize}
+    \lstset{style=javacode}
+    \begin{onlyenv}<3->
+    \begin{lstlisting}
+class BoxValue<T>{
+    private T val;
+    
+    void set(T t);
+    T get();
+}
+//Erlaubte Verwendung:
+BoxValue<Number> boxNum = new BoxValue();
+boxNum.set(new Double(2.34));   //OK
+boxNum.set(new Integer(7));     //OK
+    \end{lstlisting}
+    \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]{Vererbung}{Von generischen Klassen}
+\lstset{style=javacode}
+\begin{lstlisting}
+void someMethod(BoxValue<Number> box){/* ... */}
+\end{lstlisting}
+\begin{itemize}
+    \item<2-> Welche Typen werden akzeptiert?
+    \begin{itemize}
+        \item<3-> \texttt{BoxValue<Number>}
+        \item<4-> \texttt{BoxValue<Integer>}?
+        \item<5-> \texttt{BoxValue<Double>}?
+    \end{itemize}
+    \item<6-> \textbf{NUR} \texttt{BoxValue<Number>} wird als Typ akzeptiert
+    \item<7-> \texttt{Integer} erbt zwar von \texttt{Number}...
+    \begin{itemize}
+        \item<8-> ...Aber \texttt{BoxValue<Number>} und \texttt{BoxValue<Integer>} stehen in keiner Beziehung zueinander!
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Vererbung}{Von generischen Klassen}
+    \begin{figure}
+        \centering
+        \includegraphics[height=4.5cm]{graph/generics-subtypeRelationship.png}
+        \caption*{Quelle: \url{https://docs.oracle.com/javase/tutorial/java/generics/inheritance.html}}
+    \end{figure}
+\end{frame}
