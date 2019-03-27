@@ -28,7 +28,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Unbounded Wildcards}{Codebeispiel}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 public static void printList(List<?> list){
     for (Object elem : List){
@@ -51,7 +51,7 @@ public static void printList(List<?> list){
 \end{frame}
 
 \begin{frame}[fragile]{Upper-Bounded Wildcards}{Codebeispiel: Summe einer Liste}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 public static double sumOfList(List<? extends Number> list){
     double s = 0.;
@@ -74,7 +74,7 @@ public static double sumOfList(List<? extends Number> list){
 \end{frame}
 
 \begin{frame}[fragile]{Upper-Bounded Wildcards}{Codebeispiel: Summe einer Liste}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 public static void addNumbers(List<? super Integer> list) {
     for (int i = 1; i <= 10; i++) {

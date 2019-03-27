@@ -20,6 +20,18 @@
 \usetheme{dhbw}
 
 \setcounter{secnumdepth}{3}
+
+\lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+    {~}{{\textasciitilde}}1
+}
+
 % Custom Commands
 \renewcommand{\usecompanylogo}{1}
 \newcommand{\printcompanylogo}{\includegraphics[width=4cm]{graph/airbus_logo.png}}
@@ -64,7 +76,7 @@
 \definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
 
 % Custom LST styles
-\lstdefinestyle{javacode}{
+\lstdefinestyle{java}{
 	language=Java,
 	basicstyle=\linespread{0.8}\ttfamily\footnotesize,
 	breaklines=true,
@@ -99,5 +111,20 @@
 	showspaces=false,
 	showstringspaces=false,
 	morekeywords={Union},
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+\lstdefinestyle{pseudo}{
+	basicstyle=\linespread{0.8}\ttfamily\footnotesize,
+	breaklines=true,
+    keywordstyle=\color{pgreen}\bfseries,
+	numbers=left,
+	numberstyle=\tiny\color{black},
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+    morekeywords={FUER, SETZE, WENN, DANN, ENDE, LESE, GEBE, AUS, BIS},
 	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
 }

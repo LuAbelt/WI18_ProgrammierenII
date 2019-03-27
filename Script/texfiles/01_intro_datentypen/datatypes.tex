@@ -190,7 +190,7 @@
 
 \begin{frame}[fragile]{Enumerations}{Beispiel I}
 Enumeration zur Repräsentation der Wochentage sieht zum Beispiel so aus:
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 enum Weekday {
     MONDAY,
@@ -217,7 +217,7 @@ Weekday myDay = Weekday.TUESDAY;
 \end{frame}
 
 \begin{frame}[fragile]{Enumerations}{Komplexes Beispiel I}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 public enum Planet {
     MERCURY (3.303e+23, 2.4397e6),
@@ -235,7 +235,7 @@ public enum Planet {
 \end{frame}
 
 \begin{frame}[fragile]{Enumerations}{Komplexes Beispiel II}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}[firstnumber=13]
     Planet(double mass, double radius) {
         this.mass = mass;
@@ -254,7 +254,7 @@ public enum Planet {
 \end{frame}
 
 \begin{frame}[fragile]{Enumerations}{Komplexes Beispiel II}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}[firstnumber=26]
     double surfaceWeight(double otherMass) {
         return otherMass * surfaceGravity();
@@ -298,7 +298,7 @@ oneDate.month=7;
 \end{frame}
 
 \begin{frame}[fragile]{Structs}{Beispiel in Java}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 public class DateStruct{
     int day = 1;

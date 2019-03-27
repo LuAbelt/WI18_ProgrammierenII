@@ -34,7 +34,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Variante 1: One class for all!}{Implementierung}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class NamedValue{
     private Integer intValue;
@@ -74,7 +74,7 @@ class NamedValue{
 \end{frame}
 
 \begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Implementierung \texttt{NamedInteger}}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class NamedInteger{
     private Integer value;
@@ -90,7 +90,7 @@ class NamedInteger{
 \end{frame}
 
 \begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Implementierung \texttt{NamedString}}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class NamedString{
     private String value;
@@ -106,7 +106,7 @@ class NamedString{
 \end{frame}
 
 \begin{frame}[fragile]{Variante 2: Viel hilft viel!}{Implementierung \texttt{NamedBoolean}}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class NamedString{
     private Boolean value;
@@ -153,7 +153,7 @@ class NamedString{
 \end{frame}
 
 \begin{frame}[fragile]{Generische Klassen}{Syntax}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class NamedValue<T>{
     private T value;
@@ -178,7 +178,7 @@ NamedValue<Boolean> namedBoolean;
     \item Kein Problem mit Anpassungen an neue Typen $\rightarrow$ Keine Änderung notwendig
     \item Definieren mehrerer generischer Typen möglich:
 \end{itemize}%
-\lstset{style=javacode}%
+\lstset{style=java}%
 \begin{lstlisting}
 class name<T1, T2, ..., Tn> {/*Klasseninhalt*/}
 \end{lstlisting}
@@ -213,7 +213,7 @@ class name<T1, T2, ..., Tn> {/*Klasseninhalt*/}
 \end{frame}
 
 \begin{frame}[fragile]{Begrenzung von Typen}{Beispiel 1: Spezifizieren der Superklasse}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class BoxedNumber<T extends Number>{
     private T number;
@@ -229,7 +229,7 @@ BoxedNumber<String> error = new BoxedNumber<>();     //Compilerfehler, String is
 \end{frame}
 
 \begin{frame}[fragile]{Begrenzung von Typen}{Beispiel 2: Spezifizieren von Interfaces}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class BoxedComparable<T extends Comparable<T>>{
     private T value;
@@ -247,7 +247,7 @@ BoxedComparable<Color> error;         //Compilerfehler
 \end{frame}
 
 \begin{frame}[fragile]{Begrenzung von Typen}{Beispiel 3: Spezifizieren von Superklasse\&Interfaces}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class ComparableNumber<T extends Number&Comparable<T>>{
     private T value;
@@ -281,7 +281,7 @@ ComparableNumber<AtomicInteger> error;    //Compilerfehler
 \end{frame}
 
 \begin{frame}[fragile]{Implementierung generischer Interfaces}{Beispiel 1: Direkte Angabe des Typen}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class BoxedInt implements Comparable<Integer>{
     private Integer number;
@@ -297,7 +297,7 @@ class BoxedInt implements Comparable<Integer>{
 \end{frame}
 
 \begin{frame}[fragile]{Implementierung generischer Interfaces}{Beispiel 2: Durchreichen von Typparametern}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 class BoxedValue<T> implements Comparable<T>{
     private T value;
@@ -326,7 +326,7 @@ class BoxedValue<T> implements Comparable<T>{
         \item Objekte von Subklassen können einem Objekt der Superklasse zugewiesen werden 
         \item So kann ein \texttt{Integer} beispielsweise einem \texttt{Object} zugewiesen werden
     \end{itemize}
-    \lstset{style=javacode}
+    \lstset{style=java}
     \begin{onlyenv}<2->
     \begin{lstlisting}
 Integer someInt = new Integer(42);
@@ -349,7 +349,7 @@ someObject = someInt;   //OK
         \item Gleiches gilt natürlich auch für den generischen Typ selbst
         \item<2-> Zum Beispiel bei Funktionsaufrufen können auch Objekte der Subklasse übergeben werden:
     \end{itemize}
-    \lstset{style=javacode}
+    \lstset{style=java}
     \begin{onlyenv}<3->
     \begin{lstlisting}
 class BoxValue<T>{
@@ -367,7 +367,7 @@ boxNum.set(new Integer(7));     //OK
 \end{frame}
 
 \begin{frame}[fragile]{Vererbung}{Von generischen Klassen}
-\lstset{style=javacode}
+\lstset{style=java}
 \begin{lstlisting}
 void someMethod(BoxValue<Number> box){/* ... */}
 \end{lstlisting}

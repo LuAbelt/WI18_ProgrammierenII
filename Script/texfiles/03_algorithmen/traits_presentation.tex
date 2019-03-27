@@ -56,5 +56,132 @@
 
 \outlineSubframe{Darstellungsformen}
 
-\begin{frame}{}
+\begin{frame}{Möglichkeiten der Darstellung}{}
+    \begin{itemize}[<+->]
+        \item Zur Definition von Algorithmen gibt es verschiedenste Möglichkeiten
+        \item Mit ganz eigenen Vor- und Nachteilen
+        \item Wir betrachten im Rahmen der Vorlesung:
+        \begin{itemize}
+            \item Prosatext
+            \item Pseudocode
+            \item Struktogramme
+            \item Programmablaufplan (PAP)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Was beschreiben wir?}{Unser Referenzalgorithmus}
+    \begin{itemize}
+        \item Um die verschiedenen Elemente zu vergleichen, wollen wir mit allen den folgenden Algorithmus beschreiben:
+    \end{itemize}
+    \pause
+    \begin{alertblock}{Referenz}
+        Für eine Zahl $n$ (Wobei gilt: $n \in \mathbb{N} $), soll die Summe aller geraden Zahlen von $0$ bis $n$ berechnet werden.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Darstellung als Prosatext}{Der simple Weg}
+    \begin{itemize}
+        \item Simpelste Herangehensweise
+        \item Man beschreibt in eigenen Worten, wie man vorgehen würde um die gegebene Problemstellung zu lösen
+        \item \textbf{Achtung:} Unterscheiden zwischen Problemstellung und Lösungsbeschreibung!
+        \item Auch in Prosaform sollten die Einzelschritte eindeutig beschrieben sein
+        \item Nicht standardisiert $\rightarrow$ Beschreibung von Algorithmen inkonsistent
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Prosabeschreibung}{Für unseren Algorithmus}
+    \begin{alertblock}{Addiere alle geraden Zahlen}
+    \visible<2->{Lese die Zahl \texttt{n} ein.}
+    
+    \visible<3->{Anschließend setze die Zählvariable \texttt{i} sowie die Ergebnisvariable \texttt{res} auf \texttt{0}.}
+    
+    \visible<4->{Wenn \texttt{i} gerade ist, addiere \texttt{i} auf die Ergebnisvariable.} \visible<5->{Erhöhe anschließend \texttt{i} um \texttt{1}.} \visible<6->{Wiederhole die letzten zwei Schritte bis \texttt{i} größer ist als \texttt{n}.}
+    
+    \visible<7->{Gebe \texttt{res} aus}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Darstellung als Pseudocode}{Der Zwischenweg}
+    \begin{itemize}
+        \item Mischung aus Prosa und tatsächlichem Code
+        \item Orientiert sich an den in Programmiersprachen vorhandenen Strukturen (If-then-else, Schleifen...)
+        \item Nutzt dabei aber leicht verständliche und programmiersprachenunabhängige Begriffe
+        \item Wie Code in der Regel zeilenweise auf atomare Operationen beschränkt
+        \item Keine formale Standardisierung, dadurch auch hier Inkonsistenzen möglich $\rightarrow$ Aber weniger als bei Prosabeschreibung
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Pseudocode}{Für unser Pseudoproblem}
+\lstset{style=pseudo}
+\begin{lstlisting}
+LESE n
+SETZE res=0
+FUER i=0 BIS n
+    WENN istGerade(i) DANN
+        res+=i
+    ENDE WENN
+ENDE FUER
+GEBE res AUS
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Struktogramme}{Der erste Standard}
+    \begin{itemize}
+        \item Entwickelt durch \textit{Nassi Shneidermann}
+        \item Grafische Darstellung von Algorithmen
+        \item Standardisiert nach \textbf{DIN 66261}
+        \item Zerlegt den Algorithmus in elementare Grundstrukturen
+        \item Die über die definierten Blöcke dargestellt werden
+        \item Werden (lückenlos) von oben nach unten aneinander gereiht
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Elemente von Struktogrammen}{Anweisung}
+TODO: Abbildung Anweisungsblock
+\end{frame}
+
+\begin{frame}{Elemente von Struktogrammen}{Verzweigungen}
+TODO: Abbildung Verzweigungen
+\end{frame}
+
+\begin{frame}{Elemente von Struktogrammen}{Zählschleifen}
+TODO: Abbildung Zählschleife
+\end{frame}
+
+\begin{frame}{Elemente von Struktogrammen}{Schleifen}
+TODO: Abbildung Schleifen
+\end{frame}
+
+\begin{frame}{Struktogram für unseren Algorithmus}
+TODO: Struktogram Algorithmus
+\end{frame}
+
+\begin{frame}{Programmablaufplan}{Der zweite Standard}
+    \begin{itemize}
+        \item Bildet einen linearen Programmfluss aber
+        \item Standardisiert nach \textbf{DIN 66001}
+        \item Wie beim Struktogramm gibt es fest definierte Grundblöcke
+        \item Diese werden hier jedoch über Pfeile verbunden
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Elemente von Programmablaufplänen}{Start, Stop, Anweisungsblock, Ein- und Ausgaben}
+TODO: Abbildung Anweisungsblock
+\end{frame}
+
+\begin{frame}{Elemente von Programmablaufplänen}{Verzweigungen}
+TODO: Abbildung Verzweigungen
+\end{frame}
+
+\begin{frame}{Elemente von Programmablaufplänen}{Zählschleifen}
+TODO: Abbildung Zählschleife
+\end{frame}
+
+\begin{frame}{Elemente von Programmablaufplänen}{Schleifen}
+TODO: Abbildung Schleifen
+\end{frame}
+
+\begin{frame}{Programmablaufplan für unseren Algorithmus}
+TODO: PAP Algorithmus
 \end{frame}
