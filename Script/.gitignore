@@ -261,3 +261,4 @@ TSWLatexianTemp*
 # Internal files
 ablauf_notizen
 reffile
+build_windows.cmd
