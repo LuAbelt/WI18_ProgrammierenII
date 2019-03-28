@@ -20,8 +20,8 @@ public class GenericArrayWrapper<T> {
     }
 
     public boolean contains(T element){
-        for(int i=0;i<dataArray.length;i++) {
-            if(dataArray[i].equals(element)){
+        for(T curElement: dataArray) {
+            if(curElement.equals(element)){
                 return true;
             }
         }
@@ -30,8 +30,8 @@ public class GenericArrayWrapper<T> {
 
     public int countOccurences(T element) {
         int result = 0;
-        for (int i = 0; i < dataArray.length; i++) {
-            if (dataArray[i].equals(element)) {
+        for (T curElement:dataArray) {
+            if (curElement.equals(element)) {
                 result++;
             }
         }
@@ -43,8 +43,8 @@ public class GenericArrayWrapper<T> {
             System.out.println("Data array is empty!");
         }
 
-        for(int i=0;i<dataArray.length;i++) {
-            System.out.println(dataArray[i]);
+        for(T element:dataArray) {
+            System.out.println(element);
         }
     }
 
@@ -87,6 +87,14 @@ public class GenericArrayWrapper<T> {
         }
 
         return dataArray[index];
+    }
+
+    public boolean setElement(int index, T element){
+        if(index>=dataArray.length){
+            return false;
+        }
+        dataArray[index]=element;
+        return true;
     }
 
     public void invertData(){

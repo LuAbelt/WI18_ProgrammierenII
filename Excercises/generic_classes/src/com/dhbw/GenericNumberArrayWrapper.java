@@ -10,5 +10,19 @@ public class GenericNumberArrayWrapper<T extends Number> extends GenericArrayWra
         dataArray=initialData;
     }
 
+    public double getSum(){
+        double result = 0;
+        for(T number: dataArray){
+            result+=number.doubleValue();
+        }
+        return result;
+    }
 
+    public double getProduct(){
+        double result = 0;
+        for(T number: dataArray){
+            result*=number.doubleValue();
+        }
+        return result;
+    }
 }
