@@ -48,16 +48,18 @@ ECHOCOLOR = \033[1;32m
 ECHONC = \033[0m
 MOVE = mv
 MKDIR = mkdir
-GIT	= git
 VIEWPDF = firefox
 PARSELOG = grep --color -E ".*:[0-9]*:.*|Warning:|Error:" $(BUILDDIR)
 TRANSFORM = tr " " "\n"
 SEDMAKEHANDOUT = sed -i -e 's/%handout-PLACEHOLDER/handout%PLACEHOLDER/g' ./texfiles/$*/main.tex
 SEDMAKESLIDES = sed -i -e 's/handout%PLACEHOLDER/%handout-PLACEHOLDER/g' ./texfiles/$*/main.tex
+BIB = biber
 
-
+# Main build rule
 all: listfiles $(DIRECTORIES)
 
+# List files in command line
+.PHONY: listfiles
 listfiles:
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Building PDFs for TeX-Files:"
@@ -65,44 +67,89 @@ listfiles:
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
 
-.PHONY: bib
-bib:
+# Iterate over all tex directories
+$(DIRECTORIES): %: $(SLIDESDIR)%.pdf $(HANDOUTDIR)%.pdf
 
+# Build rule for slides
+$(SLIDESDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-slides1 %-bib %-slides2
+	@$(MOVE) $(BUILDDIR)$*.pdf $(SLIDESDIR)
+
+# First build for slides
+%-slides1:
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Build PDF(""$*""(Slides), 1/2)"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
+	test -d $(SLIDESDIR) || mkdir $(SLIDESDIR)
+	
+	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex 
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Done!!"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+
+# Second build for slides
+%-slides2:
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Build PDF(""$*""(Slides), 2/2)"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Done!!"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	
+# Build rule for handout
+$(HANDOUTDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-makehandout %-handout1 %-handout2 %-makeslide
+	@$(MOVE) $(BUILDDIR)$*.pdf $(HANDOUTDIR)	
+	
+# First build for handout
+%-handout1:
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Build PDF(""$*""(Handout), 1/2)"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
+	test -d $(HANDOUTDIR) || mkdir $(HANDOUTDIR)
+	
+	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex 
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Done!!"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+
+# Second build for Handout
+%-handout2:
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Build PDF(""$*""(Handout), 2/2)"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Done!!"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+	
+# Replace placeholder to change mode from slide to handout
+%-makehandout:
+	touch "$(BUILDDIR)reffile" -r ./texfiles/$*/main.tex
+	$(SEDMAKEHANDOUT)
+	
+# Replace placeholder to change mode from handout to slide
+%-makeslide:
+	$(SEDMAKESLIDES)
+	touch ./texfiles/$*/main.tex -r "$(BUILDDIR)reffile"
+	rm "$(BUILDDIR)reffile"
+    
+# Build rule for bibliography
+.PHONY: %-bib
+%-bib:
+	
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Build bibliography..."
 	@$(ECHO) "=======================================================================""$(ECHONC)"
-	$(BIB) $(BIBFLAGS) $(BUILDDIR)$(MAINFILE)
+	$(BIB) $(BUILDDIR)$*
 	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
 	@$(ECHO) "Done!!"
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 
-.PHONY: glos
-glos:
-
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build glossary..."
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	$(INDEX) -s $(BUILDDIR)$(MAINFILE).ist -t $(BUILDDIR)$(MAINFILE).glg -o $(BUILDDIR)$(MAINFILE).gls $(BUILDDIR)$(MAINFILE).glo
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build list of abbreviations..."
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	$(INDEX) -s $(BUILDDIR)$(MAINFILE).ist -t $(BUILDDIR)$(MAINFILE).alg -o $(BUILDDIR)$(MAINFILE).acr $(BUILDDIR)$(MAINFILE).acn 
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Done!!"
-	@$(ECHO) "=======================================================================""$(ECHONC)"	
-
-	
-# Clean Working Directory
-mrproper:
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Clean Working Directory...""$(ECHONC)"
-	$(DEL) $(BUILDDIR)*
-	$(DEL) $(HANDOUTDIR)*.pdf
-	$(DEL) $(SLIDESDIR)*.pdf
-	@$(ECHO) "$(ECHOCOLOR)""Done!"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	
+   
 # View all PDF documents
+.PHONY: view
 view: viewpdf
 
 viewpdf:
@@ -112,6 +159,7 @@ viewpdf:
 	@$(VIEWPDF) *.pdf &
 
 # View specific PDF document
+.PHONY: %-view
 %-view:
 	@$(ECHO) "$(ECHOCOLOR)""======================================================================="
 	@$(ECHO) "View PDF..."
@@ -125,68 +173,36 @@ viewlog:
 	@$(PARSELOG)*.log
 	@$(ECHO) "\\n=======================================================================""$(ECHONC)"
 	
-	
+# View Warning/Error Messages for one specific file
 %-viewlog:
 	@$(ECHO) "$(ECHOCOLOR)""======================================================================="
 	@$(ECHO) "Warnings:\\n"
 	@$(PARSELOG)$*.log
-	@$(ECHO) "\\n=======================================================================""$(ECHONC)"
+	@$(ECHO) "\\n=======================================================================""$(ECHONC)"   
 	
-$(DIRECTORIES): %: $(SLIDESDIR)%.pdf $(HANDOUTDIR)%.pdf
+# Clean build directory and delete pdf's
+mrproper:
+	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	@$(ECHO) "Clean Working Directory...""$(ECHONC)"
+	$(DEL) $(BUILDDIR)*
+	$(DEL) $(HANDOUTDIR)*.pdf
+	$(DEL) $(SLIDESDIR)*.pdf
+	@$(ECHO) "$(ECHOCOLOR)""Done!"
+	@$(ECHO) "=======================================================================""$(ECHONC)"
+    
 
-$(SLIDESDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-slides1 %-slides2
-	@$(MOVE) $(BUILDDIR)$*.pdf $(SLIDESDIR)
+# Rule for building glossaries. Unused and not updated to multi-file building
+# .PHONY: glos
+# glos:
 
-%-slides1:
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build PDF(""$*""(Slides), 1/2)"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
-	test -d $(SLIDESDIR) || mkdir $(SLIDESDIR)
-	
-	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex 
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Done!!"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-
-%-slides2:
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build PDF(""$*""(Slides), 2/2)"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Done!!"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	
-$(HANDOUTDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-makehandout %-handout1 %-handout2 %-makeslide
-	@$(MOVE) $(BUILDDIR)$*.pdf $(HANDOUTDIR)	
-	
-%-handout1:
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build PDF(""$*""(Handout), 1/2)"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	test -d $(BUILDDIR) || mkdir $(BUILDDIR)
-	test -d $(HANDOUTDIR) || mkdir $(HANDOUTDIR)
-	
-	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex 
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Done!!"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-
-%-handout2:
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Build PDF(""$*""(Handout), 2/2)"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	$(TEX) $(TEXFLAGS) ./texfiles/$*/main.tex
-	@$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
-	@$(ECHO) "Done!!"
-	@$(ECHO) "=======================================================================""$(ECHONC)"
-	
-%-makehandout:
-	touch "$(BUILDDIR)reffile" -r ./texfiles/$*/main.tex
-	$(SEDMAKEHANDOUT)
-	
-%-makeslide:
-	$(SEDMAKESLIDES)
-	touch ./texfiles/$*/main.tex -r "$(BUILDDIR)reffile"
-	rm "$(BUILDDIR)reffile"
+	# @$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	# @$(ECHO) "Build glossary..."
+	# @$(ECHO) "=======================================================================""$(ECHONC)"
+	# $(INDEX) -s $(BUILDDIR)$(MAINFILE).ist -t $(BUILDDIR)$(MAINFILE).glg -o $(BUILDDIR)$(MAINFILE).gls $(BUILDDIR)$(MAINFILE).glo
+	# @$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	# @$(ECHO) "Build list of abbreviations..."
+	# @$(ECHO) "=======================================================================""$(ECHONC)"
+	# $(INDEX) -s $(BUILDDIR)$(MAINFILE).ist -t $(BUILDDIR)$(MAINFILE).alg -o $(BUILDDIR)$(MAINFILE).acr $(BUILDDIR)$(MAINFILE).acn 
+	# @$(ECHO) "$(ECHOCOLOR)""\\n======================================================================="
+	# @$(ECHO) "Done!!"
+	# @$(ECHO) "=======================================================================""$(ECHONC)"
