@@ -33,6 +33,7 @@
             \item Und nicht erweiterbar (Vgl. Objektorientierte Datentypen)
         \end{itemize}
     \end{itemize}
+    Vgl. \cite{wiki:primdt}, \cite{orac:primdt}
 \end{frame}
 
 \begin{frame}{Primitive Datentypen}{Eigenschaften (In Java)}
@@ -58,6 +59,9 @@
     \textbf{boolean} & \visible<+->{Undefiniert} & \multicolumn{2}{c|}{\visible<+->{Nur \tt{true} und \tt{false}}}\\
     \hline
     \end{tabular}
+    
+    
+    Vgl. \cite{wiki:primdt}
 \end{frame}
 
 \begin{frame}{Primitive Datetypen}{Umwandlung}
@@ -68,6 +72,7 @@
         \texttt{byte} $\Rightarrow$ \texttt{short} $\Rightarrow$ \texttt{int} $\Rightarrow$ \texttt{long} $\Rightarrow$ \texttt{float} $\Rightarrow$ \texttt{double}
         \end{center}
     \end{alertblock}
+    Vgl. \cite{wiki:primdt}
 \end{frame}
 
 \begin{frame}{Primitive Datentypen}{Umwandlung}
@@ -76,6 +81,7 @@
         
         \textbf{Achtung:} Dies kann zu Datenverlust führen. Beispiel: Umwandlung von \texttt{float} in \texttt{int} $\Rightarrow$ Dezimalstellen gehen verloren.
     \end{alertblock}
+    Vgl. \cite{wiki:primdt}
 \end{frame}
 
 \begin{frame}{Objektorientierte Datentypen}{Grundlegendes}
@@ -131,7 +137,7 @@
     \begin{minipage}{0.4\textwidth}
             \begin{figure}
                 \includegraphics[height=3.35cm]{graph/judt}
-                \caption*{Quelle: \url{https://www.researchgate.net/profile/Andreas_Judt}}
+                \caption*{Quelle: \cite{pic:judt}}
                 \label{fig:ll}
             \end{figure}
         \end{minipage}
@@ -186,6 +192,7 @@
             \item Dadurch höhere Flexibilität
         \end{itemize}
     \end{itemize}
+Vgl. \cite{w3:enum}
 \end{frame}
 
 \begin{frame}[fragile]{Enumerations}{Beispiel I}
@@ -204,6 +211,7 @@ enum Weekday {
 //Spaetere Nutzung im Code:
 Weekday myDay = Weekday.TUESDAY;
 \end{lstlisting}
+Siehe \cite{w3:enum}
 \end{frame}
 
 \begin{frame}{Enumerations}{Beispiel II}
@@ -213,7 +221,7 @@ Weekday myDay = Weekday.TUESDAY;
 		\item Definition von Konstruktoren
 		\item Definition von Methoden
 	\end{itemize}
-%TODO: Code Beispiel Planeten (Siehe Javadocs)
+    
 \end{frame}
 
 \begin{frame}[fragile]{Enumerations}{Komplexes Beispiel I}
@@ -265,12 +273,14 @@ Planet jup = Planet.JUPITER;
 double someMass = 10;
 double weightOnJupiter = jup.surfaceWeight(someMass);
 \end{lstlisting}
+
+Beispiel angelehnt an \cite{orac:enum}
 \end{frame}
 
 \begin{frame}{Strukturierte Datentypen}{Structs}
     \begin{itemize}
         \item Fassen mehrere Einzelvariablen zu einer Struktur zusammen
-        \item Reine Datenstruktur zum erfassen von Daten
+        \item Reine Datenstruktur zum Erfassen von Daten
         \begin{itemize}
             \item Keine Methoden
             \item Keine Zugriffsspezifizierer
@@ -312,10 +322,9 @@ aDate.month=4;
 aDate.year=2019;
 \end{lstlisting}
 \end{frame}
-%TODO: Codebeispiele Vergleich Struct C++/Java
 
 \begin{frame}{Structs}{Verwendung in Java}
-    \begin{alertblock}{Auszug der Java Code Conventions}
+    \begin{alertblock}{Auszug der Java Code Conventions(Siehe \cite{orac:cc})}
     \textbf{10 - Programming Practices}
     
     \textbf{10.1 Providing Access to Instance and Class Variables}
@@ -355,4 +364,6 @@ ex.s[0] = 0x0011;   //s wird zum aktiven member
 std::cout << ex.c << std::endl; //0x11 oder 0x00, Plattformspezifisch
 std::cout << ex.n << std::endl; //0x12340011 oder 0x00115678
 \end{lstlisting}
+
+Vgl. \cite{msdn:union}, \cite{cppref:union}
 \end{frame}

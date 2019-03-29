@@ -6,15 +6,12 @@
 			\item Und dadurch wiederverwenbar
 			\item Bei geringerem Implementierungsaufwand
 		\end{itemize}
+        \item Type-Safety beim kompilieren
 		\item Bisher: Festlegen von Datentypen bei Design der Klasse
-		\item Jetzt: Festlegen von Datentypen bei Verwendung der Klasse \visible<2->{(Zumindest für einige)}
-		\item Funktioniert für:
-		\begin{itemize}
-			\item Member Variablen
-			\item Funktionsparameter
-			\item Rückgabewerte
-		\end{itemize}
+		\item Jetzt: Festlegen von Datentypen bei Verwendung der Klasse (Zumindest für einige)
+		\item Verwendbar in Member Variablen, Funktionsparametern, Rückgabewerten und mehr
 	\end{itemize}
+Vgl. \cite{orac:geny}, \cite{wiki:generics}
 \end{frame}
 
 \begin{frame}{Generiche Klassen}{Beispiel: Benannte Werte}
@@ -194,6 +191,7 @@ class name<T1, T2, ..., Tn> {/*Klasseninhalt*/}
         \item \texttt{V} - Value
     \end{itemize}
 \end{itemize}
+Siehe \cite{orac:generics}
 \end{frame}
 
 \begin{frame}{Generische Klassen}{Begrenzen von Typen}
@@ -384,12 +382,13 @@ void someMethod(BoxValue<Number> box){/* ... */}
         \item<8-> ...Aber \texttt{BoxValue<Number>} und \texttt{BoxValue<Integer>} stehen in keiner Beziehung zueinander!
     \end{itemize}
 \end{itemize}
+Vgl. \cite{orac:inheritance}
 \end{frame}
 
 \begin{frame}{Vererbung}{Von generischen Klassen}
     \begin{figure}
         \centering
         \includegraphics[height=4.5cm]{graph/generics-subtypeRelationship.png}
-        \caption*{Quelle: \url{https://docs.oracle.com/javase/tutorial/java/generics/inheritance.html}}
+        \caption*{Quelle: \cite{orac:inheritance}}
     \end{figure}
 \end{frame}

@@ -5,6 +5,7 @@
         \item Stattdessen müssen die entsprechenden Wrapper-Klassen (\texttt{Integer}, \texttt{Boolean}, \texttt{Double} etc.) verwendet werden
         \item Beispiel: Pair Klasse
     \end{itemize}
+Vgl. \cite{orac:restrictions}
 \end{frame}
 
 \begin{frame}[fragile]{Einschränkungen von Generics}{Beispiel}
@@ -25,6 +26,7 @@ class Pair<K, V>{
 Pair<int, char> p = new Pair<>(8, 'a');  //Compilerfehler
 Pair<Integer, Character> p = new Pair<>(8, 'a');  //OK
 \end{lstlisting}
+Siehe \cite{orac:restrictions}
 \end{frame}
 
 \begin{frame}[fragile]{Einschränkung von Generics}{Instanziieren von Typparametern}

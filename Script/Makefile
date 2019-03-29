@@ -71,7 +71,7 @@ listfiles:
 $(DIRECTORIES): %: $(SLIDESDIR)%.pdf $(HANDOUTDIR)%.pdf
 
 # Build rule for slides
-$(SLIDESDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-slides1 %-bib %-slides2
+$(SLIDESDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex texfiles/sources.bib %-slides1 %-bib %-slides2
 	@$(MOVE) $(BUILDDIR)$*.pdf $(SLIDESDIR)
 
 # First build for slides
@@ -98,7 +98,7 @@ $(SLIDESDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-slides1 %-bib %
 	@$(ECHO) "=======================================================================""$(ECHONC)"
 	
 # Build rule for handout
-$(HANDOUTDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex %-makehandout %-handout1 %-handout2 %-makeslide
+$(HANDOUTDIR)%.pdf: sty/* texfiles/%/*.tex texfiles/contact.tex texfiles/sources.bib %-makehandout %-handout1 %-handout2 %-makeslide
 	@$(MOVE) $(BUILDDIR)$*.pdf $(HANDOUTDIR)	
 	
 # First build for handout
