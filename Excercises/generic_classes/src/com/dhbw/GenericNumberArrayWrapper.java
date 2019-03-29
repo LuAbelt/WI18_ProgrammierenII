@@ -25,4 +25,50 @@ public class GenericNumberArrayWrapper<T extends Number> extends GenericArrayWra
         }
         return result;
     }
+
+    public double getMinimum(){
+        double min = Double.NaN;
+        if(dataArray.length>0) {
+            min = dataArray[0].doubleValue();
+        }else{
+            return min;
+        }
+
+        for(T element: dataArray){
+            if(element.doubleValue()<min){
+                min = element.doubleValue();
+            }
+        }
+
+        return min;
+    }
+
+    public double getMaximum(){
+        double max = Double.NaN;
+
+        if(dataArray.length>0) {
+            max = dataArray[0].doubleValue();
+        }else{
+            return max;
+        }
+
+        for(T element: dataArray){
+            if(element.doubleValue()>max){
+                max = element.doubleValue();
+            }
+        }
+
+        return max;
+    }
+
+    public double getAverage(){
+        if(dataArray.length>0){
+            return getSum()/dataArray.length;
+        }
+        return 0.;
+    }
+
+    public double getRange(){
+        return getMaximum()-getMinimum();
+    }
 }

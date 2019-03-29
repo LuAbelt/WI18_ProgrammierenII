@@ -79,4 +79,38 @@ public class GenericComparableArrayWrapper<T extends Comparable> extends Generic
             }
         }
     }
+
+    public T getMinimum(){
+        T min;
+        if(dataArray.length>0){
+            min = dataArray[0];
+        }else{
+            return null;
+        }
+
+        for(T element: dataArray){
+            if(element.compareTo(min)<0){
+                min=element;
+            }
+        }
+
+        return min;
+    }
+
+    public T getMax(){
+        T max;
+        if(dataArray.length>0){
+            max = dataArray[0];
+        }else{
+            return null;
+        }
+
+        for(T element: dataArray){
+            if(element.compareTo(max)>0){
+                max = element;
+            }
+        }
+
+        return max;
+    }
 }
