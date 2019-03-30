@@ -160,23 +160,123 @@ GEBE res AUS
 \end{frame}
 
 \begin{frame}{Elemente von Struktogrammen}{Anweisung}
-TODO: Abbildung Anweisungsblock
+\begin{itemize}
+    \item <+->Einzelne Anweisung:
+\end{itemize}
+\begin{onlyenv}<+->
+\begin{centernss}
+    \begin{struktogramm}(70,10)
+        \assign{Einzelne Anweisung}
+    \end{struktogramm}
+\end{centernss}
+\end{onlyenv}
+
+\begin{itemize}
+    \item <+-> Mehrere aufeinanderfolgende Anweisungen:
+\end{itemize}
+\begin{onlyenv}<+->
+\begin{centernss}
+    \begin{struktogramm}(70,30)
+        \assign{Anweisung 1}
+        \assign{Anweisung 2}
+        \assign{Anweisung 3}
+    \end{struktogramm}
+\end{centernss}
+\end{onlyenv}
 \end{frame}
 
 \begin{frame}{Elemente von Struktogrammen}{Verzweigungen}
-TODO: Abbildung Verzweigungen
+\begin{itemize}
+    \item <+->Einfache Verzweigung(if-then-else):
+\end{itemize}
+\begin{onlyenv}<+->
+\begin{centernss}
+\begin{struktogramm}(70,15)
+        \ifthenelse[10]{3}{3}
+            {x größer 5?}{True}{False}
+            \assign[5]{Anweisung}
+        \change
+            \assign[5]{Else Anweisung}
+        \ifend
+    \end{struktogramm}
+\end{centernss}
+\end{onlyenv}
+\begin{itemize}
+    \item <+-> Mehrfache Verzweigung(switch-case):
+\end{itemize}
+\begin{onlyenv}<+->
+\begin{centernss}
+    \begin{struktogramm}(70,15)
+        \case[10]{5}{3}{Wert von x?}{1}
+            \assign{A}
+        \switch{7}
+            \assign{B}
+        \switch{Default}
+            \assign{C}
+        \caseend
+    \end{struktogramm}
+\end{centernss}
+\end{onlyenv}
 \end{frame}
 
 \begin{frame}{Elemente von Struktogrammen}{Zählschleifen}
-TODO: Abbildung Zählschleife
+\begin{itemize}
+    \item <+->Einfache Zählschleifen(for-loop):
+\end{itemize}
+\begin{onlyenv}<+->
+\begin{centernss}
+\begin{struktogramm}(70,20)
+    \while{von 0 bis 10, Schrittweite 2}
+        \assign{Anweisungen}
+    \whileend
+\end{struktogramm}
+\end{centernss}
+\end{onlyenv}
 \end{frame}
 
 \begin{frame}{Elemente von Struktogrammen}{Schleifen}
-TODO: Abbildung Schleifen
+\begin{itemize}
+    \item <+->Kopfgeprüfte Schleifen(while):
+\end{itemize}
+\begin{onlyenv}<+->
+\begin{centernss}
+\begin{struktogramm}(70,20)
+    \while{x>5}
+        \assign{Anweisungen}
+    \whileend
+\end{struktogramm}
+\end{centernss}
+\end{onlyenv}
+
+\begin{itemize}
+    \item <+->Fußgeprüfte Schleifen(do-while):
+\end{itemize}
+\begin{onlyenv}<+->
+\begin{centernss}
+\begin{struktogramm}(70,20)
+    \until{x>5}
+        \assign{Anweisungen}
+    \untilend
+\end{struktogramm}
+\end{centernss}
+\end{onlyenv}
 \end{frame}
 
 \begin{frame}{Struktogram für unseren Algorithmus}
-TODO: Struktogram Algorithmus
+\begin{centernss}
+\begin{struktogramm}(100,75)
+    \assign{Lese \( n \) ein}
+    \assign{Setze \( res \) auf \( 0 \)}
+    \while{von \( i=0 \) bis \( n \) }
+        \ifthenelse{3}{3}
+            {\( i \) ist gerade?}{Ja}{Nein}
+            \assign{\( res+=i \)}
+            \change
+        \ifend
+    \whileend
+    \assign{Gebe \( n \) aus}
+\end{struktogramm}
+\end{centernss}
 \end{frame}
 
 \begin{frame}{Programmablaufplan}{Der zweite Standard}
@@ -189,11 +289,11 @@ TODO: Struktogram Algorithmus
 \end{frame}
 
 \begin{frame}{Elemente von Programmablaufplänen}{Start, Stop, Anweisungsblock, Ein- und Ausgaben}
-TODO: Abbildung Anweisungsblock
+TODO: Abbildung Grundelemente
 \end{frame}
 
 \begin{frame}{Elemente von Programmablaufplänen}{Verzweigungen}
-TODO: Abbildung Verzweigungen
+TODO: Verzweigung
 \end{frame}
 
 \begin{frame}{Elemente von Programmablaufplänen}{Zählschleifen}
