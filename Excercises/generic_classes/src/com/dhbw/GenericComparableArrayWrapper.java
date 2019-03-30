@@ -1,6 +1,6 @@
 package com.dhbw;
 
-public class GenericComparableArrayWrapper<T extends Comparable> extends GenericArrayWrapper<T>{
+public class GenericComparableArrayWrapper<T extends Comparable<T>> extends GenericArrayWrapper<T>{
 
 
     public GenericComparableArrayWrapper(T[] initialData){
