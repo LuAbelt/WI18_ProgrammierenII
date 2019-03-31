@@ -62,6 +62,7 @@
             \item Random Access in Arrays
             \item Vergleich zweier Zahlen
         \end{itemize}
+        \item Angabe benötigten Operationen über $\tau(N)=x$
     \end{itemize}
 \end{frame}
 
@@ -71,13 +72,13 @@
 public void swap(int first, int second){
     int tmp = first;
     first = second;
-    second = first;
+    second = tmp;
 }
 \end{lstlisting}
 
 \begin{itemize}
-    \item Laufzeitkomplexität: \visible<2->{$O(3)$}
-    \item<3-> Speicherkomplexität(In Byte): \visible<4->{$O(12)$}
+    \item Laufzeitkomplexität: \visible<2->{$\tau(N)=3$}
+    \item<3-> Speicherkomplexität(In Byte): \visible<4->{$\tau(N)=12$}
 \end{itemize}
 \end{frame}
 
@@ -92,8 +93,8 @@ public void swap(int first, int second){
 \end{lstlisting}
 
 \begin{itemize}
-    \item Laufzeitkomplexität: \visible<2->{$O(6)$}
-    \item<3-> Speicherkomplexität(In Byte): \visible<4->{$O(8)$}
+    \item Laufzeitkomplexität: \visible<2->{$\tau(N)=6$}
+    \item<3-> Speicherkomplexität(In Byte): \visible<4->{$\tau(N)=8$}
 \end{itemize}
 \end{frame}
 
@@ -109,7 +110,7 @@ public void swap(int first, int second){
         \begin{itemize}
             \item Für Sortieren: \visible<+->{Länge der Liste}
         \end{itemize}
-        \item Angegeben werden in der Komplexität nur noch die skalierenden Faktoren
+        \item Angegeben werden in der Komplexität nur noch die skalierenden Faktoren: $O(N)$
     \end{itemize}
     
     Vgl. \cite{ottmann2017} S. 3 ff
@@ -152,4 +153,268 @@ int sumList(int[] A, int n){
 \visible<+->{$ \tau(n) = c_1n+c_2 $}
 
 \visible<+->{$\Rightarrow O(n)$}
+\end{frame}
+
+\begin{frame}{Unterschiedliche Laufzeiten von Algorithmen}
+    \begin{itemize}[<+->]
+        \item Bisher betrachtete Algorithmen hatten (für gegebenes $N$) feste Komplexität
+        \item Algorithmen können jedoch für gleiches $N$ verschiedene Laufzeiten haben
+        \begin{itemize}
+            \item Warum?
+            \item Zum Beispiel bei Verzweigung innerhalb des Algorithmus (z.B. durch gesonderte Betrachtung besonderer Listenelemente o.Ä.)
+        \end{itemize}
+        \item Beispiel: Leicht angepasste Variante unseres Algorithmus zum addieren von geraden Zahlen:
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Addieren aller geraden Zahlen einer Liste}
+\lstset{style=java}
+\begin{onlyenv}<1|handout:0>
+\begin{lstlisting}
+public int getSquareSum(int[] data, int n){
+    int res = 0;
+    for(int i=0;i<n;i++){
+        if(data[i]%2 == 1){
+            continue;
+        }else{
+            res += data[i]*data[i];
+        }
+    }
+    return res;
+}
+\end{lstlisting}
+\end{onlyenv}
+\begin{onlyenv}<2>
+\begin{lstlisting}
+public int getSquareSum(int[] data, int n){
+    int res = 0;            //Kosten: 1, 1 mal
+    for(int i=0;i<n;i++){   //Kosten: 2, (n+1) mal
+        if(data[i]%2 == 1){ //Kosten: 3, n mal
+            continue;       //Kosten: 1, ? mal
+        }else{
+            //Kosten: 5, ? mal
+            res += data[i]*data[i];
+        }
+    }
+    return res;
+}
+\end{lstlisting}
+\end{onlyenv}
+\end{frame}
+
+\begin{frame}{Best- und Worst-Case Execution Time}
+    \begin{itemize}[<+->]
+        \item Für diese Fälle gibt es prinzipiell drei Betrachtungsweisen
+        \begin{itemize}
+            \item Best-Case Execution Time
+            \item Worst-Case Execution Time
+            \item Average Execution Time
+            \item Frage: Welche ist für die Komplexitätsbetrachtung relevant?
+        \end{itemize}
+        \item Average Execution Time lässt sich nur schwer bestimmen
+        \begin{itemize}
+            \item Reiner Durchschnitt aus Best- und Worst-Case nicht praktikabel
+            \item Beschaffenheit der Probleminstanzen und deren Verteilung müsste bekannt sein
+            \item Ist jedoch selten der Fall
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Best- und Worst-Case Execution Time}
+    \begin{itemize}
+        \item In der Regel ist die Worst-Case Execution Time relevant
+        \begin{itemize}
+            \item Simpel zu bestimmen
+            \item Dadurch kann sichergestellte werden, dass der Algorithmus \textbf{maximal} die angegebene Zeit benötigt
+            \item insbesondere relevant für Echtzeitsysteme
+        \end{itemize}
+    \end{itemize}
+Vgl. \cite{ottmann2017} S. 3ff
+\end{frame}
+
+\begin{frame}{Gängige Komplexitätsfaktoren}{Vgl. \cite{ottmann2017}}
+    \begin{itemize}[<+->]
+        \item In der Regel begegnet man den folgenden Komplexitäten bei der Analyse(In Abhängigkeit von $N$):
+        \begin{itemize}
+            \item Kein Wachstum: $O(1)$
+            \item Logarithmisches Wachstum: $O(\log N)$
+            \item Lineares Wachstum: $O(N)$
+            \item $N$-log $N$-Wachstum: $O(N\cdot\log N)$
+            \item Polynomiales Wachstum: $O(N^2)$, $O(N^3)$...
+            \item Exponentielles Wachstum: $O(2^N)$, $O(3^N)$...
+            \item Faktorielles Wachstum: $O(N!)$
+        \end{itemize}
+        \item Praktikabel sind maximal Algortihmen mit polynomialen Wachstum
+        \item Exponentielle und faktorielle Algorithmen wachsen zu schnell an
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Komplexität von Algorithmen}{Visueller Vergleich}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\begin{axis}[height=6cm,ymin=0,xmin=0,xmax=100,ymax=1000,domain=0:100,restrict x to domain*=0:100, restrict y to domain*=0:2500,samples=500]
+  \addplot[blue]{1};
+  \addplot[red]{log2(x)};
+  \addplot[purple]{x};
+  \addplot[green]{x*log2(x)};
+  \addplot[yellow]{x^2};
+  \addplot[cyan]{2^x};
+  \addplot[red]{x!};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Komplexität}{Kein Wachstum}
+\lstset{style=java}
+\begin{lstlisting}
+public void swap(int[] data, int first, int second){
+    int tmp = data[first];
+    data[first] = data[second];
+    data[second] = tmp;
+}
+\end{lstlisting}
+\begin{itemize}
+    \item Algorithmus ist in keiner Weise von der Länge von \texttt{data} abhängig (Abgesehen von eventueller Fehlerbetrachtung)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Komplexität}{Logarithmisches Wachstum}
+\lstset{style=java}
+\begin{lstlisting}
+public void logNComplexity(int n){
+    for(int i=1; i<=n; i = i * 2){
+        System.out.println(i);
+    }
+}
+\end{lstlisting}
+\begin{itemize}
+    \item Indikator für Logarithmisches Wachstum:
+    \begin{itemize}
+        \item Zählvariable steigt multiplikativ/verringert sich durch Division
+        \item Größe der Probleminstanz verringert sich in jedem Schritt mit bestimmtem Faktor
+    \end{itemize}
+    \item Basis des Logarithmus ist nicht von Relevanz, da nur konstanter Faktor
+    \item In der Regel handelt es sich aber um $\log_2$
+    \item Beispiel: Binäre Suche
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Komplexität}{Lineares Wachstum}
+\lstset{style=java}
+\begin{lstlisting}
+public int sum(int[] data, int n){
+    int res=0;
+    for(int i=0;i<n;i++){
+        res+=data[i];
+    }
+    return res;
+}
+\end{lstlisting}
+\begin{itemize}
+    \item Grundlegend alle Schleifen, die von 0 bis $N$ iterieren (Mit Schrittweite 1)
+    \item Beispiele:
+    \begin{itemize}
+        \item Summen von Listen
+        \item Finden von Mini-/Maxima in unsortierten Listen
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Komplexität}{$N$-log $N$-Wachstum}
+\lstset{style=java}
+\begin{lstlisting}
+public void nlogNComplexity(int n){
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j=j*2){
+            System.out.println(i);
+            System.out.println(j);
+        }
+    }
+}
+\end{lstlisting}
+\begin{itemize}
+    \item Entsteht durch die Kombination von linearem und logarithmischen Wachstums
+    \item Beispiele:
+    \begin{itemize}
+        \item Heap Sort
+        \item Quick Sort
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Komplexität}{Polynomiales Wachstum}
+\lstset{style=java}
+\begin{lstlisting}
+//Unter der Annahme, dass data ein n*n Array ist
+public void print2DArray(int[][] data, int n){
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            System.out.println(data[i][j]);
+        }
+    }
+}
+\end{lstlisting}
+\begin{itemize}
+    \item Entsteht durch die Verschachtelung mehrerer $O(n)$ Algorithmen
+    \item Beispiele:
+    \begin{itemize}
+        \item Insertion Sort
+        \item Traversieren von N-Dimensionalen Arrays
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Komplexität}{Polynomiales Wachstum}
+\lstset{style=java}
+\begin{lstlisting}
+//Unter der Annahme, dass data ein n*n Array ist
+public void print2DArray(int[][] data, int n){
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            System.out.println(data[i][j]);
+        }
+    }
+}
+\end{lstlisting}
+\begin{itemize}
+    \item Entsteht durch die Verschachtelung mehrerer $O(n)$ Algorithmen
+    \item Beispiele:
+    \begin{itemize}
+        \item Insertion Sort
+        \item Traversieren von N-Dimensionalen Arrays
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiele für Komplexität}{Exponentielles Wachstum}
+\begin{itemize}
+    \item Hier ist mir leider kein leichtes Codebeispiel eingefallen
+    \item Beispiele:
+    \begin{itemize}
+        \item Bruteforce von Passwörtern 
+        \item Damenproblem (mit naiver Implementierung)
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Beispiele für Komplexität}{Faktorielles Wachstum}
+\lstset{style=java}
+\begin{lstlisting}
+public void factorial(int n){
+    for(int i=0;i<n;i++){
+        System.out.println(i);
+        factorial(n-1);
+    }
+}
+\end{lstlisting}
+\begin{itemize}
+    \item Häufig in rekursiven Algorithmen
+    \item Beispiele:
+    \begin{itemize}
+        \item Finden aller Permutationen in einem Array
+        \item Travelling Salesman Problem (Primitiver Ansatz)
+    \end{itemize}
+\end{itemize}
 \end{frame}
