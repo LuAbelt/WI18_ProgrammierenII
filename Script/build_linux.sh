@@ -14,6 +14,7 @@ build_handout(){
 	test -d $HANDOUTDIR || mkdir $HANDOUTDIR
 	sed -i -e 's/%handout-PLACEHOLDER/handout%PLACEHOLDER/g' ./texfiles/$1/main.tex
 	pdf1 $1
+    bib $1
 	pdf2 $1
 	sed -i -e 's/handout%PLACEHOLDER/%handout-PLACEHOLDER/g' ./texfiles/$1/main.tex
 	mv $BUILDDIR$1.pdf $HANDOUTDIR
@@ -22,6 +23,7 @@ build_handout(){
 build_slides(){
 	test -d $SLIDESDIR || mkdir $SLIDESDIR
 	pdf1 $1
+    bib $1
 	pdf2 $1
 	mv $BUILDDIR$1.pdf $SLIDESDIR
 }
@@ -45,6 +47,16 @@ pdf2(){
 	echo -e "$ECHOCOLOR\\n======================================================================="
 	echo -e "Done!!"
 	echo -e "=======================================================================$ECHONC"
+}
+
+bib(){
+    echo -e "$(ECHOCOLOR)\\n======================================================================="
+	echo -e "Build bibliography..."
+	echo -e "=======================================================================""$(ECHONC)"
+	biber $BUILDDIR$1
+	echo -e "$(ECHOCOLOR)""\\n======================================================================="
+	echo -e "Done!!"
+	echo -e "=======================================================================""$(ECHONC)"
 }
 
 # Loop through all folders
