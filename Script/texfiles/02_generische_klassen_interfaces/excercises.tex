@@ -2,10 +2,10 @@
     Entwickelt eine \texttt{Pair}-Klasse, die zwei Instanzvariablen (\texttt{Key} und \texttt{Value}) speichert. Definiert die Instanzvariablen über die Nutzung von Generics.
     Implementiert einen Konstruktor, mit dem ein \texttt{KeyValue}-Objekt erzeugt wird und die beiden Instanzvariablen initialisiert. Baut Methoden ein, um die Werte unabhängig voneinander abzurufen und zu setzen.
 \end{frame}
-    
-\begin{frame}[allowframebreaks]{Aufgabe 2}{Array-Wrapper Klasse}    
+
+\begin{frame}[allowframebreaks]{Aufgabe 2}{Array-Wrapper Klasse}
     Entwickelt eine Wrapper Klasse für Arrays. Die Klasse soll ein Array eines generischen Typs speichern.
-    
+
     Außerdem sollte die Klasse folgende Funktionen implementieren:
     \begin{enumerate}
         \item Konstruktor dem die initialen Daten für das Array übergeben werden
@@ -18,9 +18,9 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Aufgabe 3}{Aufgabe 3: Erweiterung der Wrapper-Klasse für \texttt{Number}}    
+\begin{frame}{Aufgabe 3}{Aufgabe 3: Erweiterung der Wrapper-Klasse für \texttt{Number}}
     Erweitert die in 2. entwickelte Klasse so, dass das gespeicherte Array vom Typ \texttt{Number} (oder einer der Subtypen) sein muss.
-    
+
     Implementiert zusätzlich folgende Methoden:
     \begin{enumerate}
         \item \texttt{getSum} - Ermittelt die Summe aller Elemente im Array
@@ -29,14 +29,14 @@
         \item \texttt{getMin}/\texttt{getMax} - Ermittelt Mini- bzw. Maximum aller Elemente
         \item \texttt{getAverage} - Bestimmt das arithmetische Mittel
     \end{enumerate}
-    
+
     Hinweis: Nutzt hierfür die \texttt{doubleValue()} Methode der \texttt{Number} Klasse
 \end{frame}
-    
+
 \begin{frame}[allowframebreaks]{Aufgabe 4}{Erweiterung der Wrapper Klasse für \texttt{Comparable}}
-    
+
     Erweitert die in 2. entwickelte Klasse so, dass der Typ des gespeicherten Arrays das \texttt{Comparable} Interface implementieren muss.
-    
+
     Implementiert zusätzlich folgende Methoden:
     \begin{enumerate}
         \item \texttt{getMin}/\texttt{getMax} - Ermittelt Mini- bzw. Maximum aller Elemente
@@ -46,13 +46,20 @@
         \item \texttt{allOutOfRange} - Überprüft, ob alle Werte im Array außerhalb von zwei gegebenen Werten liegen
         \item \texttt{clamp} - Es wird eine untere und eine obere Grenze übergeben. Alle Werte im Array die kleiner als die untere Grenze sind, werden auf diesen Wert gesetzt. Analog geschieht das mit der oberen Grenze
     \end{enumerate}
-    
+
     Hinweis: Nutzt hierfür die \texttt{compareTo(T)} Methode des \texttt{Comparable<T>} Interfaces
 \end{frame}
 
-\begin{frame}{Aufgabe 5}{Irgendwas mit Wildcards}
-    \textbf{Irgendwas mit Wildcards:}
-    %Aufgaben: "Wrapper"-Klasse für Arrays
-    %Aufgabe zur Nutzung von extends mit Generics
-    %Aufgabe zu Wildcards/Bzw. eigenständig Einschränkungen erarbeiten?
+\begin{frame}[fragile]{Aufgabe 5}{Irgendwas mit Wildcards}
+Informiert euch weiter über Wildcards und ihre Verwendung als \texttt{in} und \texttt{out} Variablen. 
+Warum sollten \texttt{in} Variablen mit dem \texttt{extends} und \texttt{out} Variablen mit dem \texttt{super} Keyword verwendet werden?
+
+Basierend auf eurem Wissen, implementiert eine Methoden, die zwei \texttt{List} Objekte kombiniert mit folgender Methodensignatur:
+
+\lstset{style=java}
+\begin{lstlisting}
+public void combine(List<? super Number> out, List<? extends Number> in1, List<? extends Number> in2)
+\end{lstlisting}
+
+Informationen über die \texttt{List} Klasse findet ihr in der Java API
 \end{frame}
