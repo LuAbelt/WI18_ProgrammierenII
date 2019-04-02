@@ -1,2 +1,25 @@
-\begin{frame}{Aufgaben}
+\begin{frame}{Aufgabe 1}{Größter Teiler}
+Entwerft einen Algorithmus, der für einen gegebene natürliche Zahl den größten (ganzzahligen) Teiler findet. Erstellt zu eurem Algorithmus einen Programmablaufplan oder Struktogramm.
+
+Analysiert euren Algorithmus bezüglich der Komplexität $O$. Vergleicht euren Algorithmus mit denen der anderen.
+\end{frame}
+
+\begin{frame}[fragile]{Aufgabe 2}{Codeanalyse}
+Analysiert den folgenden Codeausschnitt. Welche Aufgabe hat der Algorithmus? Bestimmt die Komplexität $O$.
+
+\lstset{style=java}
+\begin{lstlisting}
+public void func(List<?> in1, List<?> in2){
+  for(int i=0;i<in1.size();i++){
+      for(int j=0;in2.size();j++){
+          String out = String.format("{\%s,\%s}", in1.get(i), in2.get(j));
+          System.out.println(out);
+      }
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Aufgabe 3}{}
+%TODO: Primzahlenalgorithmus als PAP. Erkennen, was er macht und umsetzen in Code
 \end{frame}

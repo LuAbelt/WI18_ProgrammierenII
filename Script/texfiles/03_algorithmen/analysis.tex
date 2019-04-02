@@ -77,8 +77,8 @@ public void swap(int first, int second){
 \end{lstlisting}
 
 \begin{itemize}
-    \item Laufzeitkomplexität: \visible<2->{$\tau(N)=3$}
-    \item<3-> Speicherkomplexität(In Byte): \visible<4->{$\tau(N)=12$}
+    \item Laufzeitkomplexität: \visible<2-|handout:0>{$\tau(N)=3$}
+    \item<3-> Speicherkomplexität(In Byte): \visible<4-|handout:0>{$\tau(N)=12$}
 \end{itemize}
 \end{frame}
 
@@ -93,8 +93,8 @@ public void swap(int first, int second){
 \end{lstlisting}
 
 \begin{itemize}
-    \item Laufzeitkomplexität: \visible<2->{$\tau(N)=6$}
-    \item<3-> Speicherkomplexität(In Byte): \visible<4->{$\tau(N)=8$}
+    \item Laufzeitkomplexität: \visible<2-|handout:0>{$\tau(N)=6$}
+    \item<3-> Speicherkomplexität(In Byte): \visible<4-|handout:0>{$\tau(N)=8$}
 \end{itemize}
 \end{frame}
 
@@ -118,7 +118,7 @@ public void swap(int first, int second){
 
 \begin{frame}[fragile]{Dynamische Komplexität}{Ein Beispiel}
 \lstset{style=java}
-\begin{onlyenv}<+|handout:0>
+\begin{onlyenv}<+->
 \begin{lstlisting}
 //A-> Array mit Elementen, n->Länge von A
 int sumList(int[] A, int n){
@@ -131,7 +131,7 @@ int sumList(int[] A, int n){
 \end{lstlisting}
 \end{onlyenv}
 
-\begin{onlyenv}<+->
+\begin{onlyenv}<+-|handout:0>
 \begin{lstlisting}
 //A-> Array mit Elementen, n->Länge von A
 int sumList(int[] A, int n){
@@ -145,14 +145,14 @@ int sumList(int[] A, int n){
 \end{onlyenv}
 
 
-\visible<+->{$ \tau(n) = 1 + 2\cdot(n+1) +  2n + 1 $}
+\visible<+-|handout:0>{$ \tau(n) = 1 + 2\cdot(n+1) +  2n + 1 $}
 
-\visible<+->{$ \tau(n) = 1+ 2n + 2 + 2n +1 $}
+\visible<+-|handout:0>{$ \tau(n) = 1+ 2n + 2 + 2n +1 $}
 
-\visible<+->{$ \tau(n) = 4n + 4 $}
-\visible<+->{$ \tau(n) = c_1n+c_2 $}
+\visible<+-|handout:0>{$ \tau(n) = 4n + 4 $}
+\visible<+-|handout:0>{$ \tau(n) = c_1n+c_2 $}
 
-\visible<+->{$\Rightarrow O(n)$}
+\visible<+-|handout:0>{$\Rightarrow O(n)$}
 \end{frame}
 
 \begin{frame}{Unterschiedliche Laufzeiten von Algorithmen}
@@ -161,7 +161,7 @@ int sumList(int[] A, int n){
         \item Algorithmen können jedoch für gleiches $N$ verschiedene Laufzeiten haben
         \begin{itemize}
             \item Warum?
-            \item Zum Beispiel bei Verzweigung innerhalb des Algorithmus (z.B. durch gesonderte Betrachtung besonderer Listenelemente o.Ä.)
+            \item<handout:0> Zum Beispiel bei Verzweigung innerhalb des Algorithmus (z.B. durch gesonderte Betrachtung besonderer Listenelemente o.Ä.)
         \end{itemize}
         \item Beispiel: Leicht angepasste Variante unseres Algorithmus zum addieren von geraden Zahlen:
     \end{itemize}
@@ -169,7 +169,7 @@ int sumList(int[] A, int n){
 
 \begin{frame}[fragile]{Addieren aller geraden Zahlen einer Liste}
 \lstset{style=java}
-\begin{onlyenv}<1|handout:0>
+\begin{onlyenv}<1>
 \begin{lstlisting}
 public int getSquareSum(int[] data, int n){
     int res = 0;
@@ -184,7 +184,7 @@ public int getSquareSum(int[] data, int n){
 }
 \end{lstlisting}
 \end{onlyenv}
-\begin{onlyenv}<2>
+\begin{onlyenv}<2|handout:0>
 \begin{lstlisting}
 public int getSquareSum(int[] data, int n){
     int res = 0;            //Kosten: 1, 1 mal
@@ -266,7 +266,7 @@ Vgl. \cite{ottmann2017} S. 3ff
 \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für Komplexität}{Kein Wachstum}
+\begin{frame}[fragile]{Beispiele für Komplexität}{Kein Wachstum $O(1)$}
 \lstset{style=java}
 \begin{lstlisting}
 public void swap(int[] data, int first, int second){
@@ -280,7 +280,7 @@ public void swap(int[] data, int first, int second){
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für Komplexität}{Logarithmisches Wachstum}
+\begin{frame}[fragile]{Beispiele für Komplexität}{Logarithmisches Wachstum $O(\log N)$}
 \lstset{style=java}
 \begin{lstlisting}
 public void logNComplexity(int n){
@@ -301,7 +301,7 @@ public void logNComplexity(int n){
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für Komplexität}{Lineares Wachstum}
+\begin{frame}[fragile]{Beispiele für Komplexität}{Lineares Wachstum $O(N)$}
 \lstset{style=java}
 \begin{lstlisting}
 public int sum(int[] data, int n){
@@ -322,7 +322,7 @@ public int sum(int[] data, int n){
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für Komplexität}{$N$-log $N$-Wachstum}
+\begin{frame}[fragile]{Beispiele für Komplexität}{$N$-log $N$-Wachstum $O(N\cdot \log N)$}
 \lstset{style=java}
 \begin{lstlisting}
 public void nlogNComplexity(int n){
@@ -344,7 +344,7 @@ public void nlogNComplexity(int n){
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für Komplexität}{Polynomiales Wachstum}
+\begin{frame}[fragile]{Beispiele für Komplexität}{Polynomiales Wachstum $O(N^x)$}
 \lstset{style=java}
 \begin{lstlisting}
 //Unter der Annahme, dass data ein n*n Array ist
@@ -357,7 +357,7 @@ public void print2DArray(int[][] data, int n){
 }
 \end{lstlisting}
 \begin{itemize}
-    \item Entsteht durch die Verschachtelung mehrerer $O(n)$ Algorithmen
+    \item Entsteht durch die Verschachtelung mehrerer $O(N)$ Algorithmen
     \item Beispiele:
     \begin{itemize}
         \item Insertion Sort
@@ -366,29 +366,7 @@ public void print2DArray(int[][] data, int n){
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für Komplexität}{Polynomiales Wachstum}
-\lstset{style=java}
-\begin{lstlisting}
-//Unter der Annahme, dass data ein n*n Array ist
-public void print2DArray(int[][] data, int n){
-    for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++){
-            System.out.println(data[i][j]);
-        }
-    }
-}
-\end{lstlisting}
-\begin{itemize}
-    \item Entsteht durch die Verschachtelung mehrerer $O(n)$ Algorithmen
-    \item Beispiele:
-    \begin{itemize}
-        \item Insertion Sort
-        \item Traversieren von N-Dimensionalen Arrays
-    \end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Beispiele für Komplexität}{Exponentielles Wachstum}
+\begin{frame}{Beispiele für Komplexität}{Exponentielles Wachstum $O(x^N)$}
 \begin{itemize}
     \item Hier ist mir leider kein leichtes Codebeispiel eingefallen
     \item Beispiele:
@@ -399,7 +377,7 @@ public void print2DArray(int[][] data, int n){
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Beispiele für Komplexität}{Faktorielles Wachstum}
+\begin{frame}[fragile]{Beispiele für Komplexität}{Faktorielles Wachstum $O(N!)$}
 \lstset{style=java}
 \begin{lstlisting}
 public void factorial(int n){
