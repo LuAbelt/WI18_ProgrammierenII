@@ -13,7 +13,10 @@
 \end{frame}
 
 \begin{frame}{Diamond-Problem}{Visuelle Darstellung}
-TODO: Bild Diamond Problem einfügen
+    \begin{figure}
+        \centering
+        \includegraphics[height=4.5cm]{graph/diamond}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Diamond-Problem}{Kurze Erklärung}
@@ -30,8 +33,25 @@ TODO: Bild Diamond Problem einfügen
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Diamond-Problem}{Am Java Beispiel}
-TODO: Codebeispiel
+\begin{frame}[fragile]{Diamond-Problem}{Am Java Beispiel}
+\lstset{style=java}
+\begin{lstlisting}
+public interface A{
+    public void say(){
+        print("I am A!");
+    }
+}
+
+public interface B{
+    public void say(){
+        print("I am B");
+    }
+}
+
+public class C implements A,B{
+    //Compilerfehler, weil say() mehrdeutig ist!
+}
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}{Das Problem der Mehrfachvererbung}
@@ -56,7 +76,10 @@ TODO: Codebeispiel
     \item Beide Objekte können unabhängig voneinander existieren
     \item Beispiel: Relation zwischen Sprecher und Zuhörer
 \end{itemize}
-TODO: Abbildung Assoziation
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{graph/association}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Aggregation}
@@ -71,7 +94,10 @@ TODO: Abbildung Assoziation
         \item Autos ohne Räder eher weniger...
     \end{itemize}
 \end{itemize}
-TODO: Abbildung Aggregation
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{graph/aggregation}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Komposition}
@@ -81,7 +107,10 @@ TODO: Abbildung Aggregation
         \item Beide können nicht unabhängig voneinander existieren
         \item Beispiel: Mensch und Herz
     \end{itemize}
-    TODO: Abbildung Komposition
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{graph/composition}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Delegation}
@@ -95,7 +124,29 @@ TODO: Abbildung Aggregation
             \item Für Delegate kann spezielle Unterklasse genutzt werden
         \end{itemize}
     \end{itemize}
-    TODO: Codebeispiel Delegate
+\end{frame}
+
+\begin{frame}[fragile]{Delegation}{Codebeispiel}
+\lstset{style=java}
+\begin{lstlisting}
+public class Delegate(
+    public void print(){
+        System.out.println("I am a Delegate!");
+    }
+    
+    public void sayHello(){
+        System.out.println("Hello!");
+    }
+)
+
+public Class Example{
+    private Delegate del = new Delegate();
+    
+    public void print(){
+        del.print();
+    }
+}
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}{Schlechte Mehrfachvererbung}
@@ -109,7 +160,13 @@ TODO: Abbildung Aggregation
             \item und entwirft folgende Klasse:
         \end{itemize}
     \end{itemize}
-    TODO: Abbildung schlechte Mehrfachvererbung
+\end{frame}
+
+\begin{frame}{Schlechte Mehrfachvererbung}{Am Beispiel}
+    \begin{figure}
+        \centering
+        \includegraphics[height=4.5cm]{graph/badMI}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Gute Verwendung von Mehrfachvererbung}
