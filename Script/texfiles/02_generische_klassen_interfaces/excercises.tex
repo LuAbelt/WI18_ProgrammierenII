@@ -50,16 +50,15 @@
     Hinweis: Nutzt hierfür die \texttt{compareTo(T)} Methode des \texttt{Comparable<T>} Interfaces
 \end{frame}
 
-\begin{frame}[fragile]{Aufgabe 5}{Irgendwas mit Wildcards}
-Informiert euch weiter über Wildcards und ihre Verwendung als \texttt{in} und \texttt{out} Variablen. 
-Warum sollten \texttt{in} Variablen mit dem \texttt{extends} und \texttt{out} Variablen mit dem \texttt{super} Keyword verwendet werden?
+\begin{frame}[fragile]{Aufgabe 5}{Wildcards}
+Entwickelt eine Klasse, die verschiedene statische Methoden für Listenoperationen zur Verfügung stellt. Nutzt hierbei zur Umsetzung Wildcards.
+Implementiert mindestens die folgenden Funktionen:
 
-Basierend auf eurem Wissen, implementiert eine Methoden, die zwei \texttt{List} Objekte kombiniert mit folgender Methodensignatur:
-
-\lstset{style=java}
-\begin{lstlisting}
-public void combine(List<? super Number> out, List<? extends Number> in1, List<? extends Number> in2)
-\end{lstlisting}
-
-Informationen über die \texttt{List} Klasse findet ihr in der Java API
+\begin{enumerate}
+    \item Eine Methode, die alle Elemente einer übergebenen Liste ausgibt (Ähnlich wie \texttt{printData()} aus Aufgabe 2)
+    \item Eine Methode, die für eine beliebige Liste vom Typ \texttt{Number} die Summe berechnet
+    \item Eine Methode, die zwei Listen vom Typ \texttt{Number}(Oder der Unterklassen) zu einer einzigen kombiniert. (Hinweis: sowohl die beiden Eingabelisten, 
+    als auch die Ausgabeliste sollen als Parameter übergeben werden)
+    \item Eine Methode, die für zwei Listen eines beliebigen \texttt{Number} Typs die Elementweise Summe berechnet und diese in einer neuen Liste speichert.
+\end{enumerate}
 \end{frame}
