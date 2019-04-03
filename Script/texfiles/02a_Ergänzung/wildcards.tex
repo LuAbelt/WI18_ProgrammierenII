@@ -55,7 +55,7 @@ List<?> l3 = new ArrayList<?>();  //Fehler
         \item \texttt{<?>} ist formal gesehen ein \texttt{<? extends Object>}
         \item Können jedoch nur lesend verwendet werden
         \item Warum?
-        \begin{itemize}[<handout:0>]
+        \begin{itemize}[<+-|handout:0>]
             \item Beispiel \texttt{add(T)} auf eine \texttt{List<? extends Number>}
             \item Es gibt keinen Typ \texttt{T}, der auf alle Varianten von \texttt{<? extends Number>} passt
             \item Kurz: Wir können nicht sicherstellen, ob der Typ den wir schreiben überhaupt mit der speziellen Instanz kompatibel ist!
@@ -82,7 +82,7 @@ List<?> l3 = new ArrayList<?>();  //Fehler
             \item Aber gemeinsamer Typ, der auf alle möglichen übergebenen Klassen passt
         \end{itemize}
         \item Frage: Welches ist dieser gemeinsame Typ? (Zum Beispiel für \texttt{List<? super Number>)}
-        \begin{itemize}[<handout:0>]
+        \begin{itemize}[<+-|handout:0>]
             \item Immer "`unterste"' Typ (Im Sinne der Vererbung)
             \item Durch die \textbf{"`ist ein"'} Beziehung passt dieser auf alle anderen Klassen
         \end{itemize}
