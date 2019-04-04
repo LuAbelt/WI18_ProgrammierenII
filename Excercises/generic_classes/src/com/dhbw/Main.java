@@ -1,20 +1,30 @@
 package com.dhbw;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main{
-    private static void combine(List<? super Number> out, List<? extends Number> in1, List<? extends Number> in2){
-        out.clear();
-        for(Number el: in1){
-            out.add(el);
-        }
-
-        for(Number el: in2){
-            out.add(el);
-        }
-    }
 
     public static void main(String[] args) {
+        //KeyValuePair Demo
 
+        //GenericArrayWrapper Demo
+
+        //GenericNumberArrayWrapper Demo
+
+        //GenericComparableArrayWrapper Demo
+
+        //StaticListFunctions Demo
+        List<Double> dList = Arrays.asList(0.,3.14159,2.7182818284590);
+        List<Integer> iList = Arrays.asList(1,2,3,4,5);
+        List<Number> out = new ArrayList<>();
+
+        StaticListFunctions.printList(dList);
+        StaticListFunctions.printList(iList);
+        StaticListFunctions.combine(dList,iList,out);
+        StaticListFunctions.printList(out);
+        StaticListFunctions.elementWiseSum(dList,iList,out);
+        StaticListFunctions.printList(out);
     }
 }
