@@ -179,7 +179,7 @@ public class GenericArrayWrapper<T> {
      * Gibt ein bestimmtes Element des Arrays zurück
      * @param index Index des Elements
      * @return Das Element am angegebenen Index
-     * @apiNote Durch angeben der "throws" clause, MUSS beim verwenden der Funktion ein try{} catch{} verwendet werden!
+     * @apiNote Durch angeben der "throws" clause wird nach außen kommuniziert, dass diese Methode einen Fehler auslösen kann
      */
     public T getElement(int index) throws ArrayIndexOutOfBoundsException{
         return dataArray[index];
@@ -189,7 +189,7 @@ public class GenericArrayWrapper<T> {
      * Setzt den Wert eines Elements an einer bestimmten Stelle
      * @param index Index des Elements
      * @param element Neues Element
-     * @apiNote Durch angeben der "throws" clause, MUSS beim verwenden der Funktion ein try{} catch{} verwendet werden!
+     * @apiNote Durch angeben der "throws" clause wird nach außen kommuniziert, dass diese Methode einen Fehler auslösen kann
      */
     public void setElement(int index, T element) throws ArrayIndexOutOfBoundsException{
         dataArray[index]=element;
