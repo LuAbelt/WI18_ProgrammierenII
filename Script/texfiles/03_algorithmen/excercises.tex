@@ -1,10 +1,36 @@
-\begin{frame}{Aufgabe 1}{Größter Teiler}
+\begin{frame}{Aufgabe 1}{Struktogramm}
+Auf der folgenden Folie wird ein Algorithmus durch ein Struktogramm beschrieben. Übergeben wird eine ganzzahlige Zahl \texttt{n}
+\begin{enumerate}
+    \item Bestimmt $O(n)$
+    \item Welche Aufgabe hat der Algorithmus
+    \item Ist der Algorithmus korrekt?
+    \begin{itemize}
+        \item Wenn nicht, nennt ein Beispiel für \texttt{n}, in dem der Algorithmus fehlschlägt
+    \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Aufgabe 1}{Struktogramm}
+\begin{centernss}
+    \begin{struktogramm}(70,60)
+        \assign{Lese \( n \) ein}
+        \assign{Setze \( res \) auf \( 1 \) }
+        \until{n==0}
+            \assign{\( res = res*n\)}
+            \assign{\( n-- \)}
+        \untilend
+        \assign{Gib \( res \) aus}
+    \end{struktogramm}
+\end{centernss}
+\end{frame}
+
+\begin{frame}{Aufgabe 2}{Größter Teiler}
 Entwerft einen Algorithmus, der für einen gegebene natürliche Zahl den größten (ganzzahligen) Teiler findet. Erstellt zu eurem Algorithmus einen Programmablaufplan oder Struktogramm.
 
 Analysiert euren Algorithmus bezüglich der Komplexität $O$. Vergleicht euren Algorithmus mit denen der anderen.
 \end{frame}
 
-\begin{frame}[fragile]{Aufgabe 2}{Codeanalyse}
+\begin{frame}[fragile]{Aufgabe 3}{Codeanalyse}
 Analysiert den folgenden Codeausschnitt. Welche Aufgabe hat der Algorithmus? Bestimmt die Komplexität $O$.
 
 \lstset{style=java}
@@ -20,6 +46,22 @@ public void func(List<?> in1, List<?> in2){
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Aufgabe 3}{}
-%TODO: Primzahlenalgorithmus als PAP. Erkennen, was er macht und umsetzen in Code
+\begin{frame}{Aufgabe 4}{Programmablaufplan}
+Auf der folgenden Folie findet Ihr einen Algorithmus in Form eines Programmablaufplans. 
+\begin{enumerate}
+    \item Was ist der Ziel des Algorithmus?
+    \item Bestimmt $\tau(n)$ und $O(n)$.
+    \item Lässt sich der Algorithmus noch verbessern in Blick auf die Effizienz?
+    \begin{itemize}
+        \item Wenn ja, wie?
+        \item Wenn ja, bestimmt für die Optimierung $\tau(n)$ und $O(n)$
+    \end{itemize}
+    \item Implementiert den Algorithmus (In Java oder einer Sprache eurer Wahl)
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Aufgabe 5}{Programmablaufplan}
+\begin{figure}
+    \includegraphics[height=5cm]{graph/pap_excercise_algo}
+\end{figure}
 \end{frame}
