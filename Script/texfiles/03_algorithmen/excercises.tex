@@ -1,7 +1,7 @@
 \begin{frame}{Aufgabe 1}{Struktogramm}
 Auf der folgenden Folie wird ein Algorithmus durch ein Struktogramm beschrieben. Übergeben wird eine ganzzahlige Zahl \texttt{n}
 \begin{enumerate}
-    \item Bestimmt $O(n)$
+    \item Bestimmt $O$
     \item Welche Aufgabe hat der Algorithmus
     \item Ist der Algorithmus korrekt?
     \begin{itemize}
@@ -15,7 +15,7 @@ Auf der folgenden Folie wird ein Algorithmus durch ein Struktogramm beschrieben.
     \begin{struktogramm}(70,60)
         \assign{Lese \( n \) ein}
         \assign{Setze \( res \) auf \( 1 \) }
-        \until{n==0}
+        \until{n!=0}
             \assign{\( res = res*n\)}
             \assign{\( n-- \)}
         \untilend
@@ -31,7 +31,9 @@ Analysiert euren Algorithmus bezüglich der Komplexität $O$. Vergleicht euren A
 \end{frame}
 
 \begin{frame}[fragile]{Aufgabe 3}{Codeanalyse}
-Analysiert den folgenden Codeausschnitt. Welche Aufgabe hat der Algorithmus? Bestimmt die Komplexität $O$.
+Analysiert den folgenden Codeausschnitt. Welche Aufgabe hat der Algorithmus? Bestimmt die Komplexität $\tau(4,2)$, $\tau(N,M)$ und $O$.
+
+Hinweis: $N$ bezeichnet hierbei die Länge der Liste \texttt{in1} und $M$ die Länge der Liste \texttt{in2}
 
 \lstset{style=java}
 \begin{lstlisting}
@@ -60,8 +62,37 @@ Auf der folgenden Folie findet Ihr einen Algorithmus in Form eines Programmablau
 \end{enumerate}
 \end{frame}
 
-\begin{frame}{Aufgabe 5}{Programmablaufplan}
+\begin{frame}{Aufgabe 4}{Programmablaufplan}
 \begin{figure}
     \includegraphics[height=5cm]{graph/pap_excercise_algo}
 \end{figure}
+\end{frame}
+
+\begin{frame}{Aufgabe 5}{Best- und Worst-Case Execution Time}
+Auf der folgenden Folie findet ihr einen Codeausschnitt mit variabler Komplexität.
+
+\begin{enumerate}
+    \item Bestimme $\tau(N)$ für den Best- und Worst-Case.
+    \item Unter welchen Bedingungen tritt der Best- bzw. Worst-Case ein?
+    \item Bestimme $O$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Aufgabe 5}{Best- und Worst-Case Execution Time}
+\lstset{style=java}
+\begin{lstlisting}
+public void func(int[] array, int n){
+    for(int i=0;i<n;i++){
+        if((array[i]%2)==0){
+            array[i]+=1;
+            array[i]*=7;
+            array[i]*=array[i];
+            array[i]-=42;
+            array[0]+=array[i];
+        }else{
+            array[i]+=2;
+        }
+    }
+}
+\end{lstlisting}
 \end{frame}

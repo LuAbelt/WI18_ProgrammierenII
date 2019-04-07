@@ -68,6 +68,7 @@
 
 \begin{frame}[fragile]{Beispiel einer Komplexitätsanalyse}{Vertauschen zweier Zahlen I}
 \lstset{style=java}
+\begin{onlyenv}<1>
 \begin{lstlisting}
 public void swap(int first, int second){
     int tmp = first;
@@ -75,15 +76,27 @@ public void swap(int first, int second){
     second = tmp;
 }
 \end{lstlisting}
+\end{onlyenv}
+
+\begin{onlyenv}<2|handout:0>
+\begin{lstlisting}
+public void swap(int first, int second){
+    int tmp = first;    //1 Operation
+    first = second;     //1 Operation
+    second = tmp;       //1 Operation
+}
+\end{lstlisting}
+\end{onlyenv}
 
 \begin{itemize}
-    \item Laufzeitkomplexität: \visible<2-|handout:0>{$\tau(N)=3$}
-    \item<3-> Speicherkomplexität(In Byte): \visible<4-|handout:0>{$\tau(N)=12$}
+    \item Laufzeitkomplexität: \visible<3-|handout:0>{$\tau(N)=3$}
+    \item<4-> Speicherkomplexität(In Byte): \visible<5-|handout:0>{$\tau(N)=12$}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiel einer Komplexitätsanalyse}{Vertauschen zweier Zahlen II}
 \lstset{style=java}
+\begin{onlyenv}<1>
 \begin{lstlisting}
 public void swap(int first, int second){
     first = first + second;
@@ -91,10 +104,21 @@ public void swap(int first, int second){
     first = first - second;
 }
 \end{lstlisting}
+\end{onlyenv}
+\begin{onlyenv}<2|handout:0>
+\begin{lstlisting}
+public void swap(int first, int second){
+    first = first + second;     //2 Operationen
+    second = first - second;    //2 Operationen
+    first = first - second;     //2 Operationen
+}
+\end{lstlisting}
+\end{onlyenv}
+
 
 \begin{itemize}
-    \item Laufzeitkomplexität: \visible<2-|handout:0>{$\tau(N)=6$}
-    \item<3-> Speicherkomplexität(In Byte): \visible<4-|handout:0>{$\tau(N)=8$}
+    \item Laufzeitkomplexität: \visible<3-|handout:0>{$\tau(N)=6$}
+    \item<4-> Speicherkomplexität(In Byte): \visible<5-|handout:0>{$\tau(N)=8$}
 \end{itemize}
 \end{frame}
 
@@ -103,12 +127,12 @@ public void swap(int first, int second){
         \item Komplexität ist selten statisch
         \item In der Regel von Problem und der konkreten \textit{Probleminstanz} abhängig
         \begin{itemize}
-            \item Problem: z.B. Das sortieren einer Liste
+            \item Problem: z.B. Das Sortieren einer Liste
             \item Probleminstanz: konkrete Liste die sortiert werden soll, z.B. $(7, 3, 12, -5, 45)$
         \end{itemize}
         \item Die Probleminstanz hat meist einen oder mehrere dynamische Faktoren von denen die entgültige Komplexität abhängt
         \begin{itemize}
-            \item Für Sortieren: \visible<+->{Länge der Liste}
+            \item Für Sortieren: \visible<+-|handout:0>{Länge der Liste}
         \end{itemize}
         \item Angegeben werden in der Komplexität nur noch die skalierenden Faktoren: $O(N)$
     \end{itemize}
@@ -137,7 +161,7 @@ int sumList(int[] A, int n){
 int sumList(int[] A, int n){
     int sum = 0;            //Kosten: 1, Anzahl: 1 mal
     for(int i=0;i<n;i++){   //Kosten: 2, Anzahl: n+1 mal
-        sum+=A[i]           //Kosten: 2, Anzahl: n mal
+        sum+=A[i]           //Kosten: 3, Anzahl: n mal
     }
     return sum;             //Kosten: 1, Anzahl: 1 mal
 }
@@ -145,9 +169,9 @@ int sumList(int[] A, int n){
 \end{onlyenv}
 
 
-\visible<+-|handout:0>{$ \tau(n) = 1 + 2\cdot(n+1) +  2n + 1 $}
+\visible<+-|handout:0>{$ \tau(n) = 1 + 2\cdot(n+1) +  3n + 1 $}
 
-\visible<+-|handout:0>{$ \tau(n) = 1+ 2n + 2 + 2n +1 $}
+\visible<+-|handout:0>{$ \tau(n) = 1+ 2n + 2 + 3n +1 $}
 
 \visible<+-|handout:0>{$ \tau(n) = 4n + 4 $}
 \visible<+-|handout:0>{$ \tau(n) = c_1n+c_2 $}
@@ -171,11 +195,11 @@ int sumList(int[] A, int n){
 \lstset{style=java}
 \begin{onlyenv}<1>
 \begin{lstlisting}
-public int getSquareSum(int[] data, int n){
+public int calculate(int[] data, int n){
     int res = 0;
     for(int i=0;i<n;i++){
         if(data[i]%2 == 1){
-            continue;
+            res+=data[i];
         }else{
             res += data[i]*data[i];
         }
@@ -186,11 +210,11 @@ public int getSquareSum(int[] data, int n){
 \end{onlyenv}
 \begin{onlyenv}<2|handout:0>
 \begin{lstlisting}
-public int getSquareSum(int[] data, int n){
+public int calculate(int[] data, int n){
     int res = 0;            //Kosten: 1, 1 mal
     for(int i=0;i<n;i++){   //Kosten: 2, (n+1) mal
         if(data[i]%2 == 1){ //Kosten: 3, n mal
-            continue;       //Kosten: 1, ? mal
+            res+=data[i];   //Kosten: 3, ? mal
         }else{
             //Kosten: 5, ? mal
             res += data[i]*data[i];
@@ -258,7 +282,7 @@ Vgl. \cite{ottmann2017} S. 3ff
   \addplot[red]{log2(x)};
   \addplot[purple]{x};
   \addplot[green]{x*log2(x)};
-  \addplot[yellow]{x^2};
+  \addplot[black]{x^2};
   \addplot[cyan]{2^x};
   \addplot[red]{x!};
 \end{axis}
