@@ -1,2 +1,185 @@
-\begin{frame}
+\begin{frame}{Exceptions}{Allgemein}
+    \begin{itemize}[<+->]
+        \item Signalisieren Fehler im entworfenen Programm
+        \item Können auftreten:
+        \begin{itemize}
+            \item Zur Laufzeit (Unchecked Exceptions)
+            \item Beim compilen (Checked Exceptions)
+        \end{itemize}
+        \item Beenden die Ausführung des Programms vorzeitig
+        \begin{itemize}
+            \item Wenn Sie nicht abgefangen werden
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Checked Exceptions}{}
+    \begin{itemize}[<+->]
+        \item Werden bereits durch den Compiler erkannt
+        \item \textbf{Müssen} abgefangen werden
+        \begin{itemize}
+            \item Entweder direkt in der Methode
+            \item Oder durch "`spezifizieren"' in der Methodensignatur
+        \end{itemize}
+        \item Beispiel:
+        \begin{itemize}
+            \item \texttt{FileNotFoundException}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Check Exception}{Beispiel}
+\lstset{style=java}
+\begin{lstlisting}
+import java.io.*; 
+  
+class Main { 
+    public static void main(String[] args) { 
+        FileReader file = new FileReader("C:\\\\test\\\\a.txt"); 
+        BufferedReader fileInput = new BufferedReader(file); 
+          
+        // Print first 3 lines of file "C:\\test\\a.txt" 
+        for (int counter = 0; counter < 3; counter++)  
+            System.out.println(fileInput.readLine()); 
+          
+        fileInput.close(); 
+    } 
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Unchecked Exceptions}{Probleme zur Laufzeit}
+    \begin{itemize}[<+->]
+        \item Werden nicht durch den Compiler erkannt
+        \begin{itemize}
+            \item Müssen nicht abgefangen werden
+            \item Beenden die Ausführung aber vorzeitig bei auftreten
+        \end{itemize}
+        \item Können somit zur Laufzeit des Programmes auftreten
+        \item Sind meist Indikator für Programmierfehler
+        \begin{itemize}
+            \item Logikfehler
+            \item Falsche Nutzung von APIs
+        \end{itemize}
+        \item Bekannte Vertreter:
+        \begin{itemize}
+            \item \texttt{NullPointerException}
+            \item \texttt{ArrayIndexOutOfBoundsException}
+            \item \texttt{IndexOutOfBoundsException}
+            \item \texttt{NumberFormatException}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Checked Exceptions}{Beispiel}
+\lstset{style=java}
+\begin{lstlisting}
+class Main { 
+   public static void main(String args[]) { 
+      int x = 0; 
+      int y = 10; 
+      int z = y/x; 
+  } 
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Behandeln von Exceptions}{try-catch}
+    \begin{itemize}[<+->]
+        \item Fehler können über \texttt{try-catch} Konstrukte abgefangen werden
+        \item Für verschiedene Fehler können unterschiedliche Abfangmethoden deklariert werden
+        \item \texttt{finally} kann angegeben werden um Code auszuführen, nachdem der \texttt{try} Block bearbeitet wurde
+        \begin{itemize}
+            \item Unabhängig davon, ob in diesem ein Fehler auftrat
+            \item Oder dieser behandelt wurde
+            \item Kann zum Beispiel genutzt werden, um offene Streams zu schließen
+        \end{itemize}
+        \item Ein \texttt{catch} Block kann mehrere Fehler behandeln
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Behandeln von Exceptions}{Beispiel}
+\lstset{style=java}
+\begin{lstlisting}
+public void readFile(String[] fNames, int index){
+    try{
+        String fName=fNames[index];
+        FileReader file = new FileReader(fName); 
+        BufferedReader fileInput = new BufferedReader(file); 
+    } catch(IOException e){
+    //Fehlerbehandlung für nicht gefundene Datei
+    }  catch(ArrayIndexOutOfBoundsException e){
+    //Fehlerbehandlung für invaliden Array Index
+    }
+    /*Weiterer Code*/
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Behandeln von Exceptions}{Beispiel}
+\lstset{style=java}
+\begin{lstlisting}
+public int calc(int[] data, int index, int divisor){
+    try{
+        return data[index]/divisor;
+    } catch(ArrayIndexOutOfBoundsException|NumberFormatException e){
+        return 0;
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Behandeln von Exception}{Spezifizieren von Ausnahmen}
+\begin{itemize}[<+->]
+    \item Fehler müssen nicht direkt durch die aufrufende Methode behandelt werden
+    \item Alternativ Nutzung des \texttt{throws}-Keywords möglich
+    \begin{itemize}
+        \item Gibt an, dass diese Methode den angegebenen Fehler auslösen kann
+        \item Verantwortung zum behandeln des Fehlers liegt dann am Aufrufer der Methode
+    \end{itemize}
+    \item (Checked) Exceptions müssen spätestens in der \texttt{main()} Methode behandelt werden
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Throws-Keyword}{Beispiel}
+\lstset{style=java}
+\begin{lstlisting}
+public int getElement(int[] data, int i) throws ArrayIndexOutOfBoundsException{
+    return data[i];
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Auslösen von Exceptions}{}
+    \begin{itemize}
+        \item Excpetions können auch "`manuell"' ausgelöst werden
+        \item Um dem Anwender zu signalisieren, dass ein Fehler aufgetreten ist
+        \item Häufig in Verbindung mit selbstdefinierten Fehlerklassen
+        \item Auslösen über Nutzung des \texttt{throw} Keywords
+        \begin{itemize}
+            \item Ausgelöster Fehler muss das \texttt{Throwable} Interface implementieren
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Throws-Keyword}{Beispiel}
+\lstset{style=java}
+\begin{lstlisting}
+public void throwDemo(){
+    throw new IOException();
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Custom Exceptions}{}
+    \begin{itemize}
+        \item Eigene Fehlertypen können über Klassen definiert werden, die das \texttt{Throwable} Interface implementieren
+        \item Hierüber kann beispielsweise eine eigene Fehlermeldung definiert werden
+        \item Bei eigenen Fehlern ist zu entscheiden, ob diese als Checked oder Unchecked Exceptions betrachtet werden sollen.
+        \begin{itemize}
+            \item Unchecked Exceptions erben von \texttt{RunTimeExceptions}
+            \item Die Verwendung von unchecked Exceptions ist abzuwägen...
+            \item ...Auch wenn es die Entwicklung "`vereinfacht"' (weil keine Compilerfehler auftreten)
+        \end{itemize}
+    \end{itemize}
 \end{frame}
