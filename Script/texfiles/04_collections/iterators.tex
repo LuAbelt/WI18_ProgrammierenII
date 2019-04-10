@@ -1,0 +1,73 @@
+\begin{frame}{Iteratoren}
+    \begin{itemize}[<+->]
+        \item Dienen zum traversieren von Listenstrukturen
+        \item "`Kennen"' das nächste Element in der Liste
+        \item In C++: Ähnlich zur Nutzung von Pointern in Arrays
+        \begin{itemize}
+            \item Überschreiben die increment/decrement (\texttt{++}) bzw. \texttt{--}) Operatoren
+            \item Vermeiden jedoch das "`abdriften"' in unerlaubte Speicherbereiche
+        \end{itemize}
+        \item In Java über zwei Interfaces definiert:
+        \begin{itemize}
+            \item \texttt{Iterator}
+            \item \texttt{Iterable}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Iterable}{Das Interface für Listen}
+    \begin{itemize}[<+->]
+        \item Ist das Super-Interface zum \texttt{Collection} Interface
+        \item Somit in jedr Listenstruktur vorhanden
+        \item Definiert drei Methoden:
+        \begin{itemize}
+            \item \texttt{forEach()} - Führt für jedes Element die gegebene Aktion aus (Definiert über Lambda-Expressions)
+            \item \texttt{iterator()} - Gibt das \texttt{Iterator} Element für diese Collection zurück
+            \item \texttt{spliterator()} - Gibt ein \texttt{Spliterator} Element für diese Collection zurück
+        \end{itemize}
+    \end{itemize}
+    Siehe \cite{orac:iterable}
+\end{frame}
+
+\begin{frame}{Iterator}{Allgemeines}
+    \begin{itemize}[<+->]
+        \item Definiert im Grunde eine Position in einer Liste
+        \item Über Methoden kann das Element "`vor"' dem Iterator ausgelesen werden
+        \item Je nach Implementierung auch das "`dahinter"' (z.B. \texttt{ListIterator})
+        \begin{itemize}
+            \item Dadurch wird der Iterator jedoch in die entsprechende Richtung bewegt
+        \end{itemize}
+    \end{itemize}
+    Siehe \cite{orac:iterators}
+\end{frame}
+
+\begin{frame}{Iterator}{Methoden}
+    \begin{itemize}[<+->]
+        \item Das \texttt{Iterator} Interface definiert die Methoden:
+        \begin{itemize}
+            \item \texttt{forEachRemaining()} - Führt die angegebene Operation für alle verbleibenden Elementen aus
+            \item \texttt{hasNext()} - Prüft, ob ein weiteres Element in der Collection vorhanden ist
+            \item \texttt{next()} - Gibt das nächste Element der Collection zurück
+            \item \texttt{remove()} - Entfernt das zuletzt zurückgegebene Element aus der Collection
+        \end{itemize}
+    \end{itemize}
+    Siehe \cite{orac:iterators}
+\end{frame}
+
+\begin{frame}{Iteratoren}{Vergleich zu C++}
+\begin{itemize}[<+->]
+    \item \texttt{iterator()} Methode gibt in der Regel Iterator am Beginn der Collection zurück (Java)
+    \begin{itemize}
+        \item \texttt{begin()}/\texttt{end()} Methode geben Iterator vor dem ersten bzw. hinter dem letzten Element des Containers zurück
+    \end{itemize}
+    \item Iteratoren können (Standardmäßig) nur vorwärts bewegt werden (Java)
+    \begin{itemize}
+        \item Iteratoren können vor und zurück bewegt werden (C++)
+    \end{itemize}
+    \item C++ verfügt zusätzlich noch über "`Reverse Iterator"'
+    \begin{itemize}
+        \item Diese starten hinter dem letzten Element und bewegen sich bei Inkrementieren rückwärts in der Liste
+        \item Einige Collections (z.B. \texttt{LinkedList}) implementieren ähnliches Verhalten über \texttt{descendingIterator()} Methode
+    \end{itemize}
+\end{itemize}
+\end{frame}
