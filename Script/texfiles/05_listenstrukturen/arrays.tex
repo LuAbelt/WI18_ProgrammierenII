@@ -1,0 +1,68 @@
+\begin{frame}{Allgemeines}{Über Arrays}
+	\begin{itemize}
+		\item Einfachste Listenstruktur
+		\item Speichert Daten sequentiell im Speicher
+		\item In der Regel nur in einer Dimension
+		\item Aber auch "`mehrdimensionale"' Arrays möglich
+		\item Logisch (und auch vom Zugriff) könnte man Arrays vergleichen mit:
+		\begin{itemize}
+			\item Vektoren bei eindimensionalen Arrays
+			\item Matrizen für zwei- oder höherdimensionale Arrays
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Eigenschaften}{Von Arrays}
+	\begin{itemize}
+		\item Belegen einen fortlaufenden Bereich im Speicher
+		\item Dadurch:
+		\begin{itemize}
+			\item Muss die Größe bei Initialisierung bekannt sein
+			\item Sind Zugriffe auf die Elemente sehr schnell
+			\item Löschen-/Einfügen von Elementen jedoch vergleichsweise "`teuer"'
+		\end{itemize}
+		\item Arrays sind meist für Datenmengen mit vielen Elementen(Ab ~65535) ungeeignet
+		\item Warum?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Datenstruktur von Arrays}{Bildlich dargestellt}
+%TODO: Abbildung Arrays
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Zugriff auf Elemente}
+	\begin{itemize}
+		\item Zugriffe auf Listenelemente passieren immer in konstanter Zeit
+		\item Dadurch ergibt sich die Komplexität zu: $O(1)$
+		\item Begründung:
+		\begin{itemize}
+			\item Elemente liegen "`hintereinander"' im Speicher $\rightarrow$ Haben fortlaufende Speicheradressen
+			\item Die Adresse des ersten Elements ist immer bekannt
+			\item Heißt, bei Abrufen des $n$-ten Elements muss von der Startadresse nur eine bestimmte Schrittzahl addiert werden
+			\item Jeder Zugriff auf ein Element ist somit (auf unterster Ebene) eine Addition und eine Leseoperation
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Graphische Darstellung}{Zugriff auf Elemente}
+%TODO: Visuelle Darstellung Elementzugriff
+\end{frame}
+
+\begin{frame}{Grundoperationen}{An-/Einfügen von Elementen}
+	\begin{itemize}
+		\item Nachträgliches Einfügen von Elementen ist nicht trivial
+		\item Grund dafür ist die Speicherstruktur von Arrays
+		\item Dadurch, dass die Elemente fortlaufend im Speicher liegen...
+		\begin{itemize}
+			\item ...müsste bei Einfügen sichergestellt sein, dass der nachfolgende Speicher noch nicht genutzt ist (Was meist nicht der Fall ist)
+			\item ...und alle Elemente die nach dem eingefügten Element liegen, nach rechts "`verschoben"' werden
+		\end{itemize}
+		\item Dadurch häufig das anlegen eines neuen Arrays nötig
+		\item Und das ausführen von vielen Kopieroperationen
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Einfügen in Arrays}{Visualisiert}
+%TODO: Visualisierung einfügen
+\end{frame}
