@@ -68,7 +68,7 @@
 
 \begin{frame}[fragile]{Beispiel einer Komplexitätsanalyse}{Vertauschen zweier Zahlen I}
 \lstset{style=java}
-\begin{onlyenv}<1>
+\begin{onlyenv}<1|handout:0>
 \begin{lstlisting}
 public void swap(int first, int second){
     int tmp = first;
@@ -78,7 +78,7 @@ public void swap(int first, int second){
 \end{lstlisting}
 \end{onlyenv}
 
-\begin{onlyenv}<2-|handout:0>
+\begin{onlyenv}<2->
 \begin{lstlisting}
 public void swap(int first, int second){
     int tmp = first;    //1 Operation
@@ -89,14 +89,14 @@ public void swap(int first, int second){
 \end{onlyenv}
 
 \begin{itemize}
-    \item Laufzeitkomplexität: \visible<3-|handout:0>{$\tau(N)=3$}
-    \item<4-> Speicherkomplexität(In Byte): \visible<5-|handout:0>{$\tau(N)=12$}
+    \item Laufzeitkomplexität: \visible<3->{$\tau(N)=3$}
+    \item<4-> Speicherkomplexität(In Byte): \visible<5->{$\tau(N)=12$}
 \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Beispiel einer Komplexitätsanalyse}{Vertauschen zweier Zahlen II}
 \lstset{style=java}
-\begin{onlyenv}<1>
+\begin{onlyenv}<1|handout:0>
 \begin{lstlisting}
 public void swap(int first, int second){
     first = first + second;
@@ -105,7 +105,7 @@ public void swap(int first, int second){
 }
 \end{lstlisting}
 \end{onlyenv}
-\begin{onlyenv}<2-|handout:0>
+\begin{onlyenv}<2->
 \begin{lstlisting}
 public void swap(int first, int second){
     first = first + second;     //2 Operationen
@@ -117,8 +117,8 @@ public void swap(int first, int second){
 
 
 \begin{itemize}
-    \item Laufzeitkomplexität: \visible<3-|handout:0>{$\tau(N)=6$}
-    \item<4-> Speicherkomplexität(In Byte): \visible<5-|handout:0>{$\tau(N)=8$}
+    \item Laufzeitkomplexität: \visible<3->{$\tau(N)=6$}
+    \item<4-> Speicherkomplexität(In Byte): \visible<5->{$\tau(N)=8$}
 \end{itemize}
 \end{frame}
 
@@ -142,7 +142,7 @@ public void swap(int first, int second){
 
 \begin{frame}[fragile]{Dynamische Komplexität}{Ein Beispiel}
 \lstset{style=java}
-\begin{onlyenv}<+>
+\begin{onlyenv}<+|handout:0>
 \begin{lstlisting}
 //A-> Array mit Elementen, n->Länge von A
 int sumList(int[] A, int n){
@@ -155,7 +155,7 @@ int sumList(int[] A, int n){
 \end{lstlisting}
 \end{onlyenv}
 
-\begin{onlyenv}<+-|handout:0>
+\begin{onlyenv}<+->
 \begin{lstlisting}
 //A-> Array mit Elementen, n->Länge von A
 int sumList(int[] A, int n){
@@ -169,12 +169,12 @@ int sumList(int[] A, int n){
 \end{onlyenv}
 
 
-\visible<+-|handout:0>{$ \tau(n) = 1 + 2\cdot(n+1) +  3n + 1 $}
+\visible<+->{$ \tau(n) = 1 + 2\cdot(n+1) +  3n + 1 $}
 
-\visible<+-|handout:0>{$ \tau(n) = 1+ 2n + 2 + 3n +1 $}
+\visible<+->{$ \tau(n) = 1+ 2n + 2 + 3n +1 $}
 
-\visible<+-|handout:0>{$ \tau(n) = 4n + 4 $}
-\visible<+-|handout:0>{$ \tau(n) = c_1n+c_2 $}
+\visible<+->{$ \tau(n) = 4n + 4 $}
+\visible<+->{$ \tau(n) = c_1n+c_2 $}
 
 \visible<+-|handout:0>{$\Rightarrow O(n)$}
 \end{frame}
@@ -185,7 +185,7 @@ int sumList(int[] A, int n){
         \item Algorithmen können jedoch für gleiches $N$ verschiedene Laufzeiten haben
         \begin{itemize}
             \item Warum?
-            \item<+-|handout:0> Zum Beispiel bei Verzweigung innerhalb des Algorithmus (z.B. durch gesonderte Betrachtung besonderer Listenelemente o.Ä.)
+            \item<+-> Zum Beispiel bei Verzweigung innerhalb des Algorithmus (z.B. durch gesonderte Betrachtung besonderer Listenelemente o.Ä.)
         \end{itemize}
         \item Beispiel: Leicht angepasste Variante unseres Algorithmus zum addieren von geraden Zahlen:
     \end{itemize}
@@ -193,7 +193,7 @@ int sumList(int[] A, int n){
 
 \begin{frame}[fragile]{Addieren aller geraden Zahlen einer Liste}
 \lstset{style=java}
-\begin{onlyenv}<1>
+\begin{onlyenv}<1|handout:0>
 \begin{lstlisting}
 public int calculate(int[] data, int n){
     int res = 0;
@@ -208,7 +208,7 @@ public int calculate(int[] data, int n){
 }
 \end{lstlisting}
 \end{onlyenv}
-\begin{onlyenv}<2|handout:0>
+\begin{onlyenv}<2>
 \begin{lstlisting}
 public int calculate(int[] data, int n){
     int res = 0;            //Kosten: 1, 1 mal
