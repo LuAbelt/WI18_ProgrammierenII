@@ -53,3 +53,37 @@
 %TODO: Visualisierung LinkedLists
 \end{frame}
 
+\begin{frame}{Grundoperationen}{Anlegen einer Linked List}
+	\begin{itemize}
+		\item Bei Anlegen einer neuen Linked List wird diese als leere Liste initialisiert
+		\item Anders als beim Array muss kein Speicher für die Listenelemente reserviert werden
+		\item Das heißt, das \texttt{head} Element wird mit einer \texttt{null} Referenz initialisiert
+		\item Das erste Element, das hinzugefügt wird, wird automatisch zum \texttt{head} Elemente der Liste
+		\item Wird ein Element hinzugefügt, wird erst zum Zeitpunkt des Hinzufügens der Speicher für dieses Element reserviert
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Zugriff auf Elemente}
+	\begin{itemize}
+		\item Zugriff auf Elemente muss immer sequentiell vom \texttt{head} Element aus erfolgen
+		\item Zugriff auf das $n$-te Element erfolgt durch wiederholtes Zugreifen auf das \texttt{next} Element
+		\item Bedeutet:
+		\begin{itemize}
+			\item Je weiter hinten das gesuchte Element steht, desto mehr Operationen sind möglich
+			\item Somit ergibt sich die Komplexität zu $O(N)$
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Zugriff auf Listenelemente}{Mögliche Codeimplementierung}
+\lstset{style=java}
+\begin{lstlisting}
+public T getElement(int index){
+	ListElement res = head;
+	for(int i=0;i<index;i++){
+		res = res.getNext();
+	}
+	return res.getValue();
+}
+\end{lstlisting}
+\end{frame}
