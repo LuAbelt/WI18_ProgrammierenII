@@ -1,0 +1,55 @@
+\begin{frame}{Allgemeines}{Über Linked Lists}
+	\begin{itemize}
+		\item Simple Listenstruktur
+		\item Elemente können verteilt im Speicher liegen
+		\item Jedes Element speichert einen Datenwert
+		\item ...und eine Referenz zum Nachfolger
+		\item Speichern mehrdimensionaler Daten theoretisch möglich
+		\begin{itemize}
+			\item Wenn der Datenwert auch wieder eine Linked List ist
+			\item Zugriff allerdings weniger intuitiv als im Array
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Eigenschaften}{Von Linked Lists}
+	\begin{itemize}
+		\item Muss keinen fortlaufenden Teil im Speicher belegen
+		\item Dadurch entfallen einige Nachteile des Arrays:
+		\begin{itemize}
+			\item Größe muss nicht bei Initialisierung bekannt sein
+			\item Liste kann dynamisch wachsen bzw. schrumpfen (Ohne "`teuere"' Kopiervorgänge)
+			\item Einfügen bzw. Entfernen ist schneller
+		\end{itemize}
+		\item Allerdings ist der Zugriff auf Elemente langsamer
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Datenstruktur von Linked Lists}{Listenelemente}
+	\begin{itemize}
+		\item Jedes Element einer Linked List ist ein Objekt
+		\item Jedes Objekt vom Typ \textit{ListElement} besteht aus:
+		\begin{itemize}
+			\item Einem Member das den Wert des aktuellen Elements speichert. Datentyp ist der Typ, den die Liste speichert (\texttt{Double}, \texttt{Integer} etc.)
+			\item Einem Member welches das nächste Element (bzw. eine Referenz darauf) in der Liste repräsentiert. Datentyp ist hier \texttt{ListElement}
+		\end{itemize}
+		\item Gibt es kein nächstes Element in der Liste kann dies über ein spezielles \texttt{tail} Objekt oder eine \texttt{null} Referenz dargestellt werden
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Datenstruktur von Linked Lists}{Liste}
+	\begin{itemize}
+		\item Die Liste vom Typ \texttt{LinkedList} besteht an sich lediglich aus:
+		\begin{itemize}
+			\item Einem Member \texttt{head}(Auch: \texttt{first}, \texttt{top} o.Ä.) vom Typ \texttt{ListElement}, welches das erste Element der Liste repräsentiert.
+			\item Den für die Liste benötigten Operationen zum Zugriff und Manipulation von Listenelementen
+		\end{itemize}
+		\item Sollte die Liste leer sein, so ist \texttt{head} ein Verweis auf \texttt{null} oder ein spezielles Element, das das Ende einer Liste repräsentiert.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Datenstruktur von Linked Lists}{Visualisiert}
+%TODO: Visualisierung LinkedLists
+\end{frame}
+
