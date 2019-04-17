@@ -87,3 +87,99 @@ public T getElement(int index){
 }
 \end{lstlisting}
 \end{frame}
+
+\begin{frame}{Grundoperationen}{An-/Einfügen von Elementen}
+	\begin{itemize}
+		\item Nachträgliches Einfügen vergleichsweise simpel
+		\item Dadurch, dass Elemente an beliebigen Stellen im Speicher liegen
+		\item Dadurch kein neuanlegen der Liste notwendig
+		\item Oder kopieren von Elementen
+		\item Beim Einfügen werden lediglich die Referenzen der Listenelemente aktualisiert
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Komplexität beim Einfügen}
+	\begin{itemize}
+		\item Komplexität auch hier $O(i)$
+		\begin{itemize}
+			\item $i$ bezeichnet hier die Position an der Liste in der eingefügt wird
+			\item Somit ist das Einfügen hier (anders als bei Array) von der Länge der Liste unabhängig
+		\end{itemize}
+		\item Selbst ein Einfügen an letzter Position ist aber in der Regel schneller als in Arrays
+		\begin{itemize}
+			\item Da keine Kopieroperationen durchgeführt werden müssen
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Einfügen von Elementen}{Visualisiert}
+%TODO: Abbildung einfügen von Elementen
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Zählen von Elementen}
+	\begin{itemize}
+		\item Anders als beim Array kann Länge alleine aus Listenelementen ermittelt werden
+		\item Dadurch, dass das Ende der Liste über eine \texttt{null} Referenz erkennbar ist
+		\item Vorgehen im Groben(Siehe Struktogramm auf nächster Folie):
+		\begin{itemize}
+			\item Ausgehend vom \texttt{head} Element, erhöhe den Zähler solange, wie es ein \texttt{next} Element gibt
+		\end{itemize}
+		\item Komplexität ist somit $O(N)$
+		\item In der Regel wird die Länge jedoch als \texttt{int} von der Liste gespeichert und bei Hinzufügen/Entfernen aktualisiert
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Zählen von Elementen}{Struktogramm}
+\begin{centernss}
+	\begin{struktogramm}(70,30)
+        \assign{Setze \( curElement=head \) }
+        \assign{Setze \( count=0 \) }
+        \while{\( curElement!=null\) }
+			\assign{curElement=curElement.next}
+			\assign{count++}
+		\whileend
+		\assign{Gib \( count \) zurück}
+	\end{struktogramm}
+\end{centernss}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Entfernen von Elementen}
+	\begin{itemize}
+		\item Elemente müssen nicht sequentiell im Speicher liegen
+		\begin{itemize}
+			\item Dadurch entsteht keine "`Lücke"' in der Liste
+		\end{itemize}
+		\item Dadurch ähnlicher Vorteil gegenüber dem Array wie beim Einfügen:
+		\begin{itemize}
+			\item Keine Kopieroperationen(der nachfolgenden Elemente) notwendig
+		\end{itemize}
+		\item Um ein Element zu entfernen muss lediglich das \texttt{next} Element des Vorgängers auf das \texttt{next} Element des
+		zu entfernenden Elements geändert werden
+		\item Entferntes Element liegt dann unreferenziert im Speicher $\rightarrow$ Wird in Java durch die Garbage Collection entfernt
+		\item Komplexität ist hier wie beim einfügen von Elementen $O(i)$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Entfernen von Elementen}{Visualisiert}
+%TODO: Visualisierung entfernen von Elementen
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Konkatinieren von Listen}
+	\begin{itemize}
+		\item Kombinieren von Listen ist simpel
+		\begin{itemize}
+			\item Kein neuer/zusätzlicher Speicher muss reserviert werden
+			\item Kopieren von Elementen nicht zwingend notwendig (Je nach Implementierung jedoch sinnvoll)
+		\end{itemize}
+		\item Zum konkatinieren muss lediglich die \texttt{next} Referenz des letzten Elements der ersten Liste aktualisiert werden
+		\begin{itemize}
+			\item Auf das \texttt{head} Element der zweiten Liste
+		\end{itemize}
+		\item Komplexität ist somit (theoretisch) $O(n)$ um bis zum letzten Element der ersten Liste zu gelangen
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Konkatinieren von Listen}{Visualisiert}
+%TODO: Visualisierung Konkatinieren von Listen
+\end{frame}
+
