@@ -68,10 +68,53 @@
 	\begin{itemize}
 		\item Zur Vereinfachung betrachten wir für Binärbäume (Suchbäume) folgende Operationen:
 		\begin{itemize}
-			\item Bestimmen, ob ein Element im Baum enthalten ist
 			\item Einfügen von Elementen
 			\item Entfernen von Elementen
 			\item Bestimmen der Anzahl von Elementen
 		\end{itemize}
+		\item Grundoperationen basieren fast immer auf rekursivem Aufruf auf den Teilbäumen!
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Einfügen von Elementen}
+	\begin{itemize}
+		\item Für das Einfügen eines Elements $X$ in einen Baum $B$ werden vier Fälle unterschieden:
+		\begin{itemize}
+			\item Ist $B$ leer, so ist das Ergebnis der Baum mit dem Schlüssel $X$
+			\item Ist $X$ identisch mit dem Schlüssel von $B$ so ist $X$ bereits im Baum und wird nicht hinzugefügt
+			\item Ist $X$ kleiner als der Schlüssel von $B$ so füge $X$ im linken Teilbaum ein
+			\item Ist $X$ größer als der Schlüssel von $B$ so füge $X$ im rechten Teilbaum ein
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Einfügen in Suchbäume}{Beispiele}
+%TODO: Beispiele Einfügen
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Entfernen aus Suchbäumen}
+\begin{itemize}
+	\item Beim Entfernen eines Elements mit dem Schlüssel $X$ können vier Fälle auftreten:
+	\begin{itemize}
+		\item Der Baum enthält $X$ nicht - Fertig.
+		\item Der Knoten mit dem Schlüssel $X$ hat keinen Nachfolger - $X$ wird entfernt, Fertig.
+		\item Der Knoten mit dem Schlüssel $X$ hat genau einen Nachfolger
+		\item Der Knoten mit dem Schlüssel $X$ hat genau zwei Nachfolger
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Entfernen}{$X$ hat einen Nachfolger}
+	\begin{itemize}
+		\item Simpler Fall
+		\item Hier "`rutscht"' der Nachfolger (Gesamter Teilbaum) einfach an die Stelle des zu entfernenden Elements
+		\item Keine weiteren Operationen - Fertig.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Entfernen}{Visualisiert für einen Nachfolger}
+%TODO: Visualisierung Entfernen
+\end{frame}
+
+\begin{frame}{Entfernen}{$X$ hat zwei Nachfolger}
 \end{frame}
