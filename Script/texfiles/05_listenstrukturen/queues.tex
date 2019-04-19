@@ -1,0 +1,93 @@
+\begin{frame}{Allgemeines}{Zu Queues}
+	\begin{itemize}
+		\item Funktionieren ähnlich wie Stacks
+		\item Hier jedoch andere Zugriff:
+		\begin{itemize}
+			\item Elemente können nur hinten angefügt werden
+			\item ...und vorn entfernt werden
+		\end{itemize}
+		\item Stellt eine "`Warteschlange"' dar
+		\item Interne Datenstruktur wie beim Stack variabel
+		\item Wichtig ist, dass von außen nur über das Queue Interface zugegriffen werden kann
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Allgemeines}{Queue Interface}
+	\begin{itemize}
+		\item Queue Interface besteht aus zwei grundlegenden Operationen:
+		\begin{itemize}
+			\item \texttt{enqueue} - Hängt ein Element hinten an die Queue an 
+			\item \texttt{dequeue} - Gibt das ersten Element der Queue zurück und entfernt dieses
+		\end{itemize}
+		\item Wie im Stack gibt es meist noch weitere Hilfsfunktionen wie \texttt{isEmpty} oder \texttt{peek}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{An-/Einfügen von Elementen}
+	\begin{itemize}
+		\item Anfügen von Elementen nur am Ende möglich
+		\item Einfügen in der Mitte nicht vorgesehen (In der Standardqueue)
+		\item Um ein Element an der Stelle $i$ einzufügen müsste man:
+		\begin{itemize}
+			\item Die Größe der Queue bestimmen ($n$)
+			\item Die ersten $i-1$ Elemente der Queue entfernen und direkt hinten anfügen
+			\item Dann das einzufügende Element anhängen
+			\item Dann die vordersten $n-i+1$ Elemente entfernen und direkt hinten anfügen
+		\end{itemize}
+		\item Solche Operationen sind jedoch nicht Teil des Standardinterfaces
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{An-/Einfügen von Elementen}
+	\begin{itemize}
+		\item Es gibt Queues in denen neue Element nicht zwangsweise hinten angehängt werden
+		\item Sondern nach anderen Kriterien in der Queue sortiert werden, z.B.
+		\begin{itemize}
+			\item Angegebener Priorität
+			\item (Hash-)Wert des Elements
+		\end{itemize}
+		\item Wichtig hierbei: Das Interface sollte sich hierbei nach außen nicht maßgeblich verändern
+		\item Die Logik wie das Element in die interne Struktur eingefügt wird, bleibt intern!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Bestimmen der Größe}
+	\begin{itemize}
+		\item Wie auch im Stack ist die Größenbestimmung sehr aufwendig
+		\item Kopieren der Queue und sukzessives entfernen notwendig
+		\item Daher wird auch hier die Größe meist "`manuell"' verwaltet und beim Hinzufügen/Entfernen aktualisiert
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Entfernen von Elementen}
+	\begin{itemize}
+		\item Das Interface erlaubt nur das entfernen des vordersten Elements
+		\item Um Elemente in der MItte zu entfernen müsste ähnlich vorgegangen werden wie beim Einfügen
+		\item Auch hier gilt wieder: Das Entfernen "`in der Mitte"' sollte nicht Teil des Interfaces sein
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Konkatinieren von Queues}
+	\begin{itemize}
+		\item Kombinieren von Queues ist - vergleichsweise - "`simpel"'
+		\begin{itemize}
+			\item Im Grunde muss nur wiederholt das erste Element der zweiten Queue entfernt werden
+			\item ...und direkt an die erste angefügt werden
+		\end{itemize}
+		\item Je nachdem wie die Queue intern strukturiert ist, kann dies über eine bereitgestellte "`append"' Funktion optimiert werden
+		\begin{itemize}
+			\item Zum Beispiel durch direktes zusammenfügen der internen Linked Lists
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Anwendungsfälle}{Für Queues}
+	\begin{itemize}
+		\item Scheduling von nacheinander ablaufenden Operationen
+		\item Planung von Prozessen in gemeinsam genutzten Ressourcen
+		\begin{itemize}
+			\item Wenn eine Ressource gerade belegt ist und ein weterer Prozess sie aber benötigt
+			\item Wird der Prozess zur nächsten Berechnung in der Queue gespeichert
+		\end{itemize}
+	\end{itemize}
+\end{frame}
