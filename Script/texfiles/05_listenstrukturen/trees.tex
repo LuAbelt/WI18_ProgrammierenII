@@ -1,0 +1,77 @@
+\begin{frame}{Allgemeines}{Baumstrukturen}
+	\begin{itemize}
+		\item Unterscheiden sich von den bisherigen Strukturen
+		\item Bisher hatte jedes Element einer Datenstruktur immer einen "`Nachfolger"'
+		\item ...und einen Vorgänger
+		\item Bäume können jedoch mehrere "`Nachfolger"' haben
+		\begin{itemize}
+			\item Man spricht in der Regel von \textbf{Knoten}
+			\item Es gibt genau einen Knoten im Baum, der keinen Eingang ("`Vorgänger"') besitzt
+			\begin{itemize}
+				\item Dies ist der \textbf{Wurzelknoten} des Baumes
+			\end{itemize}
+			\item Alle anderen Knoten haben genau einen Eingang
+		\end{itemize}
+		\item In der Regel beschäftigt man sich hauptsächlich mit \textit{Binärbäumen}
+		\begin{itemize}
+			\item Diese haben \textbf{zwei} Nachfolger
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Allgemeines}{Definition von Bäumen}
+	\begin{alertblock}{Graphentheoretische Definition}
+	Ein Baum ist ein endlicher, schwach zusammenhängender gerichteter Graph, für dessen Knotenpunkte gilt:
+	\begin{enumerate}
+		\item Es gibt genau einen Knoten, der keinen Eingang hat (Wurzel des Baumes)
+		\item Alle übrigen Knotenpunkte haben genau einen Eingang.
+	\end{enumerate}
+	\end{alertblock}
+	
+	\begin{alertblock}{Rekursive Definition(Binärbaum)}
+	Eine Baumstruktur vom Grundtyp T ist:
+	\begin{enumerate}
+		\item Eine leere Struktur
+		\item Ein Knoten vom Typ T mit genau zwei disjunkten Teilbäume vom Grundtyp T
+	\end{enumerate}
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{Allgemeines}{Struktur der Knoten im Baum}
+	\begin{itemize}
+		\item Grundsätzlich besteht ein Knoten(Im Binärbaum) aus drei Elementen
+		\begin{itemize}
+			\item Einem Schlüssel (=Datenwert) für den Knoten
+			\item Einen linken Teilbaum
+			\item Einen rechten Teilbaum
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Eigenschaften}{Von Binärbäumen}
+	\begin{alertblock}{Vollständige Binärbäume}
+	In einem Binärbaum kann jede Ebene maximal $2^{(Tiefe-1)}$ Knoten besitzen. Ein Binärbaum ist dann vollständig ausgeglichen, wenn auf jeder Ebene, mit Ausnahme der letzten, genau diese
+	$2^{(Tiefe-1)} Knoten existieren und die Knoten auf der letzten Ebene soweit links wie möglich stehen
+	\end{alertblock}
+	
+	\begin{alertblock}{Suchbaum}
+	Wenn für alle Knoten K eines Baumes gilt, dass...
+	\begin{enumerate}
+		\item ...alle Schlüssel im linken Teilbaum von K kleiner...
+		\item ...alle Schlüssel im rechten Teilbaum von K größer...
+	\end{enumerate}
+	... als der Schlüssel des Knotens K sind, so handelt es sich um einen Suchbaum
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{In Binärbäumen}
+	\begin{itemize}
+		\item Zur Vereinfachung betrachten wir für Binärbäume (Suchbäume) folgende Operationen:
+		\begin{itemize}
+			\item Bestimmen, ob ein Element im Baum enthalten ist
+			\item Einfügen von Elementen
+			\item Entfernen von Elementen
+			\item Bestimmen der Anzahl von Elementen
+		\end{itemize}
+	\end{itemize}
+\end{frame}
