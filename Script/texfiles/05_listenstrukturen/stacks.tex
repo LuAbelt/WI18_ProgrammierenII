@@ -1,0 +1,122 @@
+\begin{frame}{Allgemeines}{Zu Stacks}
+	\begin{itemize}
+		\item "`Stapel"' $\rightarrow$ Beschreibt Funktionsweise sehr passend
+		\item Listenstruktur in der nur Zugriff auf das "`oberste"' Element möglich ist
+		\item Oberstes Element ist hier das zuletzt hinzugefügte
+		\item Daten werden intern (als private Variable) verwaltet
+		\begin{itemize}
+			\item z.B. als Array oder Linked List
+		\end{itemize}
+		\item Wir befassen uns hier mehr mit der Komplexität der Grundoperationen und weniger mit der Datenstruktur
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Allgemeines}{Formale Definition Stack}
+	\begin{alertblock}{Definition Stack}
+	Ein Stack lässt sich \textbf{rekursiv} definieren. Zu jedem Zeitpunkt ist ein Stack entweder:
+	\begin{itemize}
+		\item Eine leere Datenstruktur
+		\item Bestehend aus einem obersten Element und dem Rest, wobei der Rest wieder ein Stack ist
+	\end{itemize}
+	\end{alertblock}
+\end{frame}
+
+\begin{frame}{Allgemeines}{Stack Interface}
+	\begin{itemize}
+		\item Grundlegendes Interface besteht aus zwei Operationen:
+		\begin{itemize}
+			\item \texttt{push} - Fügt ein Element hinten an den Stack an
+			\item \texttt{pop} - Gibt das oberste Elemente des Stacks zurück und entfernt dieses aus dem Stack
+		\end{itemize}
+		\item Außerdem in der Regel noch Teil des Interfaces:
+		\begin{itemize}
+			\item \texttt{peek} - Gibt das oberste Element zurück, ohne es zu entfernen
+			\item \texttt{isEmpty}
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Anlegen eines Stacks}
+	\begin{itemize}
+		\item Stack wird als leere Datenstruktur initialisiert
+		\item Je nachdem wie die Daten intern strukturiert sind muss ggf. eine Größe initialisiert werden
+		\item Sobald das erste Element hinzugefügt wird, wird dieses zum obersten (\texttt{top}) Element
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Zugriff auf Elemente}
+	\begin{itemize}
+		\item Zugriff nur auf das letzte Element der Liste (Zletzt hinzugefügt)
+		\item \texttt{pop} gibt das letzte Element zurück und entfernt dieses aus der Liste
+		\item \texttt{peek} Gibt das letzte Element zurück ohne es zu entfernen
+		\begin{itemize}
+			\item Wiederholte Zugriffe auf \texttt{peek} geben also immer das gleiche Ergebnis zurück (Sofern der Stack zwischenzeitlich nicht manipuliert wurde)
+		\end{itemize}
+		\item Zugriff auf beliebige Elemente im Stack nicht möglich (Zuminndest sollte der Stack dafür kein Interface anbieten)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{An-/Einfügen von Elementen}
+	\begin{itemize}
+		\item Hinzufügen nur für das Ende des Stacks vorgesehen
+		\item Dafür ist die Komplexität $O(1)$
+		\item Hinzufügen in der Mitte des Stacks nicht vorgesehen
+		\begin{itemize}
+			\item Daher sehr aufwändig
+			\item Es müssen von hinten sukzessiv Elemente entfernt werden, bis der gewünschte Index die letzte Position des Stacks wäre
+			\item Dann wird das neue Element hinzugefügt
+			\item Dann müssen alle zuvor entfernten Elemente wieder hinzugefügt werden
+			\item Diese Operation sollte aber \textbf{nicht} Teil des Stack Interfaces sein
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Bestimmen der Größe}
+	\begin{itemize}
+		\item Größe des Stacks wird in der Regel parallel verwaltet
+		\item Und bei Aufrufen von \texttt{push} und \texttt{pop} aktualisiert
+		\item Sonst wäre zum zählen folgendes Vorgehen nötig:
+		\begin{itemize}
+			\item Kopiere den Stack
+			\item Entferne aus dem kopierten Stack solange Elemente bis der Stack leer ist
+			\item Bei jedem entfernen erhöhe einen Zähler um 1
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Entfernen von Elementen}
+	\begin{itemize}
+		\item Stack Interface bietet nur Möglichkeit, letztes Element zu entfernen
+		\item Über die \texttt{pop} Funktion
+		\item Entfernen in der Mitte vom Stack nicht möglich
+		\begin{itemize}
+			\item Kann theoretisch durch einen Benutzer realisiert werden (Ähnliches Vorgehen wie beim Einfügen in der Mitte)
+			\item Sollte jedoch nicht Teil des Interfaces sein
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Konkatinieren von Stacks}
+	\begin{itemize}
+		\item Kombinieren von zwei Stack relativ aufwendig
+		\item Wenn das Ende des zweiten Stacks auch das Ende des zusammengefügten Stacks sein sollte
+		\item Denn: Bei entfernen aller Elemente vom Stack wird die Reihenfolge der Elemente invertiert
+		\item Nötiges Vorgehen:
+		\begin{itemize}
+			\item Entferne über \texttt{pop} sukzessive die Elemente vom zweiten Stack bis dieser leer ist und füge sie (über \texttt{push}) zu einem temporären Stack hinzu
+			\item Entferne sukzessive die Elemente vom temporären Stack und füge sie an den ersten Stack an
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Anwendungsfälle}{Für Stacks}
+	\begin{itemize}
+		\item Backtracking Algorithmen - Jeder Schritt wird auf dem Stack gespeichert und kann über den Stack "`zurückgegangen werden"'
+		\begin{itemize}
+			\item Beispiel: Labyrinth Algorithmus.
+			\item Jeder Schritt wird auf einem Stack gespeichert
+			\item Bei erreichen einer Sackgasse werden die zuletzt gemachten Schritte so lange zurück gegangen, bis ein anderer Schritt möglich ist
+		\end{itemize}
+		\item Rückgängig Funktion - Jede Aktion wird auf einem Stack abgelegt und kann somit rückgängig gemacht werden
+	\end{itemize}
+\end{frame}
