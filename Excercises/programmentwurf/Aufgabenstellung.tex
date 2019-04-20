@@ -99,7 +99,7 @@ wurden, welche Alternativen ggf. zur Auswahl standen und welche Vor- und Nachtei
 die während der Entwicklung auftraten, mit in der Dokumentation aufgeführt werden. Auch können hier Beispiele zur Benutzung mit aufgenommen werden, sowie entwickelte 
 Algorithmen erläutert werden. Die Dokumentation sollte pro Gruppe 10 Seiten nicht überschreiten. Diese 10 Seiten beinhalten nicht ggf. automatisch über Javadoc (o.Ä.) generierte Dokumentation.
 
-\vspace{0,75cm}
+\newpage
 
 \subsection*{Aufgabenvorschlag 1 - Listenbibliothek}
 
@@ -222,10 +222,82 @@ Zusätzliche Punkte können zum Beispiel erreicht werden durch:
 	\item Implementierung des \texttt{Iterable} bzw. \texttt{Iterator} Interfaces in die Listenstruktur
 	\item Implementierung einer Klasse, die einen AVL-Baum darstellt
 \end{itemize}
-
 Sonst könnt ihr natürlich weitere Funktionen einbauen die euch, sofern ihr eine logische Begründung habt, warum diese Teil der Bibliothek sein sollten, zusätzliche Punkte verschaffen können.
-\vspace{0,75cm}
+Bitte geht auf die zusätzlichen Features noch einmal separat in der Dokumentation ein.
+\newpage
 
 \subsection*{Aufgabenvorschlag 2 - Set Kartenspiel}
+\subsubsection*{Allgemeine Informationen}
+Im zweiten Aufgabenvorschlag geht es um die Implementierung des Kartenspiels "`Set"' in einer geeigneten GUI.
+
+"`Set"' ist ein Kartenspiel, bei dem das Deck aus insgesamt 81 Karten besteht. Jeder der Karten unterscheidet sich in
+mindestens einem von vier Eigenschaften. Jede Eigenschaft hat genau drei Ausprägungsgrade. Die vier Eigenschaften sind:
+\begin{itemize}
+	\item Das gezeigte Symbol (Bspw.: Kreis, Diamant, Rechteck)\footnote{Die Symbole können natürlich frei gewählt werden}
+	\item Die Anzahl der Symbole (1, 2, 3)
+	\item Die Farbe der Symbole (Bspw.: Rot, Grün, Blau)\footnote{Die Farbe kann natürlich frei gewählt werden}
+	\item Den Ausfüllungsgrad der Symbole (Nur Umrisse, Teilweise ausgefüllt/gestreift, komplett gefüllt)
+\end{itemize}
+
+Zu Beginn des Spiels werden nun zwölf Karten offen aufgedeckt. Ziel ist es nun, aus diesen zwölf Karten ein "`Set"' aus drei Karten zu finden. Drei Karten
+bilden genau dann ein Set, wenn für jede Eigenschaft der Drei Karten gilt:
+\begim{itemize}	
+	\item Die Eigenschaft hat auf allen drei Karten den gleichen Ausprägungsgrad
+	\item Die Eiigenschaft hat auf allen drei Karten einen anderen Ausprägungsgrad (=Alle Ausprägungsgrade sind vorhanden)
+\end{itemize}
+Zusammenfassen lässt sich das ganze auch unter der Bedingung: Wenn für eine Eigenschaft gilt "`zwei von ___ und eins von ___"', so handelt es sich nicht um ein Set.
+
+Im folgenden Bild, bilden beispielsweise die drei Karten die jeweils 3 grüne, voll ausgefüllte, Symbole zeigen ein Set.
+\begin{figure}[ht!]
+	\includegraphics[width=0.8\textwidth]{graph/set.jpg}
+\end{figure}
+
+\subsubsection*{Umfang der Aufgabenstellung}
+Aufgabe ist es, eine GUI Anwendung zu erstellen, die das spielen von SET ermöglicht. Hierbei sollen immer die Variante gespielt werden, in der zwölf Karten offen liegen.
+Die GUI Umsetzung soll für einen einzelnen Spieler ausgelegt sein.
+
+Die GUI Umsetzung sollte mindestens die folgenden Funktionen beinhalten:
+\begin{itemize}
+	\item Jedes Spiel startet mit einem zufällig gemischten Deck
+	\item Zu Beginn werden zwölf Karten aufgedeckt
+	\item Anzeigen der offenen Karten entsprechend ihrer Eigenschaften
+	\item Visualisierung des restlichen Decks (Mit Anzeige der im Deck verbleibenden Karten)
+	\item Visualisierung eines Ablagestapels (Mit Anzeige der im Ablagestapel liegenden Karten
+	\item Anzeigen der bisher durch den Spieler gefundener Sets
+	\item Anzeige, wie viele Sets aus den aktuell offenen Karten möglich sind
+	\item Unterstützung von zwei Spielmodi:
+	\begin{itemize}
+		\item Normaler Spielmodus: Das Spiel läuft bis keine Karten mehr im Deck vorhanden sind und kein Set mehr vorhanden ist
+		\item Zeitmodus: Der Spieler hat nur eine begrenzte Zeit um so viele Sets wie möglich zu finden
+	\end{itemize}
+	\item Bei klicken auf eine Karte wird diese "`ausgewählt"' (mit passender Visualisierung). Bei erneutem klicken wird diese "`abgewählt"'
+	\item Bei drei ausgewählten Karten wird geprüft, ob diese drei Karten ein SET ergeben
+	\begin{itemize}
+		\item Wenn Sie ein Set ergeben, wandern die drei Karten auf den Ablagestapel und vom Deck werden drei neue Karten aufgedeckt
+		\item Wenn Sie kein Set ergeben, werden die Karten abgewählt. Die ausgewählten Karten werden nicht abgelegt.
+	\end{itemize}
+	\item Anzeige der bisher verstrichenen Zeit bzw. verbleibenden Zeit (Je nach Spielmodus)
+	\item Sollten die offenen Karten kein SET ergeben, so werden die aktuell aufgedeckten Karten auf den Ablagestapel gelegt und zwölf neue Karten aufgedeckt
+\end{itemize}
+
+\subsubsection*{Dokumentation}
+Aus der Dokumentation sollte ersichtlich sein, welche Datenstrukturen und Klassen ihr nutzt bzw. selbst entworfen habt um die Umsetzung des Spiels zu realisieren.
+Geht insbesondere auf die Visualiserung der einzelnen Karten in der GUI ein. Welche Möglichkeiten habt ihr erwogen und was waren schlussendlich die ausschlaggebenden
+Faktoren für die Auswahl?
+
+Begründet, welche GUI Elemente und Klassen ihr für eure Umsetzung genutzt habt.
+
+\subsubsection*{Zusätzliche Punkte}
+Durch verschiedene Erweiterungen können ggf. zuvor "`verlorene"' Punkte ausgeglichen werden. Hier bitte der Hinweis, dass diese zusätzlichen Aufgaben keineswegs im Fokus der Entwicklung
+stehen sollten und, wenn überhaupt, erst bearbeitet werden sollten, wenn die vorherigen Aufgaben nach bestem Wissen und Gewissen bearbeitet wurden.
+
+Zusätzliche Punkte könnte man zum Beispiel erreich durch:
+\begin{itemize}
+	\item Änderbare Farben der Symbole aus der GUI heraus
+	\item Einbinden von Animationen in das Spiel
+	\item Besonders kreative Umsetzung der GUI
+\end{itemize}
+Neben den hier genannten Möglichkeiten gibt es natürlich noch etliche weitere Möglichkeiten, wie sich das Spiel erweitern ließe. Hier sind eurer Kreativität keine Grenzen gesetzt. Falls ihr 
+zusätzliche Funktionen einbaut, so geht auf diese jedoch explizit noch einmal in der Dokumentation ein
 
 \end{document}
