@@ -138,6 +138,18 @@
 %TODO: Abbildung entfernen 
 \end{frame}
 
+\begin{frame}{Grundoperationen}{Bestimmen der Anzahl der Elemente}
+	\begin{itemize}
+		\item Wie in allen Strukturen kann die Anzahl der Elemente natürlich manuell verwaltet werden
+		\item Allerdings ist das Zählen auch über eine rekursive Definition möglich
+		\item Hierbei Unterscheidung zwischen zwei Fällen:
+		\begin{itemize}
+			\item Ist der Baum $B$ die leere Struktur, so ist die Größe $0$
+			\item Sonst gilt: $size(B)=size(L)+size(R)+1$, wobei $L$ und $R$ den linken bzw. rechten Teilbaum bezeichnen
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
 \begin{frame}{Ausgeglichenheit}{Das Ying und Yang von Bäumen}
 	\begin{itemize}
 		\item Bisher können unsere (Teil-)Bäume verschiedene Tiefen haben
