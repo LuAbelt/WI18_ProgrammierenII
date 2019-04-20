@@ -10,47 +10,8 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage[ngerman]{struktex}
-
-% Custom Colors
-\definecolor{pblue}{rgb}{0.13,0.13,1}
-\definecolor{pgreen}{rgb}{0,0.5,0}
-\definecolor{pred}{rgb}{0.9,0,0}
-\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
-\definecolor{javared}{rgb}{0.6,0,0} % for strings
-\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
-\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
-\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
-
-% Custom LST styles
-\lstdefinestyle{java}{
-	language=Java,
-	basicstyle=\linespread{0.8}\ttfamily\footnotesize,
-	breaklines=true,
-	keywordstyle=\color{javapurple}\bfseries,
-	stringstyle=\color{javared},
-	commentstyle=\color{javagreen},
-	morecomment=[s][\color{javadocblue}]{/**}{*/},
-	numbers=left,
-	numberstyle=\tiny\color{black},
-	stepnumber=1,
-	numbersep=10pt,
-	tabsize=4,
-	showspaces=false,
-	showstringspaces=false,
-	morekeywords={enum},
-	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
-}
-
-%\geometry{a4paper,left=15mm,right=15mm,top=20mm,bottom=20mm}
-%\pagestyle{fancy}
-%\lhead{Lukas Abelt}
-%\chead{WWI218 - Programmieren II}
-%\rhead{\today}
-%\cfoot{\thepage}
-
-%\setlength{\headheight}{23pt}
+\usepackage{graphicx}
 \setlength{\parindent}{0.0in}
-%\setlength{\parskip}{0.0in}
 
 \begin{document}
 
@@ -61,15 +22,15 @@
 \subsection*{Allgemeine Informationen}
 Diese Prüfungsleistung bildet gemeinsam mit dem durchgeführten Kurztest die Gesamtnote der Portfolioprüfung für die Vorlesung Programmieren II des Kurses WWI218 der DHBW Ravensburg.
 
-Die Teilleistung untergliedert sich in einen Programmentwurf und die dazu zu erstellende Dokumentation. Der Programmentwurf geht mit insgesamt 60\% in die Gesamtnote ein, die Dokumentation mit insgesamt 20\%. Zusammen mit dem 20\% aus dem Kurztest ergibt sich so die Gesamtnote.
+Die Teilleistung untergliedert sich in einen Programmentwurf und die dazu zu erstellende Dokumentation. Der Programmentwurf geht mit insgesamt \textbf{60\%} in die Gesamtnote ein, die Dokumentation mit insgesamt \textbf{20\%}. Zusammen mit dem 20\% aus dem Kurztest ergibt sich so die Gesamtnote.
 
-Die Durchführung der Prüfungsleistung erfolgt in Gruppen zu 3 oder maximal 4 Personen. Die Gruppenaufteilung ist spätestens zum 26.04.2019 festzulegen und wird in der Vorlesung besprochen. 
+Die Durchführung der Prüfungsleistung erfolgt in Gruppen zu \textbf{3 oder maximal 4 Personen}. Die Gruppenaufteilung ist spätestens zum \textbf{26.04.2019} festzulegen und wird in der Vorlesung besprochen. 
 
-In der Regel wird davon ausgegangen, dass alle Gruppenmitglieder zu gleichen Anteilen an der Bearbeitung der Aufgabe beteiligt waren. Daher wird auch für alle Gruppenmitglieder die gleiche Bewertung festgesetzt. Sollte gewünscht sein, dass die Bewertung für jedes
+In der Regel wird davon ausgegangen, dass alle Gruppenmitglieder zu gleichen Anteilen an der Bearbeitung der Aufgabe beteiligt waren. \textbf{Daher wird auch für alle Gruppenmitglieder die gleiche Bewertung festgesetzt}. Sollte gewünscht sein, dass die Bewertung für jedes
 Gruppenmitglied differenziert erfolgt, so muss dies in der Abgabe explizit vermerkt sein. Außerdem muss aus den abgegebenen Ergebnissen eindeutig erkennbar sein, welche Teile durch
 welches Gruppenmitglied bearbeitet wurden.
 
-Die Abgabefrist für den Programmentwurf ist der 15.07.2019 23:59:59 MESZ. Zur Abgabe müssen alle zur Bewertung benötigten Dateien bereitgestellt werden. Dies ebinhaltet:
+Die Abgabefrist für den Programmentwurf ist der \textbf{15.07.2019 23:59:59 MESZ}. Zur Abgabe müssen alle zur Bewertung benötigten Dateien bereitgestellt werden. Dies ebinhaltet:
 
 \begin{itemize}
 	\item JAR Datei für den Programmentwurf
@@ -77,12 +38,12 @@ Die Abgabefrist für den Programmentwurf ist der 15.07.2019 23:59:59 MESZ. Zur A
 	\item Vollständige Dokumentation im PDF bzw. HTML(Für Javadocs) Format
 \end{itemize}
 
-Die Abgabe muss per Mail an lukas.abelt@airbus.com erfolgen. Zur Abgabe können die benötigten Dateien entweder als ZIP Datei komprimiert und abgegeben werden. In diesem Fall bitte jedoch nicht die ZIP Datei als Anhang zur Mail hinzufügen,
-sondern auf einem externen Fileshare ablegen und den Link zum Download bereitstellen (Anhänge im ZIP Format werden durch den Mailfilter gelöscht). Sofern während der Entwicklung mit einem Git Repository gearbeitet wurde,
-kann die Abgabe auch erfolgen, indem ich zum entsprechenden Repository hinzugefügt werde (GitLab bzw. GitHub Accounts könnt ihr den Folien entnehmen). Bitte in diesem Fall auch unbedingt trotzdem die Abgabe per Mail bestätigen! Bei der Abgabe als
+Die Abgabe \textbf{muss per Mail} an lukas.abelt@airbus.com erfolgen. Zur Abgabe können die benötigten Dateien \textbf{entweder als ZIP Datei} komprimiert und abgegeben werden. In diesem Fall bitte jedoch nicht die ZIP Datei als Anhang zur Mail hinzufügen,
+sondern auf einem externen Fileshare(Dropbox, Google Drive, Nextcloud etc.) ablegen und den Link zum Download bereitstellen (Anhänge im ZIP Format werden durch den Mailfilter gelöscht). Sofern während der Entwicklung mit einem Git Repository gearbeitet wurde,
+kann die Abgabe auch erfolgen, indem ich zum entsprechenden Repository hinzugefügt werde (GitLab bzw. GitHub Accounts könnt ihr den Folien entnehmen). \textbf{Bitte in diesem Fall auch unbedingt trotzdem die Abgabe per Mail bestätigen!} Bei der Abgabe als
 Git Repository wird zur Bewertung der letzte Commit vor Maileingang genutzt.
 
-Die Mail zur Abgabe muss die folgenden Informationen enthalten:
+Die Mail zur Abgabe \textbf{muss die folgenden Informationen enthalten}:
 \begin{itemize}
 	\item Namen aller Gruppenmitglieder
 	\item Gewählte Aufgabenstellung
@@ -90,8 +51,8 @@ Die Mail zur Abgabe muss die folgenden Informationen enthalten:
 \end{itemize}
 Pro Gruppe reicht die Bestätigungsmail durch ein Mitglied. Bitte nehmt die Gruppenmitglieder mit in den CC.
 
-Zur Bearbeitung des Programmentwurfs stehen zwei Aufgaben zur Auswahl. Von diesen muss eine Aufgabe vollständig bearbeitet werden. Ein Bearbeiten beider Aufgaben
-ist nicht nötig und bringt keine zusätzlichen Punkte in der Bewertung. Die Implementierung der Aufgabe sollte in Java erfolgen. Sollte eine Gruppe die Umsetzung in
+Zur Bearbeitung des Programmentwurfs stehen zwei Aufgaben zur Auswahl. Von diesen muss \textbf{eine Aufgabe vollständig bearbeitet werden}. Ein Bearbeiten beider Aufgaben
+ist \textbf{nicht} nötig und bringt \textbf{keine} zusätzlichen Punkte in der Bewertung. Die Implementierung der Aufgabe sollte in Java erfolgen. Sollte eine Gruppe die Umsetzung in
 einer anderen Sprache bevorzugen ist dies vorher mit mir abzuklären.
 
 Die Dokumentation dient dem Zweck, den Entwicklungsprozess nachzuverfolgen. In dieser soll festgehalten werden, warum bestimmte Designentscheidungen getroffen
@@ -245,11 +206,13 @@ bilden genau dann ein Set, wenn für jede Eigenschaft der Drei Karten gilt:
 	\item Die Eigenschaft hat auf allen drei Karten den gleichen Ausprägungsgrad
 	\item Die Eiigenschaft hat auf allen drei Karten einen anderen Ausprägungsgrad (=Alle Ausprägungsgrade sind vorhanden)
 \end{itemize}
-Zusammenfassen lässt sich das ganze auch unter der Bedingung: Wenn für eine Eigenschaft gilt "`zwei von ___ und eins von ___"', so handelt es sich nicht um ein Set.
+Zusammenfassen lässt sich das ganze auch unter der Bedingung: Wenn für eine Eigenschaft gilt "`zwei von \_\_\_ und eins von \_\_\_"', so handelt es sich nicht um ein Set.
 
 Im folgenden Bild, bilden beispielsweise die drei Karten die jeweils 3 grüne, voll ausgefüllte, Symbole zeigen ein Set.
+
 \begin{figure}[ht!]
-	\includegraphics[width=0.8\textwidth]{graph/set.jpg}
+	\centering
+	\includegraphics[width=0.8\textwidth]{graph/set}
 \end{figure}
 
 \subsubsection*{Umfang der Aufgabenstellung}
@@ -284,6 +247,8 @@ Die GUI Umsetzung sollte mindestens die folgenden Funktionen beinhalten:
 Aus der Dokumentation sollte ersichtlich sein, welche Datenstrukturen und Klassen ihr nutzt bzw. selbst entworfen habt um die Umsetzung des Spiels zu realisieren.
 Geht insbesondere auf die Visualiserung der einzelnen Karten in der GUI ein. Welche Möglichkeiten habt ihr erwogen und was waren schlussendlich die ausschlaggebenden
 Faktoren für die Auswahl?
+
+Erläutert, wie eure implementierten Algorithmen, die prüfen ob drei Karten ein Set bilden und der prüft, wie viele Sets in den offenen Karten vorhanden sind.
 
 Begründet, welche GUI Elemente und Klassen ihr für eure Umsetzung genutzt habt.
 
