@@ -1,0 +1,231 @@
+\documentclass[a4paper,
+			   fontsize=12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, ngerman]{babel}
+\usepackage[T1]{fontenc}
+%\usepackage{polyglossia}
+%\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[ngerman]{struktex}
+
+% Custom Colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+% Custom LST styles
+\lstdefinestyle{java}{
+	language=Java,
+	basicstyle=\linespread{0.8}\ttfamily\footnotesize,
+	breaklines=true,
+	keywordstyle=\color{javapurple}\bfseries,
+	stringstyle=\color{javared},
+	commentstyle=\color{javagreen},
+	morecomment=[s][\color{javadocblue}]{/**}{*/},
+	numbers=left,
+	numberstyle=\tiny\color{black},
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+	morekeywords={enum},
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+%\geometry{a4paper,left=15mm,right=15mm,top=20mm,bottom=20mm}
+%\pagestyle{fancy}
+%\lhead{Lukas Abelt}
+%\chead{WWI218 - Programmieren II}
+%\rhead{\today}
+%\cfoot{\thepage}
+
+%\setlength{\headheight}{23pt}
+\setlength{\parindent}{0.0in}
+%\setlength{\parskip}{0.0in}
+
+\begin{document}
+
+\section*{Prüfungsleistung WWI218 Programmieren II - Programmentwurf mit Dokumentation}
+
+\vspace{0,75cm}
+
+\subsection*{Allgemeine Informationen}
+Diese Prüfungsleistung bildet gemeinsam mit dem durchgeführten Kurztest die Gesamtnote der Portfolioprüfung für die Vorlesung Programmieren II des Kurses WWI218 der DHBW Ravensburg.
+
+Die Teilleistung untergliedert sich in einen Programmentwurf und die dazu zu erstellende Dokumentation. Der Programmentwurf geht mit insgesamt 60\% in die Gesamtnote ein, die Dokumentation mit insgesamt 20\%. Zusammen mit dem 20\% aus dem Kurztest ergibt sich so die Gesamtnote.
+
+Die Durchführung der Prüfungsleistung erfolgt in Gruppen zu 3 oder maximal 4 Personen. Die Gruppenaufteilung ist spätestens zum 26.04.2019 festzulegen und wird in der Vorlesung besprochen. 
+
+In der Regel wird davon ausgegangen, dass alle Gruppenmitglieder zu gleichen Anteilen an der Bearbeitung der Aufgabe beteiligt waren. Daher wird auch für alle Gruppenmitglieder die gleiche Bewertung festgesetzt. Sollte gewünscht sein, dass die Bewertung für jedes
+Gruppenmitglied differenziert erfolgt, so muss dies in der Abgabe explizit vermerkt sein. Außerdem muss aus den abgegebenen Ergebnissen eindeutig erkennbar sein, welche Teile durch
+welches Gruppenmitglied bearbeitet wurden.
+
+Die Abgabefrist für den Programmentwurf ist der 15.07.2019 23:59:59 MESZ. Zur Abgabe müssen alle zur Bewertung benötigten Dateien bereitgestellt werden. Dies ebinhaltet:
+
+\begin{itemize}
+	\item JAR Datei für den Programmentwurf
+	\item Alle Quelldateien
+	\item Vollständige Dokumentation im PDF bzw. HTML(Für Javadocs) Format
+\end{itemize}
+
+Die Abgabe muss per Mail an lukas.abelt@airbus.com erfolgen. Zur Abgabe können die benötigten Dateien entweder als ZIP Datei komprimiert und abgegeben werden. In diesem Fall bitte jedoch nicht die ZIP Datei als Anhang zur Mail hinzufügen,
+sondern auf einem externen Fileshare ablegen und den Link zum Download bereitstellen (Anhänge im ZIP Format werden durch den Mailfilter gelöscht). Sofern während der Entwicklung mit einem Git Repository gearbeitet wurde,
+kann die Abgabe auch erfolgen, indem ich zum entsprechenden Repository hinzugefügt werde (GitLab bzw. GitHub Accounts könnt ihr den Folien entnehmen). Bitte in diesem Fall auch unbedingt trotzdem die Abgabe per Mail bestätigen! Bei der Abgabe als
+Git Repository wird zur Bewertung der letzte Commit vor Maileingang genutzt.
+
+Die Mail zur Abgabe muss die folgenden Informationen enthalten:
+\begin{itemize}
+	\item Namen aller Gruppenmitglieder
+	\item Gewählte Aufgabenstellung
+	\item Link zum ZIP Download bzw. Link zum GitHub/GitLab Repository.
+\end{itemize}
+Pro Gruppe reicht die Bestätigungsmail durch ein Mitglied. Bitte nehmt die Gruppenmitglieder mit in den CC.
+
+Zur Bearbeitung des Programmentwurfs stehen zwei Aufgaben zur Auswahl. Von diesen muss eine Aufgabe vollständig bearbeitet werden. Ein Bearbeiten beider Aufgaben
+ist nicht nötig und bringt keine zusätzlichen Punkte in der Bewertung. Die Implementierung der Aufgabe sollte in Java erfolgen. Sollte eine Gruppe die Umsetzung in
+einer anderen Sprache bevorzugen ist dies vorher mit mir abzuklären.
+
+Die Dokumentation dient dem Zweck, den Entwicklungsprozess nachzuverfolgen. In dieser soll festgehalten werden, warum bestimmte Designentscheidungen getroffen
+wurden, welche Alternativen ggf. zur Auswahl standen und welche Vor- und Nachteile diese geboten hätten. Außerdem sollen Schwierigkeiten und Herausforderungen, 
+die während der Entwicklung auftraten, mit in der Dokumentation aufgeführt werden. Auch können hier Beispiele zur Benutzung mit aufgenommen werden, sowie entwickelte 
+Algorithmen erläutert werden. Die Dokumentation sollte pro Gruppe 10 Seiten nicht überschreiten. Diese 10 Seiten beinhalten nicht ggf. automatisch über Javadoc (o.Ä.) generierte Dokumentation.
+
+\vspace{0,75cm}
+
+\subsection*{Aufgabenvorschlag 1 - Listenbibliothek}
+
+In der Vorlesung wurden diverse Listenstrukturen besprochen. Ziel dieses Aufgabenvorschlags ist es, dass Ihr einige dieser Listenstrukturen selbst implementiert, sodass als Produkt eine 
+fertig nutzbare Bibliothek bereitsteht, die die Grundlegenden Listenstrukturen zur Verfügung stellt(Ähnlich zum Collections Framework). Die genau zu implementierenden Listenstrukturen mit
+den entsprechenden Anforderungen werden im folgenden erläutert.
+
+\subsubsection*{Allgemeine Rahmenbedingungen}
+
+Für die Umsetzung der Aufgabe darf keine der Klassen oder Interfaces aus dem \texttt{Collections} Framework der Java Standardbibliothek (Oder ein Äquivalent einer anderen Sprache) verwendet werden. Auch dürfen keine Third-Party Bibliotheken
+verwendet werden, die eine ähnliche Funktionalität abbilden. Die einzige Ausnahme bilden das \texttt{Iterator} und \texttt{Iterable} Interface, die zur Bearbeitung der Zusatzaufgaben verwendet werden können. Natürlich kann die Struktur des
+\texttt{Collection} Interfaces herangezogen werden.
+
+Eure entwickelte Bibliothek sollte die folgenden Listenstrukturen abbilden:
+\begin{itemize}
+	\item Linked List
+	\item Double Linked List
+	\item Queue
+	\item Stack
+	\item Set
+	\item Suchbaum
+\end{itemize}
+
+Die Listenstrukturen sollen für die Speicherung von Objekten jeder beliebigen Klasse verwendet werden können. Alle Listenstrukturen sollten die folgenden Methoden
+implementieren(ggf. mit den speziellen Eigenschaften für diese Struktur):
+\begin{itemize}
+	\item Eine Funktion um zu überprüfen ob die Liste leer ist
+	\item Eine Funktion um die Anzahl der Elemente in der Liste zu ermitteln
+	\item Eine Funktion um eine neues Element hinzuzufügen
+	\item Eine Funktion die alle Elemente einer anderen Listenstruktur zu der aktuellen hinzufügt
+	\item Eine Funktion um alle Elemente zu entfernen
+	\item Eine Funktion um zu überprüfen, ob ein bestimmtes Objekt Teil der Liste ist
+	\item Eine Funktion, der eine Listenstruktur übergeben wird. Die Funktion prüft, ob jedes Element aus der übergebenen Struktur auch Teil dieser Struktur ist
+	\item Eine Funktion um ein bestimmtes Objekt zu entfernen
+	\item Eine Funktion um den Inhalt der Datenstruktur als Array zurückzugeben
+\end{itemize}
+
+Außerdem soll es möglich sein, die Inhalte der Listenstrukturen (Mit Ausnahme des Suchbaums) zu sortieren. Entwerfen sie hierfür eine geeignete Klasse bzw. Interface. 
+Erläutern Sie in der Dokumentation ihre Entscheidung, warum Sie zur Umsetzung eine Klasse oder Interface gewählt haben. Der Nutzer soll in jedem Fall verschiedene
+Sortieralgorithmen zur Auswahl haben. Zu implementieren sind:
+\begin{itemize}
+	\item BubbleSort
+	\item QuickSort
+	\item Ein Algorithmus eurer Wahl
+\end{itemize}
+Zum Sortieren ist die Nutzung des \texttt{Comparator} bzw. \texttt{Comparable} Interfaces notwendig.
+
+Die einzelnen Besonderheiten der Listen werden folgend definiert.
+
+\subsubsection*{Linked List}
+
+Die Linked List sollte entsprechend der in der Vorlesung vorgestellten Struktur implementiert werden. Zusätzlich zu den zuvor genannten Grundfunktionen soll die Linked List noch die folgenden Funktionen enthalten:
+\begin{itemize}
+	\item Methode um das vorderste Element der Linked List zu lesen
+	\item Einfügen eines Elements an einer gegebenen Position
+	\item Entfernen eines Elements an einer gegebenen Position
+	\item Manipulieren eines Elements an einer gegebenen Position
+	\item Finden der Position eines bestimmten Objects (Sofern dies in der Liste vorhanden ist)
+\end{itemize}
+
+Hierbei ist besonders darauf zu achten und dokumentieren, wie sich die Funktionen verhalten wenn ungültige Werte angegeben werden. Hierfür können Exceptions genutzt werden. Da diese jedoch nicht im Detail besprochen
+wurden, führt das nichtverwenden von Exceptions jedoch nicht zu Punktabzug.
+
+\subsubsection*{Linked List}
+
+Die Double Linked List sollte entsprechend der in der Vorlesung vorgestellten Struktur implementiert werden. Zusätzlich zu den zuvor genannten Grundfunktionen soll die Double Linked List noch die folgenden Funktionen enthalten:
+\begin{itemize}
+	\item Funktion um das erste Element der Double Linked List zu lesen
+	\item Funktion um das letzte Element der Double Linked List zu lesen
+	\item Einfügen eines Elements an einer gegebenen Position
+	\item Entfernen eines Elements an einer gegebenen Position
+	\item Manipulieren eines Elements an einer gegebenen Position
+	\item Finden der Position eines bestimmten Objects (Sofern dies in der Liste vorhanden ist)
+\end{itemize}
+
+Hierbei ist besonders darauf zu achten und dokumentieren, wie sich die Funktionen verhalten wenn ungültige Werte angegeben werden. Hierfür können Exceptions genutzt werden. Da diese jedoch nicht im Detail besprochen
+wurden, führt das nichtverwenden von Exceptions jedoch nicht zu Punktabzug.
+
+\subsubsection*{Queue}
+Die Queue soll entsprechend ihrer in der Vorlesung besprochenen Eigenschaften implementiert werden. Außerdem sollen zusätzlich folgende Methoden bereitgestellt werden:
+\begin{itemize}
+	\item Eine Methode, die das erste Element der Queue zurückgibt und aus der Queue entfernt
+	\item Eine Methode, die das erste Element der Queue zurückgibt ohne es zu entfernen
+\end{itemize}
+
+\subsubsection*{Stack}
+Der Stack soll entsprechend ihrer in der Vorlesung besprochenen Eigenschaften implementiert werden. Außerdem sollen zusätzlich folgende Methoden bereitgestellt werden:
+\begin{itemize}
+	\item Eine Methode, die das letzte Element des Stacks zurückgibt und aus dem Stack entfernt
+	\item Eine Methode, die das letzte Element des Stacks zurückgibt ohne es zu entfernen
+\end{itemize}
+
+\subsubsection*{Set}
+Bei einem Set handelt es sich um eine Menge wie sie in der Mengenlehre definiert wird. Es handelt sich somit um eine Listenstruktur, in der jedes Element genau einmal existieren darf. Zusätzlich zu den Standardfunktionen sollen hier
+die handelsüblichen Mengenoperationen implementiert werden:
+\begin{itemize}
+	\item Bestimmen der Schnittmenge
+	\item Bestimmen der Vereinigungsmenge
+	\item Bestimmen der Differenzmenge
+	\item Bestimmen der Symmetrischen Differenz
+\end{itemize}
+
+\subsubsection*{Suchbaum}
+Der Suchbaum ist entsprechend der in der Vorlesung besprochenen Eigenschaften zu implementieren. Der Suchbaum verfügt lediglich über die Standardfunktionen.
+
+\subsubsection*{Dokumentation}
+In der Dokumentation sollte eure umgesetzte Klassenstruktur inklusive aller implementierten Klassen und Interfaces ersichtlich sein. Erläutert, warum ihr euch für die
+gewählte Struktur entschieden habt. Geht auf die Schwierigkeiten bei der Umsetzung ein.
+
+Besonderer Augenmerk steht bei dieser Aufgabe auf der Dokumentation des Codes. Ergebnis sollte neben der Dokumentation im PDF Format auch eine umfangreiche API Dokumentation
+sein, in der die Funktionen der Klassen und Methoden verfügbar sind. Nutzt zur Generierung dieser API Dokumentation die Javadoc Notation!
+
+\subsubsection*{Zusätzliche Punkte}
+Durch verschiedene Erweiterungen können ggf. zuvor "`verlorene"' Punkte ausgeglichen werden. Hier bitte der Hinweis, dass diese zusätzlichen Aufgaben keineswegs im Fokus der Entwicklung
+stehen sollten und, wenn überhaupt, erst bearbeitet werden sollten, wenn die vorherigen Aufgaben nach bestem Wissen und Gewissen bearbeitet wurden.
+
+Zusätzliche Punkte können zum Beispiel erreicht werden durch:
+\begin{itemize}
+	\item Bereitstellen einer Demo Anwendung (In der Kommandozeile) die die Funktionen der Bibliothek demonstriert.
+	\item Implementierung des \texttt{Iterable} bzw. \texttt{Iterator} Interfaces in die Listenstruktur
+	\item Implementierung einer Klasse, die einen AVL-Baum darstellt
+\end{itemize}
+
+Sonst könnt ihr natürlich weitere Funktionen einbauen die euch, sofern ihr eine logische Begründung habt, warum diese Teil der Bibliothek sein sollten, zusätzliche Punkte verschaffen können.
+\vspace{0,75cm}
+
+\subsection*{Aufgabenvorschlag 2 - Set Kartenspiel}
+
+\end{document}
