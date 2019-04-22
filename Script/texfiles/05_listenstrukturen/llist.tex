@@ -26,7 +26,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Datenstruktur von Linked Lists}{Listenelemente}
+\begin{frame}{Datenstruktur von Linked Lists}{Listenelemente (Vgl. \cite{fahr:list})}
 	\begin{itemize}
 		\item Jedes Element einer Linked List ist ein Objekt
 		\item Jedes Objekt vom Typ \textit{ListElement} besteht aus:
@@ -38,7 +38,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Datenstruktur von Linked Lists}{Liste}
+\begin{frame}{Datenstruktur von Linked Lists}{Liste (Vgl. \cite{fahr:list})}
 	\begin{itemize}
 		\item Die Liste vom Typ \texttt{LinkedList} besteht an sich lediglich aus:
 		\begin{itemize}
@@ -64,7 +64,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Grundoperationen}{Zugriff auf Elemente}
+\begin{frame}{Grundoperationen}{Zugriff auf Elemente (Vgl. \cite{fahr:list})}
 	\begin{itemize}
 		\item Zugriff auf Elemente muss immer sequentiell vom \texttt{head} Element aus erfolgen
 		\item Zugriff auf das $n$-te Element erfolgt durch wiederholtes Zugreifen auf das \texttt{next} Element
@@ -80,11 +80,11 @@
 \lstset{style=java}
 \begin{lstlisting}
 public T getElement(int index){
-	ListElement res = head;
-	for(int i=0;i<index;i++){
-		res = res.getNext();
-	}
-	return res.getValue();
+    ListElement res = head;
+    for(int i=0;i<index;i++){
+        res = res.getNext();
+    }
+    return res.getValue();
 }
 \end{lstlisting}
 \end{frame}
