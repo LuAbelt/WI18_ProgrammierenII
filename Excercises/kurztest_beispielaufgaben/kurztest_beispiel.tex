@@ -170,14 +170,14 @@ public void func(int[] array, int n){
 Im folgenden wird ein Struktogramm für einen Algorithmus gezeigt.
 
 \begin{centernss}
-	\begin{struktogramm}(100,50)
+	\begin{struktogramm}(100,40)
         \assign{Lese \( n \) ein}
 		\while{Von \( i=2 \) bis \( n-1 \) , Schrittweite 1}
 			\ifthenelse{3}{3}
 			{ \( n\%i==0 \) }{True}{False}
 			\assign{Gib \texttt{false} zurück}
 			\change
-			\endif
+			\ifend
 		\whileend
 		\assign{Gib \texttt{true} zurück}
 	\end{struktogramm}
@@ -188,7 +188,7 @@ Im folgenden wird ein Struktogramm für einen Algorithmus gezeigt.
 	\item Setzen Sie das Struktogramm in Java-Code um. Nutzen Sie dafür die unten gegebene Vorlage.
 \end{itemize}
 
-\vspace{2cm}
+\vspace{2,5cm}
 
 Hinweis: Die Operation "`Einlesen"' wird durch das übergeben von Funktionsargumenten realisiert und das zurückgeben von Werten über das \texttt{return} statement.
 
