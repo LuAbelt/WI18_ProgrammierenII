@@ -134,7 +134,7 @@ Arrays(\texttt{n}).
 \begin{lstlisting}
 public void func(int[] array, int n){
     for(int i=0;i<n;i++){
-		if((array[i]%2)==0){	//3 Operationen, n mal
+		if((array[i]%2)==0){
 			for(int j=0;j<n;j++){
 				System.out.println(array[i]*array[j])
 			}
@@ -164,18 +164,18 @@ public void func(int[] array, int n){
 \vspace{5cm}
 \subsection*{Aufgabe 4.2 (4 Punkte)}
 Im folgenden wird ein Struktogramm für einen Algorithmus gezeigt.
-
 \begin{centernss}
-	\begin{struktogramm}(100,50)
-		\while{Von \( i=n-1 \) bis \( 1 \) , Schrittweite 1}
-			\ifthenelse{3}{3}
-			{ \( n\%i==0 \) }{True}{False}
-			\assign{Gib \( i \) zurück}
-			\change
-			\endif
-		\whileend
-		\assign{Gib \( n \) zurück}
-	\end{struktogramm}
+    \begin{struktogramm}(100,40)
+        \assign{Lese \( n \) ein}
+        \while{Von \( i=n-1 \) bis \( 1 \) , Schrittweite 1}
+            \ifthenelse{3}{3}
+            { \( n i==0 \) }{True}{False}
+            \assign{Gib \( i \) zurück}
+            \change
+            \ifend
+        \whileend
+        \assign{Gib \( n \) zurück}
+    \end{struktogramm}
 \end{centernss}
 
 \begin{itemize}
@@ -183,7 +183,7 @@ Im folgenden wird ein Struktogramm für einen Algorithmus gezeigt.
 	\item Setzen Sie das Struktogramm in Java-Code um. Nutzen Sie dafür die unten gegebene Vorlage.
 \end{itemize}
 
-\vspace{2cm}
+\vspace{2,5cm}
 
 Hinweis: Die Operation "`Einlesen"' wird durch das übergeben von Funktionsargumenten realisiert und das zurückgeben von Werten über das \texttt{return} statement.
 
