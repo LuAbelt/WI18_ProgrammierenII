@@ -1,2 +1,47 @@
-\begin{frame}{}
+\begin{frame}{Heapsort}{Grundprinzip (Vgl. \cite{fahr:algo}, S. 12ff)}
+    \begin{itemize}
+        \item Sortiert nicht direkt Listen sondern nur die spezielle Struktur "`Heap"'
+        \item Das heißt die Daten müssen entweder in dieser Form vorliegen
+        \item ...Oder erst in diese Struktur umgewandelt werden
+        \item Heap kann als Binärbaum interpretiert werden
+        \item Heapsort besteht aus dem wiederholten Entfernen der Wurzel...
+        \item ...Und dem nachfolgenden "`versickern"' der restlichen Element
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Heap}{Definition}
+    \begin{alertblock}{Heap (Definition als Liste, Vgl. \cite{fahr:algo}, S. 12ff)}
+    Eine Folge $F = k_1, k_2, \ldots,k_n$ von $n$ Schlüsseln nennen wir dann Heap, wenn
+    $$k_i\le k_{\frac{i}{2}}$$
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Heap}{Definition (Vgl. \cite{fahr:algo}, S. 12ff)}
+    \begin{alertblock}{Heap (Binärbaum)}
+    Ein Heap ist ein vollständiger Binärbaum, in dem der Schlüssel jedes Knotens mindestens so groß ist wie der Schlüssel seiner Söhne
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Heapsort}{Sortieren (Vgl. \cite{fahr:algo}, S. 12ff)}
+\begin{alertblock}{Vorgehen Sortieren}
+\begin{itemize}
+    \item Gebe den Wurzelknoten des Baumes aus und entferne diesen
+    \item Setze das letzte Element im Baum an die Wurzel
+    \item Versickere die neue Wurzel im Baum
+    \item Wiederhole den Prozess bis der Baum leer ist
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Heapsort}{Versickern (Vgl. \cite{fahr:algo}, S. 12ff)}
+\begin{alertblock}{Vorgehen Versickern}
+\begin{itemize}
+    \item Vergleiche den Wurzelknoten mit dem größten Kindknoten
+    \item Ist der Wurzelknoten kleiner als der größte Kindknoten:
+    \begin{itemize}
+        \item Vertausche den Kindknoten mit dem Wurzelknoten
+        \item Wiederhole dies bis beide Kindknoten kleiner als der Wurzelknoten sind (Bzw. keine Kindknoten mehr vorhanden sind)
+    \end{itemize}
+\end{itemize}
+\end{alertblock}
 \end{frame}

@@ -1,2 +1,25 @@
-\begin{frame}{}
+\begin{frame}{Quicksort}{Grundprinzipien (Vgl. \cite{ottmann2017} S. 93ff, \cite{wayne2014} S. 313-330)}
+    \begin{itemize}
+        \item Basiert auf dem \textbf{Divide and Conquer} Prinzip
+        \item Es wird ein Vergleichselement $x$ gewählt
+        \item Und die Liste in eine linke und rechte Teilliste gliedert
+        \begin{itemize}
+            \item Linke Teilliste: Alle Elemente sind kleiner(oder gleich) $x$
+            \item Rechte Teilliste: Alle Elemente sind größer(oder gleich) $x$
+        \end{itemize}
+        \item Führe wieder Quicksort auf den beiden Teillisten aus
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Grundlegendes Vorgehen}{Quicksort (Siehe \cite{fahr:algo} S. 8ff)}
+    \begin{itemize}
+        \item Setze linken Zeiger $i$ auf das erste Element
+        \item Setze rechten Zeiger $j$ auf das letzte Element
+        \item Solange $i<j$
+        \begin{itemize}
+            \item Erhöhe $i$ bis $a[i]\ge x$
+            \item Verringere $j$ bis $a[j]\le x$
+            \item Wenn $i<j$, dann vertausche die Elemente
+        \end{itemize}
+    \end{itemize}
 \end{frame}
