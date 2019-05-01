@@ -1,0 +1,97 @@
+\outlineSubframe{Divide and Conquer}
+\begin{frame}{Motivation}
+    \begin{itemize}
+        \item Das Lösen großer Probleme fällt oft schwer
+        \begin{itemize}
+            \item Sowohl für Menschen
+            \item Als auch Computer
+        \end{itemize}
+        \item Meist ist es einfacher, das Problem in Teilprobleme zu unterteilen
+        \item ...und diese separat voneinander zu lösen
+        \item Wir machen dies oft ganz automatisch
+        \item Bei Algorithmen spricht man hierbei vom \textbf{Divide and Conquer} Verfahren
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Simples Beispiel}{Multiplikation}
+    $$a\cdot b = \overbrace{b+b+\cdots+b}^{a\text{ mal}}$$
+    
+    $$a\cdot b = \overbrace{(b+b+\cdots+b)}^{\frac{a}{2}\text{mal}} + \overbrace{(b+b+\cdots+b)}^{\frac{a}{2}\text{mal}} $$
+    
+    $$a\cdot b = 2\cdot \overbrace{(b+b+\cdots+b)}^{\frac{a}{2}\text{mal}}$$
+\end{frame}
+
+\begin{frame}{Grundsätze}{Des Divide and Conquer Verfahrens}
+    \begin{itemize}
+        \item Ein gegebenes Problem wird aufgeteilt...
+        \item ...in zwei (oder mehr) kleinere Teilprobleme
+        \item Dies geschieht rekursiv solange...
+        \item ...bis sich die Teilprobleme trivial direkt lösen lassen
+        \item Am Ende werden die Teilergebnisse zur Gesamtlösung zusammengefügt
+        \item Es gibt ein ähnliches Vorgehen, bei dem man das Problem lediglich auf \textit{ein} kleineres Teilproblem reduziert
+        \begin{itemize}
+            \item Dies nennt man auch \textbf{Decrease and Conquer}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Vorteile}{Von D\&C Algorithmen (Vgl. \cite{wiki:dac})}
+    \begin{itemize}
+        \item \textbf{Starke Lösungsstrategie}
+        \begin{itemize}
+            \item Hilft dabei, Lösungen für komplexe Probleme zu finden
+            \item Solange man einen Weg findet, das Problem in kleinere Subprobleme zu teilen
+        \end{itemize}
+        \item \textbf{Algorithmeneffizienz}
+        \begin{itemize}
+            \item Der D\&C Ansatz hat oft effizientere Algorithmen für bekannte Probleme gefunden
+            \item Zum Beispiel: Quicksort, Mergesort und FFT
+            \item Wenn sich ein Problem der Größe $n$ immer in $p$ Teilprobleme der Größe $~\frac{n}{p}$ teilen lässt, so ist die Komplexität von $O(n\log_p n)$
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Vorteile}{Von D\&C Algorithmen (Vgl. \cite{wiki:dac})}
+    \begin{itemize}
+        \item \textbf{Parallelisierung}
+        \begin{itemize}
+            \item Teilprobleme können oft parallel bearbeitet werden
+            \item Dadurch teils erhebliche Zeitersparnis
+        \end{itemize}
+        \item \textbf{Speicherzugriff}
+        \begin{itemize}
+            \item D\&C Algorithmen können den Speicher meist effizienter (=schneller) nutzen
+            \item Wenn die Teilprobleme klein genug sind können diese ggf. direkt im Prozessorcache berechnet werden
+            \item Dieser ist im Vergleich zum RAM deutlich schneller durch höhere Taktraten und physische Nähe
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Herausforderungen}{Bei der Implementierung von D\&C Algorithmen (Vgl. \cite{wiki:dac})}
+\begin{itemize}
+    \item \textbf{Rekursion}
+    \begin{itemize}
+        \item Implementierung erfolgt in der Regel über rekursive Aufrufe
+        \item Dies ist häufig komplexer in der Implementierung und dem Verständnis
+    \end{itemize}
+    \item \textbf{Aufruftiefe}
+    \begin{itemize}
+        \item Je nachdem wie oft der rekursive Aufruf erfolgt führt das zu Problemen
+        \item Je nach Sprache und Compiler ist ggf. nur eine Rekursionstiefe möglich
+        \item Dies kommt durch die ggf. beschränkte Größe des \textit{Call Stacks}
+        \item Bei zu tiefer Rekursion kann es so zum \textit{Stack Overflow} kommen
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Herausforderungen}{Bei der Implementierung von D\&C Algorithmen (Vgl. \cite{wiki:dac})}
+    \begin{itemize}
+        \item \textbf{Auswahl des "`trivialen Problems"'}
+        \begin{itemize}
+            \item Die Auswahl des direkt lösbaren Teilproblems ist nicht immer direkt ersichtlich
+            \item In einigen Fällen ist ein Teilen bis zum kleinstmöglichen Teilproblem nicht sinnvoll
+            \item Und effizienter ist es ein größeres Teilproblem direkt zu lösen
+            \item Beispiel: Determinantenberechnung in Matrizen
+        \end{itemize}
+    \end{itemize}
+\end{frame}

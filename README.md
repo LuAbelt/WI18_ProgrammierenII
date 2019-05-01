@@ -51,40 +51,40 @@ Für die Vorlesung sind die folgenden Termine mit entsprechenden Themen geplant:
     - Arrays
     - Verkettete Listen
 * **24.04.2019**
-  - Listenstrukturen Teil II
-    - Stacks
-    - Queues
-    - Bäume
+  - Kurztest Algorithmen
 * **25.04.2019**
   - Abstrakte Datentypen
     - Collection Interface
     - Iteratoren
 * **29.04.2019**
-  - Algorithmen Teil II
-    - Suchverfahren
+  - Listenstrukturen Teil II
+    - Stacks
+    - Queues
+    - Trees
 * **02.05.2019**
-  - Algorithmen Teil III
+  - Algorithmen Teil II
     - Sortierverfahren
-* **06.05.2019**
-  - Algorithmen Teil IV
+    - Suchverfahren
     - Divide&Conquer
     - Backtracking
-* **08.05.2019**
-  - Fortgeschrittene Konzepte Teil I
-    - Parallelisierung
-    - Synchronisationskonzepte
-* **13.05.2019**
-  - Fortgeschrittene Konzepte
-    - Synchronisationskonzepte
-    - Ein- und Ausgabe über Streams
-* **15.05.2019**
-  - Grafische Oberflächen I
+* **06.05.2019**
+  - Grafische Overflächen Teil I
     - Layout
     - Typische Komponenten
-* **20.05.2019**
+* **08.05.2019**
   - Grafische Oberflächen II
     - Typische Komponenten
     - Ereignisbehandlung
+* **13.05.2019**
+  - Fortgeschrittene Konzepte Teil I
+    - Parallelisierung
+    - Synchronisationskonzepte
+* **15.05.2019**
+  - Fortgeschrittene Konzepte Teil II
+    - Synchronisationskonzepte
+    - Ein- und Ausgabe über Streams
+* **20.05.2019**
+  - Diverses
 * **22.05.2019 & 27.05.2019**
   - Puffertermine
   

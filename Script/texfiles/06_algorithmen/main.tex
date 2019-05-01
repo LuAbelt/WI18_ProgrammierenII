@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Description:		This is an example presentation using the beamerthemedhbw
+%%
+%%					The beamerthemedhbw is based on jacksbeamertheme
+%%					(https://github.com/JacknJo/jacksbeamertheme)
+%%
+%% Author:			Hannes Bartle																				
+%% 					DHBW Ravensburg Campus Friedrichshafen		
+%%					September 2016	
+%% 
+%% The beamerthemedhbw is free software: you can redistribute it and/or modify
+%% it under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 3 of the License, or
+%% (at your option) any later version.
+%% 
+%% The beamerthemedhbw is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+%% 
+%% You should have received a copy of the GNU General Public License
+%% along with the beamerthemedhbw.  If not, see <http://www.gnu.org/licenses/>.
+%% 
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[	12pt, 				
+				t,					
+				aspectratio=169,
+				%handout-PLACEHOLDER
+				]{beamer}
+
+\usepackage{dhbwstyle}
+
+\title{Algorithmen II}
+
+\begin{document}
+	
+	\begin{frame}[noframenumbering]
+		\titlepage
+	\end{frame}
+
+	\begin{frame}{Outline}
+		\tableofcontents
+	\end{frame}
+
+    \outlineFrame{Arten von Algorithmen}
+    \input{texfiles/\jobname/backtracking}
+    \input{texfiles/\jobname/divide_conquer}
+    
+    %\outlineFrame{Suchalgorithmen}
+    \input{texfiles/\jobname/searching}
+    
+    \outlineFrame{Sortieralgorithmen}
+    \outlineSubframe{Insertion Sort}
+    \input{texfiles/\jobname/insertion}
+    
+    \outlineSubframe{Bubble Sort}
+    \input{texfiles/\jobname/bubble}
+    
+    \outlineSubframe{Selection Sort}
+    \input{texfiles/\jobname/minmax}
+    
+    \outlineSubframe{Heapsort}
+    \input{texfiles/\jobname/heap}
+    
+    \outlineSubframe{Quicksort}
+    \input{texfiles/\jobname/quick}    
+    
+    %\outlineSubframe{Slowsort}
+    \input{texfiles/\jobname/slow}
+    
+    \printbibliographyframe
+    
+	\section*{Kontakt}
+	\input{texfiles/contact}
+	
+
+\end{document}
