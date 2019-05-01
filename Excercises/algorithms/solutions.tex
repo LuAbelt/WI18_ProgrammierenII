@@ -1,0 +1,238 @@
+\documentclass[a4paper,
+			   fontsize=12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, ngerman]{babel}
+\usepackage[T1]{fontenc}
+%\usepackage{polyglossia}
+%\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[ngerman]{struktex}
+
+% Custom Colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+% Custom LST styles
+\lstdefinestyle{java}{
+	language=Java,
+	basicstyle=\linespread{0.8}\ttfamily\footnotesize,
+	breaklines=true,
+	keywordstyle=\color{javapurple}\bfseries,
+	stringstyle=\color{javared},
+	commentstyle=\color{javagreen},
+	morecomment=[s][\color{javadocblue}]{/**}{*/},
+	numbers=left,
+	numberstyle=\tiny\color{black},
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+	morekeywords={enum},
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+%\geometry{a4paper,left=15mm,right=15mm,top=20mm,bottom=20mm}
+%\pagestyle{fancy}
+%\lhead{Lukas Abelt}
+%\chead{WWI218 - Programmieren II}
+%\rhead{\today}
+%\cfoot{\thepage}
+
+%\setlength{\headheight}{23pt}
+%\setlength{\parindent}{0.0in}
+%\setlength{\parskip}{0.0in}
+
+\begin{document}
+
+\section*{Aufgaben zu Algorithmen - Beispiellösungen}
+
+\vspace{0,75cm}
+
+\subsection*{Aufgabe 1 - Struktogramm}
+Das Struktogramm zeigt einen Algorithmus, der von einer gegebenen Zahl $n$ durch wiederholtes dekrementieren (Bis $n$ gleich $0$ ist) die Fakultät bildet.
+Die Komplexität des Algorithmus wächst linear mit der Größe der gegebenen Zahl $n$, wodurch sich die Komplexität mit $O(n)$ ergibt.
+
+Das $\tau(n)$ zu bestimmen ist hier nicht unbedingt nötig. Auch wird das Bestimmen von $\tau(n)$ meistens nur für explizite Codeausschnitte durchgeführt, da die 
+Anzahl der Operationen in einem Struktogramm nicht immer eindeutig bestimmbar ist. Näherungsweise lässt sich für das gegebene Struktogramm aber folgende Operationen
+für $\tau(n)$ ableiten:
+\begin{itemize}
+	\item Einlesen von $n$ - 1 Operation, einmal durchgeführt
+	\item Setzen von $res$ - 1 Operation, einmal durchgeführt
+	\item Berechnung $res = res*n$ - 2 Operationen (Multiplikation und Zuweisung), $n$ mal ausgeführt\footnote{In besonderen Fällen für $n$ stimmt dies natürlich nicht, da der Algorithmus in eine Endlosschleife laufen würde}
+	\item Dekrementieren von $n$ - 1 Operation, $n$ mal ausgeführt
+	\item Vergleich $n!=0$ - 1 Operation, $n$ mal ausgeführt
+	\item Ausgabe $res$ - 1 Operation, einmal ausgeführt
+\end{itemize}
+
+Aufgrund dieser Operationen lässt sich bestimmen:
+
+$$\tau(n)=1+1+2\cdot n+ n+ 1 = 3+3\cdot n = c_1\cdot n + c_2$$
+
+Nach Wegstreichen der konstanten Faktoren erkennt man, dass der skalierende Faktor $n$ ist.
+
+Bei genauerer Betrachtung fällt auf, dass der Algorithmus durch eine schlecht gewählte Abbruchbedingung nicht in allen Fällen korrekt funktioniert. Dadurch, dass
+am Ende des Schleifendurchlaufs $n$ lediglich gegen $0$ geprüft wird, würde der Algorithmus für alle $n<=0$ in einer Endlosschleife enden. Nach Ende des ersten Schleifendurchlaufs
+wäre $n$ in jedem Fall kleiner als $0$ und die Abbruchbedingung könnte nicht mehr erfüllt werden (Außer ggf. durch Integer Underflow). Besser geeignet wäre für diesen Algorithmus 
+die Nutzung einer Zählschleife (\textit{for-loop}) oder die Abbruchbedingung als $n>0$ zu formulieren.
+
+\vspace{0,75cm}
+
+\subsection*{Aufgabe 2}
+Um einen Algorithmus zu entwerfen, der den größten ganzzahligen Teiler einer gegebenen Zahl $n$ ermittelt, gibt es verschiedene Herangehensweisen. Der "`naive"' Ansatz besteht darin,
+über alle Zahlen von $1$ bis $n$ zu iterieren und für jede einzeln zu überprüfen, ob diese $n$ ganzzahlig teilt. Sofern dies zutrifft wird die aktuelle Zahl als größter Teiler gespeichert.
+Danach wird weiter über die Zahlen iteriert. Die am Ende gespeicherte Zahl entspricht dem größten Teiler.
+
+Dieser primitive Ansatz ist in sofern ineffizient, dass auch alle Zahlen größer als $\frac{n}{2}$ geprüft werden. Diese können aber $n$ überhaupt nicht ganzzahlig teilen. Somit würde die
+erste Optimierung hierbei darin bestehen, lediglich über alle Zahlen bis $\frac{n}{2}$ zu iterieren. Eine weitere Optimierung besteht darin, nicht von $1$ aufwärts zu iterieren, sondern von
+$\frac{n}{2}$ abwärts. All diese Optimierungen führen jedoch zu keiner Verbesserung der Komplexität $O$, da es sich jeweils nur um einen konstanten Faktor handelt, der sich ändert. Die Komplexität
+ist in allen Fällen $O(N)$
+
+Durch die mathematischen Eigenschaften der Multiplikation kann die Komplexität jedoch auf $O(\sqrt{N})$ reduzieren. Die Eigenschaft, die man sich in diesem Fall zunutze macht, ist die \textit{Kommutativität}. Das bedeutet im genauen:
+
+$$a=b\cdot c = c\cdot b$$
+
+Oder kurz: Die Faktoren in der Multiplikation lassen sich vertauschen. Dadurch lässt sich die Zahl der Iterationen weiter verringern. Die höchste Zahl, die nun zu prüfen ist, ist $\sqrt{n}$, da alle danach gefundenen Teiler
+lediglich eine Vertauschung der Faktoren eines zuvor gefundenen Teilers repräsentieren. Beispielhaft betrachten wir die ganzzahligen Teiler von $36$
+\begin{itemize}
+	\item $2 \Rightarrow 2 \cdot 18 = 36$
+	\item $3 \Rightarrow 3 \cdot 12 = 36$
+	\item $4 \Rightarrow 4 \cdot 9 = 36$
+	\item $6 \Rightarrow 6 \cdot 6 = 36$
+	\item $9 \Rightarrow 9 \cdot 4 = 36 = 4 \cdot 9$
+	\item $12 \Rightarrow 12 \cdot 3 = 36 = 3 \cdot 12$
+	\item $18 \Rightarrow 18 \cdot 2 = 36 = 2 \cdot 18$
+\end{itemize}
+
+Zu erkennen ist, dass die nach $6$ gefundenen Faktoren implizit schon einmal gefunden wurden. Das bedeutet für unseren Algorithmus, dass wir lediglich den kleinsten Teiler finden müssen. Das jeweilige Komplementär(=der andere Faktor) dazu
+ist unser gesuchter größter Teiler\footnote{Hierzu habe ich zwar keine wissenschaftlich fundierte Quelle, aber das lässt sich logisch schlussfolgern}. Das Komplementär lässt sich simpel über Division ermitteln.
+
+Für den "`optimalsten"' Algorithmus sieht das Struktogramm folgendermaßen aus:
+
+\begin{centernss}
+    \begin{struktogramm}(70,30)
+        \assign{Lese \( n \) ein}
+        \while{Von \( i=2 \) bis $\sqrt{n}$}
+            \ifthenelse{3}{3}
+            { \( (n\%i)==0 \)?}{True}{False}
+            \assign{Gebe \( n/i\)  zurück}
+        \change
+        \ifend
+        \whileend
+		\assign{Gebe \( n \) zurück}
+    \end{struktogramm}
+\end{centernss}
+
+Implementierungen für die verschiedenen Ansätze finden sich im beigefügten Java Projekt.
+
+\vspace{0,75cm}
+
+\subsection*{Aufgabe 3}
+Der in dieser Aufgabe dargestellte Algorithmus gibt von zwei Listen jedes mögliche Elementweise Paar aus(Kartesisches Produkt). Für die Komplexitätsbetrachtung für $\tau$ betrachten wir einen Funktionsaufruf als eine Operation. Dann ergeben sich
+für den gegebenen Codeausschnitt folgende Operationen:
+
+\lstset{style=java}
+\begin{lstlisting}
+public void func(List<?> in1, List<?> in2){
+  for(int i=0;i<in1.size();i++){		//2 Operationen, 2(n+1) mal
+      for(int j=0;in2.size();j++){		//2 Operationen, 2*(m+1)*n mal
+		  //4 Operationen, (m*n) mal
+          String out = String.format("{\%s,\%s}", in1.get(i), in2.get(j));
+          System.out.println(out);		//1 Operation, (m*n) mal
+      }
+  }
+}
+\end{lstlisting}
+
+Damit ergibt sich $\tau(N,M)$ zu:
+
+$$\tau(N,M)=2\cdot (N+1) + 2\cdot (M+1)\cdot N + 4 \cdot (M\cdot N)+ 1 \cdot (M\cdot N)$$
+$$\tau(N,M)=2\cdot N+2 + 2\cdot M\cdot N +2\cdot N + 4 \cdot M\cdot N+ M\cdot N$$
+$$\tau(N,M)=7\cdot M\cdot N +4\cdot N + 2=c_1\cdot M \cdot N + c_2\cdot N + c_3$$
+
+Und somit $\tau(4,2)
+$$\tau(4,2)=7\cdot 2 \cdot 4 + 4 \cdot 4 + 2 = 82$$
+
+Für die Betrachtung von $O$ zählt nur der größte dynamische Faktor, in diesem Fall gilt also $O(N\cdot M)$
+\vspace{0,75cm}
+\subsection*{Aufgabe 4}
+
+Der dargestellte Algorithmus beschreibt ein Verfahren, in dem für eine gegebenen Zahl $n$ gegen alle Zahlen von $2$ bis $n-1$ geprüft wird, ob diese $n$ ganzzahlig teilt.
+Wenn dies der Fall ist, bricht der Algorithmus ab und gibt \texttt{false} zurück. Wurde über alle Zeilen iteriert, gibt der Algorithmus \texttt{true} zurück.
+
+Zur Betrachtung von $\tau(n)$ können folgende Operationen ermittelt werden (Betrachtung, dass der Algorithmus nicht vorzeitig abgebrochen wird):
+\begin{itemize}
+	\item Einlesen von $n$ $\rightarrow$ 1 Operation, Einmal ausgeführt
+	\item Initialisieren von $i$ auf $2$ $\rightarrow$ 1 Operation, Einmal ausgeführt
+	\item Prüfung $i<n$ $\rightarrow$ 1 Operation, $(n-1)$ mal(Weil für $i=1$ nicht geprüft wird)
+	\item Prüfung, ob $i$ ein ganzzahliger Teiler von $n$ ist $\rightarrow$ 2 Operationen, $(n-2)$ mal ausgeführt
+	\item Inkrementieren von $n$ $\rightarrow$ 1 Operation, $(n-2)$ mal ausgeführt
+\end{itemize}
+
+Somit ergibt sich für $\tau(n)$:
+
+$$\tau(n)=1+1+(n-1)+2\cdot (n-2)+(n-2) = 5\cdot n-4$$
+
+Und somit die Komplexität $O(n)$
+
+Wie in Aufgabe 2 lässt sich dieser Algorithmus weiter optimieren, indem man die kommutativen Eigenschaften der Multiplikation nutzt. Auch hier kann die Anzahl der Schleifendurchläufe
+reduziert werden, indem als Abbruchbedingung nicht $i<n$ gewählt wird, sondern $i<\sqrt{n}$
+
+Dadurch ändert sich die Komplexität zu $O(\sqrt{n}) und $\tau(n)$ ergibt sich zu:
+
+$$\tau(n)=1+1+(\sqrt{n}-1)+2\cdot (\sqrt{n}-2)+(\sqrt{n}-2) = 5 \cdot\sqrt{n}-4$$
+
+Die Implementierungen der Algorithmen (Im Programmablaufplan dargestellt und optimierte Version) finden sich im beigefügten Java Projekt.
+
+\vspace{0,75cm}
+\subsection*{Aufgabe 5}
+
+Der gezeigte Codeausschnitt iteriert über die Elemente eines Arrays und manipuliert diese. Charakteristisch ist hierbei, dass abhängig davon, ob der Wert an dem aktuellen Index des Arrays gerade
+ist oder nicht, eine sehr simple Operation oder eine sehr komplexe Operation ausgeführt wird.
+
+Der Best-Case tritt hierbei auf, wenn alle Elemente des übergebenen Arrays ungerade sind, weil dann lediglich eine simple Addition auf das Arrayelement durchgeführt wird. Der Worst Case trifft analog ein,
+wenn alle Elemente des Arrays gerade sind. Für die Betrachtung von $\tau(n)$ lassen sich folgende Operationen ermitteln.
+
+\begin{lstlisting}
+public void func(int[] array, int n){
+	//For Schleife wird in jedem Fall ausgeführt
+    for(int i=0;i<n;i++){		//2 Operationen, (n+1) mal
+        //if-Überprüfung wird in jedem Fall ausgeführt
+		if((array[i]%2)==0){	//3 Operationen, n mal
+		//Worst-Case Betrachtung: Es wird immer der if-Zweig ausgeführt
+            array[i]+=1;		//3 Operationen, n mal
+            array[i]*=7;		//3 Operationen, n mal
+            array[i]*=array[i];	//4 Operationen, n mal
+            array[i]-=42;		//3 Operationen, n mal
+            array[0]+=array[i];	//4 Operationen, n mal
+        }else{
+			//Best-Case Betrachtung: Es wird immer der else-Zweig ausgeführt
+            array[i]+=2;		//3 Operationen, n mal
+        }
+    }
+}
+\end{lstlisting}
+
+Somit ergibt sich für den Best-Case ein $\tau(n)$:
+
+$$\tau(n)=2\cdot (n+1) + 3\cdot n + 3\cdot n = 8\cdot n+2$$
+
+Und für den Worst-Case ein $\tau(n)$:
+
+$$\tau(n)=2\cdot (n+1) + 3\cdot n +3\cdot n +3\cdot n +4\cdot n +3\cdot n +4\cdot n $$
+$$\tau(n)=22\cdot n + 2$$
+
+Für die Betrachtung von $O$ gibt es in diesem Fall keine Unterscheidung, da die einzige Änderung in den konstanten Faktoren liegt. Sollte es jedoch hier eine Unterscheidung
+in den dynamischen Faktoren geben, so würde für die Betrachtung von $O$ lediglich der Worst-Case herangezogen werden. 
+
+Somit ergibt sich für die Komplexität $O(n)$
+\end{document}

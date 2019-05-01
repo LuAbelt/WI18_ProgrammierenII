@@ -1,0 +1,70 @@
+\begin{frame}{Allgemeines}{Zu Double Linked Lists}
+	\begin{itemize}
+		\item Erweiterung der Linked List
+		\item Gleiche Vorteile wie in dieser
+		\item Jedes Element speichert nun Referenz auf Nachfolger (\texttt{next}) \textbf{und} Vorgänger(\texttt{previous})
+		\item Dadurch verringerte Komplexität bei einigen Operationen
+		\item Zusätzlich kennt die Liste das erste und letzte Element (\texttt{tail})
+		\item Im ersten Element ist \texttt{previous} eine Referenz auf \texttt{null}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Anlegen der Liste}
+	\begin{itemize}
+		\item Double Linked List wird als leere Liste initialisiert
+		\item \texttt{head} und \texttt{tail} werden als leere Liste intialisiert
+		\item Sobald Elemente hinzugefügt werden, wird \texttt{head} und \texttt{tail} automatisch aktualisiert
+		\item Speicher für Elemente wird beim hinzufügen reserviert
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Bestimmen der Größe}
+	\begin{itemize}
+		\item Größe bestimmen funktioniert theoretisch wie in der Linked List
+		\item Wird jedoch in der Regel parallel gespeichert und verwaltet
+		\begin{itemize}
+			\item Sonst könnten einige Vorteile der Double Linked List nicht genutzt werden
+			\item Da jedes mal erst die Größe bestimmt werden müsste
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Zugriff auf Elemente}
+	\begin{itemize}
+		\item Ähnlich wie in der Linked List
+		\item Jedoch kann die Anzahl der Operationen verringert werden
+		\begin{itemize}
+			\item Dadurch, dass wir von beiden Enden der Liste aus traversieren können
+			\item Für Effizienzsteigerung muss jedoch Größe bekannt sein
+		\end{itemize}
+		\item Je nachdem, ob das Element im hinteren oder vorderen Teil der Liste ist
+		\item Wird beginnend von hinten bzw. vorn traversiert um das Element abzurufen
+		\item Dadurch sind theoretisch maximal $\frac{n}{2}$ Schritte nötig
+		\item Da $O$ jedoch den konstanten Faktor $\frac{1}{2}$ ignoriert wird die Komplexität trotzdem mit $O(n)$ angegeben
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Einfügen und Entfernen von Elementen}
+	\begin{itemize}
+		\item Operationen unterscheiden sich im Grunde kaum zur Linked List
+		\item Nur, dass jetzt in den betroffenen Elementen mehr Referenzen geupdated werden müssen
+		\item Zusätzlich zum \texttt{next} Element jetzt noch das \texttt{previous} Element
+		\item Wie beim Zugriff verringert sich die Anzahl der Operationen, jedoch bleibt die Komplexität $O(N)$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Grundoperationen}{Konkatinieren von Listen}
+	\begin{itemize}
+		\item Funktioniert analog wie bei Linked Lists
+		\item Lediglich wird noch die \texttt{previous} Referenz des Kopfes der zweiten Liste aktualisiert
+		\begin{itemize}
+			\item Auf das \texttt{tail} Element der ersten Liste
+		\end{itemize}
+		\item Verringerte Komplexität
+		\begin{itemize}
+			\item Dadurch, dass auf \texttt{tail} Element direkt zugegriffen werden kann
+			\item Komplexität ist somit konstant: $O(1)$
+			\item Teilweise speichern auch normale Linked Lists die \texttt{tail} Referenz für verringerte Komplexität beim konkatinieren
+		\end{itemize}
+	\end{itemize}
+\end{frame}

@@ -1,0 +1,29 @@
+\begin{frame}{Aufgabe 1}{ArrayList}
+Im ersten Teil haben wir über die Eigenschaften von Arrays gesprochen. Unter anderem ging es darum, 
+dass Arrays durch ihre Struktur relativ unflexibel sind, was das hinzufügen von Elementen betrifft.
+
+Das \texttt{Collections} Interface bietet mit der \texttt{ArrayList} Klasse eine Liste an, die im Hintergrund
+ein Array zum speichern von Daten anbietet. Diese Liste bietet die zwei Funktionen \texttt{size()} und \texttt{capacity} an.
+\begin{enumerate}
+	\item Untersucht den Unterschied zwischen den beiden Funktionen
+	\item Untersucht, wie sich die Ergebnisse der beiden Funktionen verhalten, wenn Elemente hinzugefügt und entfernt werden
+	\item Welche Rückschlüsse lassen sich daraus über die Datenorganisation der ArrayList treffen?
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Aufgabe 2}{Linked List}
+	\begin{enumerate}
+		\item Entwerft eine \texttt{LinkedListElement<T>} Klasse mit den in der Vorlesung vorgestellten Eigenschaften
+		\item Entwerft eine \texttt{LinkedList<T>} Klasse, die zur Speicherung der Daten die \texttt{LinkedListElement<T>} Klasse verwendet. Die Liste sollte folgende Funktionen integrieren:
+		\begin{itemize}
+			\item \texttt{get(int index)} - Gibt das Element an einem bestimmten Index zurück
+			\item \texttt{size()} - Gibt die Anzahl der Elemente in der Liste zurück
+			\item \texttt{insert} - Fügt ein bestimmtes Element an einem gegebenen Index ein
+			\item \texttt{remove(index i)} - Entfernt das Element an dem gegebenen Index
+		\end{itemize}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Aufgabe 3}{Double Linked List}
+Entwerft analog zu Aufgabe 2 die Klasse \texttt{DoubleLinkedListElement<T>} und \texttt{DoubleLinkedList<T>}
+\end{frame}

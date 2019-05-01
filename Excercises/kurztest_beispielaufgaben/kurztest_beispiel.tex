@@ -1,0 +1,215 @@
+\documentclass[a4paper,
+			   fontsize=12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, ngerman]{babel}
+\usepackage[T1]{fontenc}
+%\usepackage{polyglossia}
+%\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[ngerman]{struktex}
+\usepackage{enumitem}
+
+% Custom Colors
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+% Custom LST styles
+\lstdefinestyle{java}{
+	language=Java,
+	basicstyle=\linespread{0.8}\ttfamily,
+	breaklines=true,
+	keywordstyle=\color{javapurple}\bfseries,
+	stringstyle=\color{javared},
+	commentstyle=\color{javagreen},
+	morecomment=[s][\color{javadocblue}]{/**}{*/},
+	numbers=left,
+	numberstyle=\tiny\color{black},
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=4,
+	showspaces=false,
+	showstringspaces=false,
+	morekeywords={enum},
+	postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
+%\geometry{a4paper,left=15mm,right=15mm,top=20mm,bottom=20mm}
+%\pagestyle{fancy}
+%\lhead{Lukas Abelt}
+%\chead{WWI218 - Programmieren II}
+%\rhead{\today}
+%\cfoot{\thepage}
+
+%\setlength{\headheight}{23pt}
+\setlength{\parindent}{0.0in}
+%\setlength{\parskip}{0.0in}
+
+\begin{document}
+
+\section*{Kurztest WWI218 Programmieren II - Algorithmen}
+\textbf{Name:} 
+\vspace{0,5cm}
+\subsection*{Allgemeine Informationen}
+Alle Aufgaben ergeben insgesamt \textbf{25 Punkte}. Maximal zu erreichen sind \textbf{20 Punkte}. Somit müssen nicht alle Aufgaben bearbeitet werden um die volle Punktzahl zu erreichen.
+Die Wahl der zu bearbeitenden Aufgaben steht Ihnen frei. Jedoch wird empfohlen, die Aufgaben 1-3 sowie eine der Aufgaben 4.1 oder 4.2 zu bearbeiten.
+
+Die Bearbeitungszeit beträgt \textbf{30 Minuten}. Die Bearbeitung der Aufgaben erfolgt \textbf{ausschließlich} auf den ausgehändigten Aufgabenblättern. Bei Benutzung der Rückseite ist die Aufgabennummer mit zu vermerken.
+
+Dieser Kurztest geht zu \textbf{20\%} in die Gesamtbewertung der Vorlesung ein.
+
+\subsection*{Bewertung}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Aufgabe}&\textbf{Erreichte Punktzahl}&\textbf{Maximale Punktzahl}\\
+\hline
+Aufgabe 1 & & 4
+\\\hline
+Aufgabe 2 & & 8
+\\\hline
+Aufgabe 3 & & 4
+\\\hline
+Aufgabe 4.1 & & 4
+\\\hline
+Aufgabe 4.2 & & 4
+\\\hline
+Aufgabe 5 & & 1
+\\\hline
+\textbf{Gesamt:} & & 20
+\\\hline
+\end{tabular}
+
+\vspace{2cm}
+\hline
+
+
+\small{Datum, Ort \hspace{8cm} Bewertung, Unterschrift Dozent}
+
+\newpage
+
+\subsection*{Aufgabe 1 (4 Punkte)}
+Zur Analyse vin Algorithmenlaufzeiten haben Sie die zwei Messgrößen $\tau$ und $O$ kennen gelernt.
+\begin{itemize}
+    \item Wo liegt der Unterschied zwischen den beiden Größen?
+    \item Warum wird zur eine Bestimmung der Laufzeit nicht eine Zeitmessung auf einem Computer durchgeführt?
+\end{itemize}
+
+\vspace{6cm}
+
+\subsection*{Aufgabe 2 (8 Punkte)}
+Folgend ist ein Codeausschnitt gezeigt, der für eine gegebene Zahl $n$ den größten ganzzahligen Teiler $t$(Wobei $t\ne n$) ermittelt. Zeigen Sie, ob der Algortihmus korrekt umgesetzt ist.
+\begin{itemize}
+	\item Funktioniert der Algorithmus korrekt?
+	\item Falls der Algorithmus nicht korrekt funktioniert, nennen Sie den Grund und geben Sie an, welche Änderung notwendig ist, damit der Algorithmus korrekt funktioniert.
+	\item Bestimmen Sie $O$
+	\item Stellen Sie den (ggf. korrigierten) Algorithmus als Struktogramm oder Programmablaufplan dar.
+\end{itemize}
+
+\lstset{style=java}
+\begin{lstlisting}
+public boolean biggestDivisor(int n){
+	for(int i=n;i>0;i--){
+		if(n%i==0){
+			return i;
+		}
+	}
+	return n;
+}
+\end{lstlisting}
+
+\vspace{7,5cm}
+
+\subsection*{Aufgabe 3 (4 Punkte)}
+Im folgenden Codeausschnitt wird ein Algorithmus gezeigt der verschiedene Laufzeiten haben kann. Übergeben wird ein Integer Array (\texttt{array}) und die Größe dieses
+Arrays(\texttt{n}).
+\begin{itemize}
+	\item In welchem Fall tritt der Worst-Case und wann der Best-Case ein? (In Hinblick auf die Laufzeit)
+	\item Bestimmen Sie $O$
+\end{itemize}  
+
+\begin{lstlisting}
+public void func(int[] array, int n){
+    for(int i=n-1;i>=0;i--){
+		if((array[i]%2)==1){
+			for(int j=0;j<n;j++){
+				System.out.println(array[i]+array[j])
+			}
+        }else{
+			System.out.println(array[i])
+        }
+    }
+}
+\end{lstlisting}
+
+\newpage
+\subsection*{Aufgabe 4.1 (4 Punkte)}
+Analysieren Sie den folgenden Codeausschnitt. Hinweis: $n$ beschreibt hierbei die Länge des übergebenen Arrays. Die \texttt{System.out.println()} Funktion wird als eine Operation gewertet.
+\begin{itemize}
+	\item Bestimmen Sie $\tau(n)$ und $\tau(4)$
+	\item Beschreiben Sie kurz die Aufgabe des Algorithmus
+\end{itemize}
+
+\begin{lstlisting}
+public void func(int[] array, int n){
+	for(int i=0;i<n;i++){
+		System.out.println(array[i]*i)
+	}
+}
+\end{lstlisting}
+
+\vspace{5cm}
+\subsection*{Aufgabe 4.2 (4 Punkte)}
+Im folgenden wird ein Struktogramm für einen Algorithmus gezeigt.
+
+\begin{centernss}
+	\begin{struktogramm}(100,40)
+        \assign{Lese \( n \) ein}
+		\while{Von \( i=2 \) bis \( n-1 \) , Schrittweite 1}
+			\ifthenelse{3}{3}
+			{ \( n\%i==0 \) }{True}{False}
+			\assign{Gib \texttt{false} zurück}
+			\change
+			\ifend
+		\whileend
+		\assign{Gib \texttt{true} zurück}
+	\end{struktogramm}
+\end{centernss}
+
+\begin{itemize}
+	\item Welche Aufgabe hat der Algorithmus?
+	\item Setzen Sie das Struktogramm in Java-Code um. Nutzen Sie dafür die unten gegebene Vorlage.
+\end{itemize}
+
+\vspace{2,5cm}
+
+Hinweis: Die Operation "`Einlesen"' wird durch das übergeben von Funktionsargumenten realisiert und das zurückgeben von Werten über das \texttt{return} statement.
+
+\begin{lstlisting}
+public        func(             ){
+
+
+
+
+
+
+}
+\end{lstlisting}
+
+\subsection*{Aufgabe 5 (1 Punkt)}
+Welche ist die beste IDE? (Nicht zutreffendes bitte streichen)
+\begin{itemize}
+	\item Eclipse im Default Theme
+	\item Eclipse im Dark Theme
+	\item IntelliJ im Default Theme
+	\item IntelliJ im Dark Theme
+	\item vim
+\end{itemize}
+\end{document}

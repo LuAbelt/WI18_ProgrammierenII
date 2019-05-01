@@ -123,19 +123,19 @@ float Q_rsqrt( float number ) {
     
     \visible<4->{Gebe \texttt{i} aus.} \visible<5->{Erhöhe anschließend \texttt{i} um \texttt{1}.} \visible<6->{Wiederhole die letzten zwei Schritte bis \texttt{i} größer ist als \texttt{n}.}
     
-    \visible<7-|handout:0>{Fertig.}
+    \visible<7->{Fertig.}
     \end{alertblock}
 \end{frame}
 
 \begin{frame}{Prosabeschreibung}{Für unseren Algorithmus}
     \begin{alertblock}{Addiere alle geraden Zahlen}
-    \visible<2-|handout:0>{Lese die Zahl \texttt{n} ein.}
+    \visible<2->{Lese die Zahl \texttt{n} ein.}
     
-    \visible<3-|handout:0>{Anschließend setze die Zählvariable \texttt{i} sowie die Ergebnisvariable \texttt{res} auf \texttt{0}.}
+    \visible<3->{Anschließend setze die Zählvariable \texttt{i} sowie die Ergebnisvariable \texttt{res} auf \texttt{0}.}
     
-    \visible<4-|handout:0>{Wenn \texttt{i} gerade ist, addiere \texttt{i} auf die Ergebnisvariable.} \visible<5-|handout:0>{Erhöhe anschließend \texttt{i} um \texttt{1}.} \visible<6-|handout:0>{Wiederhole die letzten zwei Schritte bis \texttt{i} größer ist als \texttt{n}.}
+    \visible<4->{Wenn \texttt{i} gerade ist, addiere \texttt{i} auf die Ergebnisvariable.} \visible<5->{Erhöhe anschließend \texttt{i} um \texttt{1}.} \visible<6->{Wiederhole die letzten zwei Schritte bis \texttt{i} größer ist als \texttt{n}.}
     
-    \visible<7-|handout:0>{Gebe \texttt{res} aus}
+    \visible<7->{Gebe \texttt{res} aus}
     \end{alertblock}
 \end{frame}
 
@@ -163,7 +163,7 @@ ENDE FUER
 
 \begin{frame}[fragile]{Pseudocode}{Für unser Pseudoproblem}
 \lstset{style=pseudo}
-\begin{onlyenv}<handout:0>
+\begin{onlyenv}
 \begin{lstlisting}
 LESE n
 SETZE res=0
@@ -311,7 +311,7 @@ GEBE res AUS
 
 \begin{frame}{Struktogram für unseren Algorithmus}
 \begin{centernss}
-\begin{onlyenv}<handout:0>
+\begin{onlyenv}
 \begin{struktogramm}(100,75)
     \assign{Lese \( n \) ein}
     \assign{Setze \( res \) auf \( 0 \)}
@@ -364,7 +364,7 @@ GEBE res AUS
 \end{frame}
 
 \begin{frame}{Programmablaufplan}{...für unseren Algorithmus}
-\begin{onlyenv}<handout:0>
+\begin{onlyenv}
 \begin{figure}
     \includegraphics[height=5cm]{graph/pap_sumeven}
 \end{figure}
