@@ -47,24 +47,23 @@
 	\includegraphics*[width=.8\textwidth]{graph/swing_cd}
 \end{frame}
 
-\begin{frame}{Swing Fenster}
+\begin{frame}{Swing Fenster}{JFrame Klasse}
 	\begin{itemize}
 		\item Basis eines Swing Fensters ist die \texttt{JFrame} Klasse
 		\item Basiert auf der AWT Klasse \texttt{Frame}
-		\item Lässt sich manipulieren mit z.B.:
+		\item Lässt sich manipulieren z.B. in bezug auf
 		\begin{itemize}
 			\item Sichtbarkeit
 			\item Größe und Position
 			\item Operation beim schließen
-		\end{frame}
+		\end{itemize}
 		\item Leeres Fenster wird erzeugt über den \texttt{JFrame()} Konstruktor
 		%TODO: irgendwas irgendwas JFrame als basis
 		%Referenz JFrame zu Frame?
-		%Panel als Grundelement
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Swing Fenster}{Ganz simpel}
+\begin{frame}[fragile]{Swing Fenster}{Ganz simpel}
 \lstset{style=java}
 \begin{lstlisting}
 public static void main(String[] args){
@@ -75,3 +74,36 @@ public static void main(String[] args){
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}{JFrame}{Ändern der Größe des Fensters}
+    \begin{itemize}
+        \item Größe wird über \texttt{setSize()} verändert
+        \item Hier gibt es zwei Überladungen:
+        \begin{itemize}
+            \item Als Parameter ein \texttt{Dimension} Objekt
+            \item Zwei \texttt{int} Werte als Parameter
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Swing Fenster}{Weitere Eigenschaften}
+    \begin{itemize}
+        \item Bildet einen \textit{Top-Level-Container}
+        \item Hinzufügen neuer Elemente über die \texttt{add()} Operation
+        \item \texttt{JFrame} wird immer mit Titel und Menüleiste erzeugt
+        \item Erscheinung des Frames kann geändert werden
+        \begin{itemize}
+            \item Man spricht in der Regel von "`Decorations"'
+            \item Ändern der Form des Fensters (In begrenztem Rahmen)
+            \item Wählen verschiedener Farbschema
+            \item (Teil-)transparente Fenster
+            \item usw
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Weitere Fenster in Swing}
+    \begin{itemize}
+        \item \texttt{JWindow} -- Fenster ohne Menüleiste
+        \item \texttt{JDialog} -- Zum erstellen von (modalen) Dialogfeldern
+    \end{itemize}
+\end{frame}

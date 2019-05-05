@@ -1,2 +1,25 @@
-\begin{frame}{Grundlegende Komponenten}
+\begin{frame}{Komponenten}{Grundlegendes}
+    \begin{itemize}
+        \item Komponenten in Swing sind frei erweiterbar
+        \item Swing Komponenten i.D.R. über Namensgebung von AWT Komponenten unterscheidbar
+        \item Für viele Anwendungsfälle sind jedoch die Standardkomponenten schon ausreichen
+        \item Neue Komponenten werden über \item{add()} Methode zu einem beliebigen Container hinzugefügt
+        \item Komponenten können eine bevorzugte oder minimale Größe definieren
+        \item Position wird i.d.R. automatisch bestimmt (Über den Layoutmanager)
+    \end{itemize}
 \end{frame}
+
+\begin{frame}[allowframebreaks]{Grundlegende Komponenten}{Übersicht}
+    \begin{itemize}[<+->]
+        \item \texttt{JPanel} -- Einfacher Bereich ohne spezielle Besonderheiten. Ist ein \texttt{Container} und wird in der Regel genutzt um Elemente zu gruppieren und ggf. anzuordnen
+        \item \texttt{JButton} -- Einfacher Button für den eine Funktion programmiert werden kann(Zum Beispiel das Starten einer Berechung)
+        \item \texttt{JCheckBox} -- Auswahlbox für eine binäre Eingabe
+        \item \texttt{JLabel} -- Simples Feld zum Anzeigen von Texten. Kann nicht durch den Nutzer bearbeitet werden
+        \item \texttt{JTextField} -- Textfeld zum Anzeigen oder Bearbeiten von Texten (Einzelzeilen). Kann durch den Nutzer verändert werden
+        \item \texttt{JSlider} -- Schieberegler
+        \item \texttt{JRadioButton} -- Gibt die Möglichkeit zur Auswahl von einer Option aus mehreren gegebenen Möglichkeiten. Es kann pro Gruppe an Optionen immer nur genau eine gleichzeitig aktiviert sein.
+        \item \texttt{JComboBox} -- Element, das die Auswahl eines Eintrags aus einer Liste erlaubt oder auch einen eigenen Eintrag ermöglicht
+        \item \texttt{JEditorPane} -- Ermöglicht die Eingabe von mehrzeiligen Texten
+    \end{itemize}
+\end{frame}
+
