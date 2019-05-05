@@ -18,7 +18,6 @@
 		\item Dadurch kann eine einheitliche Behandlung von Objekten und Aggregaten erreicht werden
 		\item Gemeinsame Eigenschaften von Objekt und Aggregat werden in einer Oberklasse isoliert
 	\end{itemize}
-	%TODO: Abbildungen Kompositum&Klassendiagramm vom Judt
 \end{frame}
 
 \begin{frame}{Beispiel für Kompositum}{Zusammengesetzte Grapfik-Objekte (Vgl. \cite{judt2017} S. 26}
@@ -50,9 +49,29 @@
 
 \begin{frame}{Swing Fenster}
 	\begin{itemize}
-		\item 
+		\item Basis eines Swing Fensters ist die \texttt{JFrame} Klasse
+		\item Basiert auf der AWT Klasse \texttt{Frame}
+		\item Lässt sich manipulieren mit z.B.:
+		\begin{itemize}
+			\item Sichtbarkeit
+			\item Größe und Position
+			\item Operation beim schließen
+		\end{frame}
+		\item Leeres Fenster wird erzeugt über den \texttt{JFrame()} Konstruktor
 		%TODO: irgendwas irgendwas JFrame als basis
 		%Referenz JFrame zu Frame?
 		%Panel als Grundelement
 	\end{itemize}
 \end{frame}
+
+\begin{frame}{Swing Fenster}{Ganz simpel}
+\lstset{style=java}
+\begin{lstlisting}
+public static void main(String[] args){
+  JFrame window = new JFrame();
+  window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+  window.setVisible(true);
+}
+\end{lstlisting}
+\end{frame}
+
