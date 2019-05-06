@@ -8,6 +8,8 @@ public class Main{
 
     public static void main(String[] args) {
         //KeyValuePair Demo
+
+        System.out.println("Test");
         KeyValuePair<Integer, Double> pair1 = new KeyValuePair<>(-5,3.14159);
         System.out.println("Key of pair1 is: " + pair1.getKey());
         System.out.println("Value of pair1 is: " + pair1.getValue());
