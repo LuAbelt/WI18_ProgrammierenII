@@ -1,0 +1,30 @@
+\begin{frame}{Slowsort}{Ein humoristischer Ansatz an Sortierungen}
+    \begin{itemize}
+        \item 1986 von Andrei Broder und Jorge Stolfi entwickelt
+        \item Teil ihres Papers "`Pessimal Algorithms and Simplexity Analysis"
+        \item Ziel war ein möglichst ineffizienten Algorithmus zu schaffen
+        \begin{itemize}
+            \item Ohne Nutzung von zufälligen Faktoren
+            \item ...und ohne "`überflüssige"' Operationen einzubauen
+        \end{itemize}
+        \item Basiert auf dem \textbf{Multiply and Surrender} (Parodie auf Divide and Conquer) Prinzip
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Slowsort}{Ablauf}
+    \begin{itemize}
+        \item Besteht im Grund aus zwei Schritten:
+        \begin{itemize}
+            \item 1. Finde das Maximum der Liste und platziere es am Ende
+            \item 2. Sortiere die verbleibende Teilliste
+        \end{itemize}
+        \item Ineffizienz kommt durch die rekursive Umsetzung des ersten Schritts:
+        \begin{itemize}
+            \item 1.1 Finde (rekursiv) das Maximum der ersten Listenhälfte
+            \item 1.2 Finde (rekursiv) das Maximum der zweiten Listenhälfte
+            \item 1.3 Vergleiche die Maxima und tausche ggf.
+        \end{itemize}
+        \item Die untere Grenze der Komplexität lässt sich angeben mit $\Omega (n^{\frac{\log_2(n)}{2+\epsilon}})$
+        \item Damit ist selbst der Best-Case schlechter als der Worst-Case von Bubble Sort
+    \end{itemize}
+\end{frame}
