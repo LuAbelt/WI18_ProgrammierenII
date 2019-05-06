@@ -1,0 +1,115 @@
+\begin{frame}{Swing}{Grundlegendes}
+	\begin{itemize}
+		\item AWT Komponenten erzeugen Komponenten über Betriebssystemaufrufe
+		\item Dadurch Speicher nicht über Java verwaltet
+		\item Swing erzeugt Komponenten über direkte Low-Level Calls
+		\item Jede Komponente wird auf den Bildschirm gezeichnet
+		\item Dadurch komplette Speicherverwaltung in Java
+		\item Overhead führt ggf. zu Performanceverlust
+		\item Aber mehr Kontrolle über die Features
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Swing}{Konzepte}
+	\begin{itemize}
+		\item Swing nutzt das Entwurfstmuster des \textit{Kompositums}
+		\item Kompositum beschreibt im Grunde eine Art Baumstruktur
+		\item Objekte werden zu Gruppen zusammengefasst und Gruppen wiederum zu größeren Gruppen
+		\item Dadurch kann eine einheitliche Behandlung von Objekten und Aggregaten erreicht werden
+		\item Gemeinsame Eigenschaften von Objekt und Aggregat werden in einer Oberklasse isoliert
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Beispiel für Kompositum}{Zusammengesetzte Grapfik-Objekte (Vgl. \cite{judt2017} S. 26)}
+    \begin{figure}
+	\includegraphics*[width=.7\textwidth]{graph/compositum_example}
+    \end{figure}
+	Gemeinsame Operationen: \texttt{zeichne()}, \texttt{verschiebe()}, \texttt{lösche()}, \texttt{skaliere()}
+\end{frame}
+
+\begin{frame}{Kompositum}{Beispielhaftes Klassendiagramm}
+    \begin{figure}
+	\includegraphics*[width=.8\textwidth]{graph/compositum_cd}
+    \caption*{Quelle: \cite{judt2017}}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Kompositum}{Umsetzung in Swing}
+	\begin{itemize}
+		\item Die Klassenhierarchie stellt ein Kompositum dar
+		\item Swing Objekte unterteilen sich hierbei in zwei Klassen:
+		\begin{itemize}
+			\item \texttt{Component}
+			\item \texttt{Container}
+		\end{itemize}
+		\item \texttt{Container} fassen \texttt{Components} zusammen
+		\item Jeder Container ist für die Anordnung seiner Komponenten zuständig
+		\item Jeder \texttt{Container} ist auch immer eine \texttt{Component}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Klassendiagramm}{Der Swing Bibliothek}
+    \begin{figure}
+	\includegraphics*[height=5.5cm]{graph/swing_cd}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Swing Fenster}{JFrame Klasse}
+	\begin{itemize}
+		\item Basis eines Swing Fensters ist die \texttt{JFrame} Klasse
+		\item Basiert auf der AWT Klasse \texttt{Frame}
+		\item Lässt sich manipulieren z.B. in bezug auf
+		\begin{itemize}
+			\item Sichtbarkeit
+			\item Größe und Position
+			\item Operation beim schließen
+		\end{itemize}
+		\item Leeres Fenster wird erzeugt über den \texttt{JFrame()} Konstruktor
+		%TODO: irgendwas irgendwas JFrame als basis
+		%Referenz JFrame zu Frame?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Swing Fenster}{Ganz simpel}
+\lstset{style=java}
+\begin{lstlisting}
+public static void main(String[] args){
+  JFrame window = new JFrame();
+  window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+  window.setVisible(true);
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{JFrame}{Ändern der Größe des Fensters}
+    \begin{itemize}
+        \item Größe wird über \texttt{setSize()} verändert
+        \item Hier gibt es zwei Überladungen:
+        \begin{itemize}
+            \item Als Parameter ein \texttt{Dimension} Objekt
+            \item Zwei \texttt{int} Werte als Parameter
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Swing Fenster}{Weitere Eigenschaften}
+    \begin{itemize}
+        \item Bildet einen \textit{Top-Level-Container}
+        \item \texttt{JFrame} wird immer mit Titel und Menüleiste erzeugt
+        \item Erscheinung des Frames kann geändert werden
+        \begin{itemize}
+            \item Man spricht in der Regel von "`Decorations"'
+            \item Ändern der Form des Fensters (In begrenztem Rahmen)
+            \item Wählen verschiedener Farbschema
+            \item (Teil-)transparente Fenster
+            \item usw
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Weitere Fenster in Swing}
+    \begin{itemize}
+        \item \texttt{JWindow} -- Fenster ohne Menüleiste
+        \item \texttt{JDialog} -- Zum erstellen von (modalen) Dialogfeldern
+    \end{itemize}
+\end{frame}
