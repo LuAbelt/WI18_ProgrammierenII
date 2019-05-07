@@ -107,14 +107,127 @@ frame.setLayout(new BoxLayout(window, BoxLayout.PAGE_AXIS));
 
 frame.setVisible(true);
 \end{lstlisting}
+
+Experimentiert, was passiert, wenn ihr die Orientierung der einzelnen Komponenten anpasst.
 \end{frame}
 
-\begin{frame}{BorderLayout}{}
+\begin{frame}{FlowLayout}{(Vgl. \cite{orac:flowlayout})}
+    \begin{itemize}
+        \item Ist das Standard-Layout von \texttt{JPanel}
+        \item Komponenten werden in einer Reihe nebeneinander platziert
+        \item Hierbei wird die bevorzugte Größe der Komponenten berücksichtigt
+        \item Ist in einer Reihe nicht genug Platz verbleibend für die neue Komponente, so wird eine neue Reihe eingefügt
+        \item Positionierung der Reihen (links-/rechtsbündig, zentriert) kann definiert werden:
+        \begin{itemize}
+            \item \texttt{BoxLayout.LEFT} -- Linksbündig
+            \item \texttt{BoxLayout.RIGHT} -- Rechtsbündig
+            \item \texttt{BoxLayout.CENTER} -- Zentriert
+            \item \texttt{BoxLayout.LEADING} -- Bündig mit dem Beginn der Container-Orientierung (zB. Links bei Links-nach-Rechts Orientierung)
+            \item \texttt{BoxLayout.TRAILING} -- Bündig mit dem Ende der Container-Orientierung (zB. Links bei Rechts-nach-Links Orientierung)
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{GridLayout}{}
+\begin{frame}{FlowLayout}{Aufgabe}
+Entwerft eine simple Fensteranwendung, die über das Hinzufügen mehrerer Buttons mit verschiedener Größe die Funktionsweise des \texttt{FlowLayouts} demonstriert. Ändert hierzu
+entweder den LayoutManager des erzeugten \texttt{JFrame} Objekts(Siehe Aufgaben zum BoxLayout) oder fügt ein \texttt{JPanel} hinzu, dem ihr anschließend die Buttons hinzufügt.
+
+Experimentiert mit dem Verhalten des FlowLayouts bei ändern der Fenstergröße.
 \end{frame}
 
-\begin{frame}{GridBagLayout}{}
+\begin{frame}{GridLayout}{Grundlegendes (Vgl. \cite{orac:gridlayout})}
+    \begin{itemize}
+        \item Rastert den Container in Zeilen und Spalten
+        \item Jede "`Zelle"' ist gleichgroß
+        \item Komponenten in einer Zelle nehmen die gesamte Zelle ein
+        \item Komponenten werden automatisch in die "`nächste"' Zelle hinzugefügt
+        \item Initialisierung:
+        \begin{itemize}
+            \item \texttt{GridLayout()} -- Initialisiert den Container mit einem 1x1 Grid
+            \item \texttt{GridLayout(int rows, int cols)} -- Initialisiert das Grid mit der definierten Anzahl an Zeilen und Spalten
+        \end{itemize}
+        \item Zeilen \textit{oder} Spalten können auf $0$ gesetzt werden $\rightarrow$ Heißt, dass die Anzahl der Zeilen/Spalten dynamisch aus Anzahl der Komponenten ermittelt wird
+    \end{itemize}
 \end{frame}
 
+\begin{frame}{GridLayout}{Aufgabe}
+Entwerft eine Simple Fensteranwendung in der ihr mehrere Komponenten mit dem GridLayout anordnet. Um den Layout Manager zu ändern geht vor wie im Beispielcode zur BoxLayout Aufgabe.
+
+Untersucht, wie sich Anordnung der Komponenten verhält, wenn ihr die Anzahl der Zeilen oder Spalten mit $0$ definiert.
+\end{frame}
+
+\begin{frame}{GridBagLayout}{Grundlegendes (Vgl. \cite{orac:gridbaglayout})}
+    \begin{itemize}
+        \item Ähnlich zum \texttt{GridLayout}
+        \item Jedoch flexibler in der Positionierung
+        \item Dadurch aber auch komplexer in der Anwendung
+        \item Komponenten können in beliebigen Zellen platziert werden
+        \item Komponenten können mehrere Zellen einnehmen
+        \item Relative Positionierung von Komponenten in den Zellen möglich
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{GridBagLayout}{Visualisiert}
+    \begin{onlyenv}<1|handout:0>
+    \begin{figure}
+        \includegraphics[height=5.5cm]{graph/gridbag}
+        \caption*{\cite{orac:gridbaglayout}}
+    \end{figure}
+    \end{onlyenv}
+    \begin{onlyenv}<2->
+    \begin{figure}
+        \includegraphics[height=5.5cm]{graph/gridbagline}
+        \caption*{\cite{orac:gridbaglayout}}
+    \end{figure}
+    \end{onlyenv}
+\end{frame}
+
+\begin{frame}{GridBagLayout}{Constraints (Vgl. \cite{orac:gridbaglayout})}
+    \begin{itemize}
+        \item Platzierung der Komponenten im GridBag wird über \texttt{GridBagConstraints} Objekt definiert
+        \item Diese müssen beim hinzufügen von Komponenten mit übergeben werden:
+        \begin{itemize}
+            \item \texttt{add(Component,GridBagConstraints)}
+        \end{itemize}
+        \item Für die Constraints lassen sich definieren:
+        \item \textbf{\texttt{gridx, gridy}} -- Zeile und Spalte der hinzuzufügenden Komponente. Kann auch als relativ zur zuletzt hinzugefügten Komponente definiert werden
+        \item \textbf{\texttt{gridwidth, gridheight}} -- definiert, wie viele Zeilen bzw. Spalten die Komponente einnehmen soll
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{GridBagLayout}{Constraints (Vgl. \cite{orac:gridbaglayout})}
+    \begin{itemize}
+        \item \textbf{\texttt{fill}} -- Definiert inwiefern die Komponente den verfügbaren Platz nutzen soll. Kann genutzt werden, um Komponenten horizontal bzw. vertikal auf die Größe der Zelle zu skalieren
+        \item \textbf{\texttt{ipadx, ipady, insets}} -- Kann genutzt werden um padding der Komponente zum Rand zu definieren 
+        \item \textbf{\texttt{anchor}} -- Definiert die Referenzposition in der Zelle (z.B. links unten, rechts oben etc.)
+        \item \textbf{\texttt{weightx, weighty}} -- Wird genutzt um zu bestimmen, wie der gesamt verfügbare Platz auf die einzelnen Zeilen/Spalten verteilt wird. Insbesondere wichtig, wenn die Fenstergröße verändert wird.
+        {itemize}
+\end{frame}
+
+\begin{frame}{GridBagLayout}{Aufgabe}
+Experimentiert (wenn ihr wollt) mit dem GridBagLayout und den entsprechenden Constraints. Zur Orientierung könnt die Oracle Tutorial Seite nutzen(Siehe \cite{orac:gridbaglayout})
+\end{frame}
+
+\begin{frame}{Layout Manager}{Kombinieren von Layout Managern}
+    \begin{itemize}
+        \item Komplexe GUIs erfordern nicht zwingend einen komplexen LayoutManager
+        \item Da jeder Container Layout Manager selbst definiert können diese kombiniert werden
+        \item Heißt: Ein Container wird einem übergeordneten Layout hinzugefügt, verwendet aber für seine eigenen Komponenten einen anderen Manager
+        \item Als Basis-Container wird meist ein \texttt{JPanel} verwendet
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Layout Manager}{Aufgabe}
+Entwerft eine simple GUI Anwendung mit einem BorderLayout. Platziert beliebige Komponenten in den äußeren Bereichen. Platziert im Center Bereich ein \texttt{JPanel}, in dem Komponenten im \texttt{BoxLayout} angeordnet sind.
+\end{frame}
+
+\begin{frame}{GUI-Builder}{}
+    \begin{itemize}
+        \item Alternativ zum "`ausprogrammieren"' der GUI können auch GUI-Builder verwendet werden
+        \item Hier werden die Komponenten in einer grafischen Oberfläche platziert
+        \item Struktur wird dann meist in XML Format (o.Ä.) übersetzt
+        \item Spezieller Layout Manager übernimmt Übersetzung in Code
+        \item In IntelliJ integriert
+        \item Für Eclipse als Plug-In verfügbar
+    \end{itemize}
+\end{frame}
