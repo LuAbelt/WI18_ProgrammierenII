@@ -1,11 +1,120 @@
 \begin{frame}{GUI Layout}{Anordnen von Elementen}
     \begin{itemize}
-        \item Elemente werden automatisch platziert
-        \item Durch den Layout Manager
-        \item Kann in jedem Container individuell definiert werden
-        \item Erleichtert das anordnen von Elementen immens
-        \item Reagiert auf Änderungen im Fenster (zB. Größe) und ordnet Kinder ggf neu an
+        \item Bei Nutzen von \texttt{add()} werden Komponenten automatisch platziert
+        \item Dies geschieht durch den \textit{Layout Manager}
+        \item Manager werden pro Container definiert
+        \item Je nach Layout sind ggf. feste "`Slots"' im Container vorhanden
+        \item Um Komponente an bestimmter Position zu platzieren wird Überladung von \texttt{add()} verwendet:
+        \begin{itemize}
+            \item \texttt{add(Component comp, Object constraint)}
+            \item \texttt{constraint} definiert Position im Container
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{GUI Layout}{Größe von Komponenten}
+    \begin{itemize}
+        \item Komponenten können absolute, minimale, maximale und bevorzugte Größe definieren
+        \begin{itemize}
+            \item \texttt{setSize(int height, int width)}
+            \item \texttt{setMinimumSize(Dimension d)}
+            \item \texttt{setMaximumSize(Dimension d)}
+            \item \texttt{setPreferredSize(Dimension d)}
+        \end{itemize}
+        \item Layout Manager \textit{versucht} diese zu beachten
+        \item \textit{Müssen} dies jedoch nicht
+        \item Insbesondere absolute Größen sind meist gegen das Prinzip von Layout Managern
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{GUI Layout}{Layout Manager}
+    \begin{itemize}
+        \item Vorteil von Layout Managern:
+        \begin{itemize}
+            \item Relative Positionierung von Komponenten kann definiert werden
+            \item Vereinfachen erstellen von GUIs
+            \item Größe und Position von Komponenten werden automatisch angepasst (Zum Beispiel bei Ändern der Fenstergröße)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{BorderLayout}{Grundlegendes (Vgl. \cite{orac:borderlayout})}
+    \begin{itemize}
+        \item Teil den Container in fünf Bereiche
+        \item Diese sind über Konstanten in der \texttt{BorderLayout} Klasse definiert:
+        \begin{itemize}
+            \item \texttt{PAGE_START} -- Oberer Bereich (Kopfzeile)
+            \item \texttt{PAGE_END} -- Unterer Bereich (Fußzeile)
+            \item \texttt{LINE_START} -- Linker Bereich zwischen Kopf und Fuß
+            \item \texttt{LINE_END} -- Rechter Bereich zwischen Kopf und Fuß
+            \item \texttt{CENTER} -- Mittlerer (Haupt-)bereich
+        \end{itemize}
+        \item Beispiel: Hinzufügen im \texttt{PAGE_START} Bereich:
+        \begin{itemize}
+            \item \texttt{add(button, BorderLayout.PAGE_START)}
+        \end{itemize}        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{BorderLayout}{Weitere Eigenschaften (Vgl. \cite{orac:borderlayout})}
+    \begin{itemize}
+        \item Fokus liegt auf den \texttt{CENTER} Bereich
+        \item Dieser nutzt maximal verfügbaren Platz
+        \item Alle anderen Bereiche nutzen nur den benötigten Platz
+        \item Nicht alle Bereiche müssen genutzt werden
+        \item \texttt{PAGE_START} und \texttt{PAGE_END} nutzen (sofern vorhanden) immer die volle Breite
+        \item Freiräume zwischen Bereichen lassen sich definieren:
+        \begin{itemize}
+            \item \texttt{setHGap(int)}
+            \item \texttt{setVGap(int)}
+        \end{itemize}
+        \item Standard-Layoutmanager von \texttt{JFrame}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{BorderLayout}{Aufgabe}
+    \begin{alertblock}{BorderLayout Demo}
+    Implementiert eine simple Fensteranwendung, um das Verhalten des \texttt{BorderLayout} kennen zu lernen. Platziert dazu zunächst jeweils einen \texttt{JButton} in
+    jedem Bereich. 
+    
+    Untersucht, wie sich die Größe und Anordnung der Buttons ändert, wenn ihr eine Größe für die Buttons definiert oder wenn ihr einzelne Bereiche im Layout ungenutzt lasst.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{BoxLayout}{Grundlegendes(Vgl. \cite{orac:boxlayout})}
+    \begin{itemize}
+        \item Ordnet Komponenten entweder vertikal oder horizontal angeordnet
+        \item Dafür zwei Konstanten in der \texttt{BoxLayout} Klasse
+        \begin{itemize}
+            \item \texttt{PAGE_AXIS} -- Vertikale Anordnung (Als eine "`Spalte"')
+            \item \texttt{LINE_AXIS} -- Horizontale Anordnung (Als eine "`Zeile"')
+        \end{itemize}
+        \item Komponenten werden dann gemäß \texttt{ComponentAlignment} platziert (Bspw. Linksbündig/Zentriert/Rechtsbündig)
+        \item Definierte maximale Größe von Komponenten wird im \texttt{BoxLayout} \texit{immer} respektiert
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{BoxLayout}{Aufgabe}
+Entwerft eine Beispielandwendung, in der mehrere Buttons in einem Frame mit dem \texttt{BoxLayout} als Layout Manager. Nutzt folgende Basis um den Layout Manager im \texttt{JFrame()} anzupassen:
+
+\lstset{style=java}
+\begin{lstlisting}
+JFrame frame = new JFrame();
+frame.setSize(300,600);
+frame.setLayout(new BoxLayout(window, BoxLayout.PAGE_AXIS));
+
+/*Buttons hinzufügen*/
+
+frame.setVisible(true);
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{BorderLayout}{}
+\end{frame}
+
+\begin{frame}{GridLayout}{}
+\end{frame}
+
+\begin{frame}{GridBagLayout}{}
+\end{frame}
+
