@@ -1,0 +1,106 @@
+\begin{frame}{Eigene Fenster}{Erstellen von Fenstern}
+    \begin{itemize}
+        \item Unsere bisherigen Fenster haben wir uns in der \texttt{main} zusammengebastelt
+        \item Dies ist in der Regel unpraktikabel
+        \item Code ist nicht wiederverwendbar
+        \item Und ggf. schwierig wartbar
+        \item Angestrebt wird eine Trennung von Darstellung und Logik und Daten
+        \item Daher: Kapselung von GUI in eigene Klasse
+        \begin{itemize}
+            \item Diese erbt von \texttt{JFrame}
+            \item Fenster wird im Konstruktor "`zusammengebaut"'
+            \item Hinzufügen aller Komponenten, Layouten von diesen, setzen von Attributen wie Größe etc.
+            \item In der Main Klasse wird dann lediglich ein Objekt von unserer neuen \texttt{JFrame} Unterklasse erzeugt
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Eigene Komponenten}{Grundlegendes}
+    \begin{itemize}
+        \item Erben vom \texttt{JComponent} Typ
+        \item Lassen sich vielseitig konfigurieren z.B. in:
+        \begin{itemize}
+            \item Aussehen
+            \item Verhalten
+        \end{itemize}
+        \item Nützlich kann es zum Beispiel sein die \texttt{getXxxSize} Methode zu überschreiben, wenn eine Komponente immer eine bestimmte Größe haben soll
+        \item Fokus heute: Zeichnen von eigenen Komponenten
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zeichnen von Komponenten}{Schritte im \texttt{paint()} Prozess}
+    \begin{itemize}
+        \item Jede Komponente besitzt eine \texttt{paint()} Methode
+        \item In dieser wird das Aussehen der Komponente auf den Bildschirm gezeichnet
+        \item \texttt{paint()} ruft drei Methoden (in dieser Reihenfolge) auf:
+        \begin{itemize}
+            \item \texttt{paintComponent(Graphics g)}
+            \item \texttt{paintBorder(Graphics g)}
+            \item \texttt{paintChildren(Graphics g)}
+        \end{itemize}
+        \item In der Regel reicht es aus \texttt{paintComponent()} zu überschreiben
+        \item Wir rufen \texttt{paint()} bzw. \texttt{paintComponent()} \textbf{nie} direkt auf
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zeichnen von Komponenten}{Die \texttt{paint()} Methode}
+    \begin{itemize}
+        \item \texttt{paint()} Wird durch das System automatisch aufgerufen bei zB.:
+        \begin{itemize}
+            \item Verschieben des Fensters/Von Komponenten
+            \item Ändern der Fenstergröße
+            \item Minimieren/Maximieren
+        \end{itemize}
+        \item Wenn programmatisch neu gezeichnet werden muss (Zum beispiel weil sich Daten geändert haben) wird die \texttt{repaint()} Methode aufgerufen
+        \item \texttt{repaint()} akzeptiert Argumente, sodass nur ein bestimmter Bereich neu gezeichnet wird
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Das \texttt{Graphics} Objekt}{Zeichnen von Komponenten}
+    \begin{itemize}
+        \item Den \texttt{paintXXX()} Methoden wird ein Objekt vom Typ \textit{Graphic} übergeben
+        \item Dieses fasst verschiedene Aspekte zum Zeichnen zusammen:
+        \begin{itemize}
+            \item Aktuelle Komponente auf die gezeichnet wird
+            \item Die Aktuelle Farbe
+            \item Die aktuelle Font
+            \item Weitere Aspekte die für die aktuelle Betrachtung nicht von Relevanz sind
+        \end{itemize}
+        \item Die Graphics Klasse bietet einige Funktionen zum Zeichnen von primitiven Formen an
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Das \texttt{Graphics} Objekt}{Zeichenoperationen}
+    \begin{itemize}
+        \item \texttt{drawString} -- Zeichnet einen gegebenen String an der angegebenen Position (Mehrere Überladungen)
+        \item \texttt{drawImage} -- Zeichnet ein Bild an einer bestimmten Stelle (Mehrere Überladungen)
+        \item \texttt{drawArc} -- Zeichnet einen Ellipsenbogen
+        \item \texttt{drawLine} -- Zeichnet eine Linie zwischen zwei Punkten
+        \item \texttt{drawOval} -- Zeichnet ein Oval
+        \item \texttt{drawRect} -- Zeichnet ein Rechteck
+        \item \texttt{drawRoundRect} -- Zeichnet ein abgerundetes Rechteck
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zeichnen von Komponenten}{Weitere nützliche Operationen}
+    \begin{itemize}
+        \item Über \texttt{getWidth()} bzw. \texttt{getHeight()} kann die aktuelle Größe der Komponenten bestimmt werden
+        \item Für viele der \texttt{drawXXX} Methoden existieren analoge \texttt{fillXXX} Methoden
+        \item Aktuelle Zeichenfarbe lässt sich ändern über \texttt{setColor}
+        \item Analog lässt sich \texttt{setFont} verwenden um die Schriftart zu ändern
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Hinweise}{Beim Entwerfen von View-Komponenten}
+    \begin{itemize}
+        \item Die Komponenten sollten nur für die Darstellung verantwortlich sein
+        \item In ihnen werden in der Regel keine Applikationsdaten gespeichert
+        \item Auch die Logik ist in der Regel entkoppelt von der Darstellung
+        \item Man spricht hierbei auch vom \textit{Model-View-Controller (MVC)} Konzept:
+        \begin{itemize}
+            \item Model -- Tatsächlich verwendetes Datenmodell. Speichert die Applikationsdaten (Datenschicht)
+            \item View -- Anzeigen/rendern von Daten. Dient lediglich zur Darstellung (Präsentationsschicht)
+            \item Controller -- Realisiert die Steuerung in Interaktion des Nutzers. Bildet in der Regel die Kopplung zwischen Model und View (Interaktionsschicht)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
