@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11a319cd-413b-4ad5-87cd-0cc4c1ba7940" name="Default Changelist" comment="" />
+    <list default="true" id="11a319cd-413b-4ad5-87cd-0cc4c1ba7940" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Script/handout/01_intro_datentypen.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Script/handout/01_intro_datentypen.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Script/handout/02_generische_klassen_interfaces.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Script/handout/02_generische_klassen_interfaces.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Script/handout/02a_Ergänzung.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Script/handout/02a_Ergänzung.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Script/slides/01_intro_datentypen.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Script/slides/01_intro_datentypen.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Script/slides/02_generische_klassen_interfaces.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Script/slides/02_generische_klassen_interfaces.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Script/slides/02a_Ergänzung.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Script/slides/02a_Ergänzung.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Script/slides/03_algorithmen.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../Script/slides/03_algorithmen.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Script/texfiles/03_algorithmen/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../Script/texfiles/03_algorithmen/main.tex" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/dhbw/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+            <state relative-caret-position="255">
+              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -26,10 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/dhbw/GenericArrayWrapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
+            <state relative-caret-position="3077">
               <caret line="189" column="38" selection-start-line="189" selection-start-column="38" selection-end-line="189" selection-end-column="38" />
             </state>
           </provider>
@@ -57,8 +67,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/dhbw/Main.java" />
         <option value="$PROJECT_DIR$/src/com/dhbw/GenericArrayWrapper.java" />
+        <option value="$PROJECT_DIR$/src/com/dhbw/Main.java" />
       </list>
     </option>
   </component>
@@ -73,6 +83,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -99,14 +110,13 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../generic_classes_eclipse" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -156,6 +166,8 @@
       <workItem from="1554466143155" duration="2777000" />
       <workItem from="1554469258044" duration="242000" />
       <workItem from="1554469599981" duration="32000" />
+      <workItem from="1557147273228" duration="667000" />
+      <workItem from="1557317185984" duration="71000" />
     </task>
     <task id="LOCAL-00001" summary="-Added stuff in main for demonstration of classes">
       <created>1554469404646</created>
@@ -171,11 +183,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554469483814</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="-Minor">
+      <created>1557147340484</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1557147340484</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3051000" />
+    <option name="totallyTimeSpent" value="3789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
@@ -185,7 +204,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.25699168" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.26455027" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32980132" />
@@ -250,11 +269,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/dhbw/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+        <state relative-caret-position="255">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dhbw/GenericArrayWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3077">
+          <caret line="189" column="38" selection-start-line="189" selection-start-column="38" selection-end-line="189" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -262,13 +288,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dhbw/GenericArrayWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="189" column="38" selection-start-line="189" selection-start-column="38" selection-end-line="189" selection-end-column="38" />
         </state>
       </provider>
     </entry>
