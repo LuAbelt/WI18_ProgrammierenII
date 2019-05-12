@@ -1,0 +1,64 @@
+\begin{frame}{Adapterklassen}{Motivation}
+    \begin{itemize}
+        \item \texttt{ActionListener} Implementierung trivial, da nur auf ein Event reagiert wird
+        \item Die meisten EventListener reagieren aber auf eine Vielzahl von Events
+        \item Beispiel \texttt{WindowListener}:
+        \begin{itemize}
+            \item \texttt{windowClosed}
+            \item \texttt{windowClosing}
+            \item \texttt{windowDeiconified}
+            \item \texttt{windowIconified}
+            \item \texttt{windowActivated}
+            \item \texttt{windowDeactivated}
+            \item \texttt{windowOpended}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Adapterklassen}{Motivation}
+    \begin{itemize}
+        \item In der Regel möchte man nur auf einzelne bzw. wenige Events reagieren
+        \item Interfaces haben jedoch keine Default Implementierung
+        \begin{itemize}
+            \item Eigene Listener \textit{müssen} diese also implementieren
+            \item Wenn auch nur als leere Funktionen
+        \end{itemize}
+        \item Führt zu erhöhtem Implementierungsaufwand
+        \item Beispiel: WindowListener, der vor dem Schließen einen Bestätigungsdialog zeigt
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Codebeispiel}{WindowListener (Siehe \cite{ullenboom2018java} S. 1090)}
+\lstset{style=java}
+\begin{lstlisting}
+public class MyWindowListener implements WindowListener {
+  @Override
+  public void windowClosing(WindowEvent event){
+    int opt = JOptionPane.showConfirmDialog(null, "Wirklich beenden?");
+    if(opt==JOptionPane.OK_OPTION){
+      System.exit(0);
+    }
+  }
+  
+  @Override
+  public void windowClosed(WindowEvent event) {}
+  @Override
+  public void windowIconified(WindowEvent event) {}
+  /* Weitere leere Methoden */
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Adapterklassen}{}
+    \begin{itemize}
+        \item Java stellt hier Hilfe bereit
+        \item Die \textit{Adapterklassen}
+        \item Diese implementieren alle Methoden als leere Funktionen
+        \item Existieren eigentlich für alle Listener Interfaces, zB.:
+        \begin{itemize}
+            \item \texttt{WindowAdapter}
+            \item \texttt{KeyAdapter}
+            \item \texttt{MouseAdapter}
+        \end{itemize}
+    \end{itemize}
+\end{frame}

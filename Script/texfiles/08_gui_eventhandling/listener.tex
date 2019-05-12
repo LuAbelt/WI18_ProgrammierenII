@@ -76,7 +76,7 @@ public class MyButton extends JButton implements ActionListener {
   
   @Override
   public void actionPerformed(ActionEvent e) {
-    setText("Clicked!");
+    setText("Handled by myself!");
   }
 }
 \end{lstlisting}
@@ -121,7 +121,7 @@ JButton btn = new JButton();
 btn.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
-      button.setText("Changed by anonymous class");
+      btn.setText("Handled by anonymous class");
     }
   });
 \end{lstlisting}
@@ -142,4 +142,73 @@ btn.addActionListener(new ActionListener() {
         \end{itemize}
         \item Häufig verwendet in Verbindung mit \textit{Collections}
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Eventhandling}{Mit Lambda Expressions}
+    \begin{itemize}
+        \item Lambda Ausdrücke können \textit{funktionale Interfaces} ersetzen
+        \item In diesem Fall wird statt einer Klasse ein Lambda Ausdruck übergeben
+        \item Dadurch teilweise auch für Listener nutzbar
+        \item Beispielsweise sind funktionale Interfaces:
+        \begin{itemize}
+            \item \texttt{ActionListener}
+            \item \texttt{ChangeListener}
+        \end{itemize}
+        \item Vor- und Nachteile im Grunde wie bei anonymen Klassen
+        \item Nur weniger Code als bei diesen
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Codebeispiel}{Für ein Lambda Eventhandler}
+\lstset{style=java}
+\begin{lstlisting}
+JButton btn = new JButton();
+btn.addActionListener( e -> btn.setText("Handled by Lambda Expression"));
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Listenerklassen}{Getrennt von den Komponenten}
+    \begin{itemize}
+        \item Häufig werden Listener als eigene Klassen implementiert
+        \item Neue Klasse implementiert dann das gewünschte Eventhandling-Interface
+        \item Vorteile:
+        \begin{itemize}
+            \item Listener sind wiederverwendbar
+            \item Logische Trennung von Model und View
+        \end{itemize}
+        \item Nachteile:
+        \begin{itemize}
+            \item Mehr Klassen im Projekt $\rightarrow$ Übersichtlichkeit
+            \item Wenn die Komponente manipuliert werden soll (z.B. \texttt{setText}) so muss eine Referenz auf diese gespeichert werden
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Implementierung}{Der Listener Klasse}
+\lstset{style=java}
+\begin{lstlisting}
+public class MyListener implements ActionListener{
+  private JButton buttonRef;
+  
+  public MyListener(JButton btn){
+    buttonRef = btn;
+  }
+  
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    buttonRef.setText("Handled by external class!");
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Implementierung}{Verwenden des Listeners}
+\lstset{style=java}
+\begin{lstlisting}
+/* */
+JButton btn = new JButton();
+MyListener listener = new MyListener(btn);
+btn.addActionListener(listener);
+/* */
+\end{lstlisting}
 \end{frame}
