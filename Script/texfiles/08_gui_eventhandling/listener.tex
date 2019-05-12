@@ -1,0 +1,145 @@
+\begin{frame}{Eventhandling}{Grundlagen für Java}
+    \begin{itemize} 
+        \item Jede Komponente kann Ereignisse auslösen
+        \item Auf diese kann reagiert werden
+        \item Dafür müssen sogenannte \textit{Event Listener} implementiert werden
+        \item Diese Registrieren sich dann auf die Event Auslöser ("`event sources"' - Also die einzelnen Komponenten)
+        \item Ein Event Listener kann auf beliebig viele Auslöser registriert werden
+        \item Für einen Auslöser können beliebig viele Listener registriert werden
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Ablauf}{Beim Auslösen von Events (Vgl. \cite{ullenmboom2018} S. 806f)}
+    \begin{itemize}
+        \item Bei Auslösen des Events werden von der Komponente die registrierten Listener "`benachrichtigt"'
+        \item Diese führen dann ihre implementierten Aktionen aus
+        \item Der Mechanismus nutzt also das \textit{Delegate Entwurfsmuster}
+        \item Swing stellt einige \texttt{EventListener} Interfaces bereit, unter anderem:
+        \begin{itemize}
+            \item \texttt{ActionListener} -- Aktivieren einer Schaltfläche bzw. Menüs (z.B. Klicken eines Buttons)
+            \item \texttt{WindowListener} -- Reagiert auf Änderungen des Fensters
+            \item \texttt{MouseListener} -- Reagiert auf Mausklicks
+            \item \texttt{MouseMotionListener} -- Reagiert auf Bewegungen der Maus
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Registrieren}{Von Event Listenern}
+    \begin{itemize}
+        \item Je nach Komponente werden ggf. nicht alle Events unterstützt
+        \item Einige werden jedoch von allen unterstützt
+        \item Um einen neuen Listener wird auf der Komponente eine Methode aufgerufen:
+        \begin{itemize}
+            \item \texttt{addXXXListener(XXXListener l)} -- "`XXX"' zu ersetzen durch den Eventtyp (Bspw. "`Action"', "`Mouse"' etc.)
+        \end{itemize}
+        \item Zum Entfernen existiert analog eine Methode zum Entfernen:
+        \begin{itemize}
+            \item \texttt{removeXXXListener(XXXListener l)}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Implementieren}{Von Event Listener(Vgl. \cite{ullenboom2014java} S. 1086f)}
+    \begin{itemize}
+        \item Für die Implementierung der Interfaces gibt es verschiedene Möglichkeiten:
+        \begin{itemize}
+            \item Die Komponente implementiert selbst das Interface und ist sein eigener Listener
+            \item Listener Interface wird durch eine externe Klasse realisiert
+            \item Listener wird über eine interne Anonyme Klasse implementiert
+            \item Listener wird als \textit{Lambda Ausdruck} definiert
+        \end{itemize}
+        \item Alle Methoden haben eigene Vor- und Nachteile
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Implementierung}{Direkt in Komponente}
+    \begin{itemize}
+        \item Die erweiterte Klasse implementiert die benötigten Interfaces selbst
+        \item Beispielsweise könnte eine eigene Unterklasse von \texttt{JButton} auch direkt das \texttt{ActionListener}
+        \item Komponente setzt sich dann selbst als Listener
+        \begin{itemize}
+            \item Durch Übergeben von \texttt{this} in der \texttt{addXXXListener} Methode
+            \item Kann bspw. automatisch in definiertem Konstruktor passieren
+        \end{itemize}
+        \item Nützlich, wenn zum Beispiel ein Default-Verhalten für eine Komponente definiert werden soll
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Codebeispiel}{Von Button mit eigenem Listener}
+\lstset{style=java}
+\begin{lstlisting}
+public class MyButton extends JButton implements ActionListener {
+  public MyButton(){
+    super();
+    addActionListener(this);
+  }
+  
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    setText("Clicked!");
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Anonyme Klassen}{Begriffsklärung}
+    \begin{itemize}
+        \item Werkzeug um eine Klasse gleichzeitig zu deklarieren und zu definieren
+        \item Klasse wird innerhalb von Methoden quasi "`on-the-fly"' definiert
+        \item Realisieren meist die Implementierung eines bestimmten Interfaces bzw. einer speziellen Unterklasse
+        \item Vergleichbar mit lokalen Klassen $\rightarrow$ Jedoch ohne Namen
+        \item Verwendung: Wenn die spezifische Klasse nur einmal benötigt wird
+        \item Syntax: Ähnlich wie ein normaler Konstruktor:
+        \begin{itemize}
+            \item \texttt{new SomeClass()\{ /* Klassendefinition */\};}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Anonyme Klassen}{Als Listener}
+    \begin{itemize}
+        \item Anonyme Klasse wird bei Aufruf der \texttt{addXXXListener()} Methode deklariert
+        \item Und zwar als Übergabeparameter
+        \item Benötigte Methoden des entsprechenden Listeners werden dann überschrieben
+        \item Vorteil gegenüber der direkten Definition in der Komponenten:
+        \begin{itemize}
+            \item Es muss keine eigene Komponenten-Klasse geschrieben werden
+            \item Anonyme Klassen können für Standard-Komponenten erstellt werden
+        \end{itemize}
+        \item Nachteile von anonymen Listenern:
+        \begin{itemize}
+            \item Nicht direkt wiederverwendbar für andere Komponenten
+            \item Entfernen des Listeners ist nicht trivial
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Anonyme Listener}{Codebeispiel}
+\lstset{style=java}
+\begin{lstlisting}
+JButton btn = new JButton();
+btn.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      button.setText("Changed by anonymous class");
+    }
+  });
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Lambda Expressions}{Begriffsklärung}
+    \begin{itemize}
+        \item Bildet zum Teil funktionale Programmierung in Java ab
+        \item Lambda Ausdrücke sind im Grunde Funktionen
+        \item ...die jedoch zu keiner Klasse gehören
+        \item Lambda Ausdrücke können wie Objekte zwischen Klassen und Methoden ausgetauscht werden
+        \item Syntax:
+        \begin{itemize}
+            \item \texttt{ (Argumente) -> \{ /* Operationen */ \}}
+            \item \texttt{ (int x, int y) -> x+y}
+            \item \texttt{ () -> 42 }
+            \item \texttt{ (String s) -> \{ System.out.println(s); \}}
+        \end{itemize}
+        \item Häufig verwendet in Verbindung mit \textit{Collections}
+    \end{itemize}
+\end{frame}
