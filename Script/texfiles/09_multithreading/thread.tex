@@ -1,0 +1,106 @@
+\begin{frame}{Thread Klasse}{Überblick}
+    \begin{itemize}
+        \item Neue Threads werden über die \texttt{Thread} Klasse erzeugt und verwaltet
+        \item In der Regel greifen diese direkt auf die Thread Funktionen des Betriebssystems zu
+        \begin{itemize}
+            \item "`Native Threads"'
+        \end{itemize}
+        \item JVM Spezifikation schreibt jedoch nicht vor, ob im Hintergrund native Threads genutzt werden oder nicht
+        \item Java garantiert nur, dass die Ausführung der Thread Implementierung korrekt und konsistent funktioniert
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Thread Klasse}{Grundlegende Methoden}
+    \begin{itemize}
+        \item \texttt{Thread} verfügt über zwei grundlegende Methoden:
+        \begin{itemize}
+            \item \texttt{run()} -- Diese Methode wird nebenläufig ausgeführt
+            \item \texttt{start()} -- Startet den Thread und führt die \texttt{run()} Methode nebenläufig aus
+        \end{itemize}
+        \item \textbf{Achtung:} Zur nebenläufigen Ausführung muss \texttt{start()} aufgerufen werden. Wird \texttt{run()} direkt aufgerufen, dann wird der Code zwar auch ausgeführt, jedoch nicht nebenläufig!
+        \item Eine Möglichkeit um nebenläufigen Code auszuführen ist es, eine eigene Unterklasse von \texttt{Thread} zu bilden, die die \texttt{run()} Methode überschreibt
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Thread}{Eigene Unterklasse}
+\lstset{style=java}
+\begin{lstlisting}
+public class MyThread extends Thread{
+  @Override
+  public void run(){
+    for(int i=0;i<100;i++){
+      System.out.println(i);
+    }
+  }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Thread Klasse}{Eigene Unterklasse}
+    \begin{itemize}
+        \item Bilden einer Subklasse von Thread ist in der Regel nicht sinnvoll
+        \item Da in der Regel nur das \texttt{run} Verhalten definiert werden soll
+        \item Die eigentliche Art und Weise der Nebenläufigen Bearbeitung wird nicht verändert
+        \item Grundsatz beim Bilden von Unterklassen: In der Regel nur, wenn die grundlegende Funktionsweise spezifiziert werden soll
+        \item Weiterer Nachteil: Vererbung ist schon "`aufgebraucht"'
+        \item Daher bietet Java für Nebenläufigkeit auch ein Interface
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Runnable Interface}{Grundlegendes}
+    \begin{itemize}
+        \item Das \texttt{Runnable} Interface kann auch genutzt werden um nebenläufiges Verhalten abzubilden
+        \item \texttt{Runnable} ist ein \textit{funktionales Interface}
+        \begin{itemize}
+            \item \texttt{void run()} -- Spezifiziert den nebenläufig auszuführenden Code
+        \end{itemize}
+        \item Für \texttt{Thread} gibt es einen Konstruktor, der als Parameter ein \texttt{Runnable} akzeptiert:
+        \begin{itemize}
+            \item \texttt{Thread(Runnable r)} -- Das \texttt{Runnable} Objekt definiert, welcher Code nebenläufig ausgeführt werden soll
+            \item Thread muss weiterhin über \texttt{start()} gestartet werden
+        \end{itemize}
+        \item Da es sich bei \texttt{Runnable} um ein funktionales Interface handelt können auch Lambda Expressions verwendet werden
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Runnable}{Als eigene Klasse}
+\lstset{style=java}
+\begin{lstlisting}
+public class MyRunnable implements Runnable{
+  @Override
+  public void run(){
+    for(int i=0;i<100;i++){
+      System.out.println(i);
+    }
+  }
+}
+//Verwendung:
+Thread t = new Thread(new MyRunnable());
+t.start();
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Runnable}{Als Lambda Expression}
+\lstset{style=java}
+\begin{lstlisting}
+Thread t = new Thread( () -> {
+    for(int i=0;i<100;i++){
+      System.out.println(i);
+    }
+  };)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Runnable}{Aufgabe}
+    \begin{alertblock}{}
+    Implementiert zwei \texttt{Runnable} Klassen, die (verschiedene) Daten auf der Konsole ausgeben. Erzeugt dann in eurer \texttt{main()} Methode jeweils einen Thread zum Ausführen der Runnables und startet diese direkt nacheinander. 
+    
+    Was für eine Ausgabe erwartet ihr auf der Konsole?
+    
+    Inwiefern unterscheidet sich die tatsächliche Ausgabe von Eurer Erwartung?
+    
+    Beobachtet das Verhalten der Ausgaben bei mehrfacher Ausführung des Programms.
+    
+    \textit{Hinweis:} Für eine bessere Beobachtung ist es empfehlenswert, die Daten mehrfach über eine Schleife (>100 Iterationen) ausgeben zu lassen
+    \end{alertblock}
+\end{frame}
