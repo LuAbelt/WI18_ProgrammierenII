@@ -1,4 +1,4 @@
-\begin{frame}{Thread Klasse}{Überblick}
+\begin{frame}{Thread Klasse}{Überblick (Vgl. \cite{ullenboom2018java} S. 948f)}
     \begin{itemize}
         \item Neue Threads werden über die \texttt{Thread} Klasse erzeugt und verwaltet
         \item In der Regel greifen diese direkt auf die Thread Funktionen des Betriebssystems zu
@@ -10,7 +10,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Thread Klasse}{Grundlegende Methoden}
+\begin{frame}{Thread Klasse}{Grundlegende Methoden (Vgl \cite{ullenboom2014java} S. 177ff)}
     \begin{itemize}
         \item \texttt{Thread} verfügt über zwei grundlegende Methoden:
         \begin{itemize}
@@ -22,7 +22,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Thread}{Eigene Unterklasse}
+\begin{frame}[fragile]{Thread}{Eigene Unterklasse (Vgl. \cite{ullenboom2014java} S. 180)}
 \lstset{style=java}
 \begin{lstlisting}
 public class MyThread extends Thread{
@@ -36,7 +36,7 @@ public class MyThread extends Thread{
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Thread Klasse}{Eigene Unterklasse}
+\begin{frame}{Thread Klasse}{Eigene Unterklasse (Vgl. \cite{ullenboom2014java} S. 182)}
     \begin{itemize}
         \item Bilden einer Subklasse von Thread ist in der Regel nicht sinnvoll
         \item Da in der Regel nur das \texttt{run} Verhalten definiert werden soll
@@ -47,7 +47,7 @@ public class MyThread extends Thread{
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Runnable Interface}{Grundlegendes}
+\begin{frame}{Runnable Interface}{Grundlegendes(Vgl. \cite{ullenboom2014java} S. 177f)}
     \begin{itemize}
         \item Das \texttt{Runnable} Interface kann auch genutzt werden um nebenläufiges Verhalten abzubilden
         \item \texttt{Runnable} ist ein \textit{funktionales Interface}

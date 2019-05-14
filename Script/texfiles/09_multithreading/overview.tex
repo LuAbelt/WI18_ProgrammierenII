@@ -69,9 +69,9 @@
 
 \begin{frame}{Nebenläufigkeit}{Beispiel für Geschwindigkeitsgewinn (Vgl. \cite{ullenboom2018java} S. 949ff)}
     \begin{itemize}
-        \item Während auf das Fertigstellen einer Ressource gewartet wird, können Aufgaben bearbeitet werden die andere Ressourcen benötigen wie zum Beispiel:
+        \item Während auf das Fertigstellen einer Ressource gewartet wird, können Aufgaben bearbeitet werden die andere Ressourcen benötigen:
         \begin{itemize}
-            \item Während der Prozessor ausgelastet ist die GUI zu erstellen kann eine Datei auf der Festplatte geöffnet werden $\rightarrow$ Dateioperationen benötigen wenig Prozessorleistung und sind eher durch Festplattengeschwindigkeit begrenzt
+            \item Während der Prozessor ausgelastet ist die GUI zu erstellen kann eine Datei auf der Festplatte geöffnet werden $\rightarrow$ Dateioperationen benötigen wenig Prozessorleistung, eher durch Festplattengeschwindigkeit begrenzt
             \item Während Daten z.B. aus einer Datenbank abgerufen werden wird hauptsächlich die Netzwerkressource belastet $\rightarrow$ Prozessorleistung kann ggf. anders genutzt werden
             \item Parallel zu einer Prozessorlastigen Analyse können bereits analysierte Daten in eine Datei geschrieben werden
         \end{itemize}

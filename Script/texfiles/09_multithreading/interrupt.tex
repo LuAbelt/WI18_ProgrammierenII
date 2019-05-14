@@ -1,4 +1,4 @@
-\begin{frame}{Unterbrechungen}{In Threads}
+\begin{frame}{Unterbrechungen}{In Threads (Vgl. \cite{ullenboom2014java} S. 184f)}
     \begin{itemize}
         \item Threads bieten diverse Möglichkeiten zur Unterbrechung
         \item Simpelste: Die \texttt{sleep()} Methode
@@ -6,13 +6,13 @@
             \item Dieser wird (als \texttt{int}) die Zeit in Millisekunden übergeben, die pausiert werden soll
             \item Ist \textbf{nur} statisch vorhanden $\rightarrow$ Nur der eigene Thread lässt sich pausieren
             \item Kann eine \texttt{InterruptedException} auslösen, die über try-catch abgefangen werden muss
-            \item Gleiche Funktionalität kann auch mit der \texttt{TimeUnit} Klasse erreicht werden $\rigtharrow$ Dort eingängliche Definition der Zeit die gewartet wird
+            \item Gleiche Funktionalität kann auch mit der \texttt{TimeUnit} Klasse erreicht werden $\rightarrow$ Dort eingängliche Definition der Zeit die gewartet wird
         \end{itemize}
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{\texttt{sleep()}{}
-    \lstset{style=java}
+\begin{frame}[fragile]{\texttt{sleep()}}{Codebeispiel}
+\lstset{style=java}
 \begin{lstlisting}
 try {
   Thread.sleep(5000);
@@ -24,7 +24,7 @@ try {
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Verzicht}{Von Rechenzeit} 
+\begin{frame}{Verzicht}{Von Rechenzeit (Vgl. \cite{ullenboom2014java} S. 186f)} 
     \begin{itemize}
         \item Ein Thread kann von sich aus auf Rechenzeit verzichten
         \item Durch Aufruf von \texttt{Thread.yield()};
@@ -35,7 +35,7 @@ try {
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Unterbrechen}{Über Interrupt}
+\begin{frame}{Unterbrechen}{Über Interrupt (Vgl. \cite{ullenboom2014java} S. 189ff)}
     \begin{itemize}
         \item Häufig laufen in nebenläufigen Threads Anwendungen in Endlosschleifen um dauerhaft verfügbar zu sein
         \begin{itemize}
@@ -54,10 +54,8 @@ try {
 \lstset{style=java}
 \begin{lstlisting}
 Thread t = new Thread(()->{
-  System.out.println("Start");
   while(!isInterrupted()){
     System.out.println("Running...");
-  
     try{
       Thread.sleep(500);
     } catch (InterruptedException e){
@@ -73,7 +71,7 @@ t.interrupt();
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Daemons}{Speziell für Endlosthreads}
+\begin{frame}{Daemons}{Speziell für Endlosthreads (Vgl. \cite{ullenboom2014java} S. 187f)}
     \begin{itemize}
         \item Für "`Endlosthreads"' im Hintergrund gibt es einen speziellen Modi
         \item Man kann den Thread als \textit{Daemon} markieren
@@ -83,7 +81,7 @@ t.interrupt();
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Rendezvous}{Zusammenführen von Threads}
+\begin{frame}{Rendezvous}{Zusammenführen von Threads (Vgl. \cite{ullenboom2014java} S. 194f)}
     \begin{itemize}
         \item Threads werden unter anderem genutzt, um nebenläufige Berechnungen durchzuführen
         \item Die Ergebnisse werden an späterer Stelle benötigt
@@ -111,7 +109,7 @@ System.out.println(t.result);
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Rendezvous}{TÜberladungen)
+\begin{frame}{Rendezvous}{Überladungen}
     \begin{itemize}
         \item Über verschiedene Überladungen lässt sich eine maximale Wartezeit definieren:
         \begin{itemize}
