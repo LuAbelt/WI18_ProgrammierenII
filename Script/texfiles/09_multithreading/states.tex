@@ -1,0 +1,67 @@
+\begin{frame}{Eigenschaften}{Von Threads}
+    \begin{itemize}
+        \item Beispiele für Eigenschaften von Threads:
+        \begin{itemize}
+            \item Priorität
+            \item Zustand
+            \item Name
+        \end{itemize}
+        \item Name lässt sich festlegen im Konstruktor:
+        \begin{itemize}
+            \item \texttt{Thread(Runnable r, String name)}
+            \item \texttt{Thread(String name)}
+        \end{itemize}
+        \item Oder über die entsprechende Funktion:
+        \begin{itemize}
+            \item \texttt{void setName(String name)}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Eigenschaften}{Zugriff auf die Eigenschaften}
+    \begin{itemize}
+        \item Analog gibt es auch eine \texttt{getName()} Funktion
+        \item \textit{Erinnerung:} Die Methoden gehören zu der \texttt{Thread} Klasse!
+        \item Nicht direkt in \texttt{Runnable} abrufbar!
+        \item Jedoch lässt sich der Thread in dem gerade gearbeitet wird zurückgeben:
+        \begin{itemize}
+            \item \texttt{static Thread currentThread()}
+            \item Aufruf: \texttt{Thread t = Thread.currentThread()}
+        \end{itemize}
+        \item Wenn der aktuelle Thread mehrfach benutzt wird (z.B. in einer Schleife) sollte dieser vor der Schleife abgerufen und zwischengespeichert werden
+        \begin{itemize}
+            \item \texttt{currentThread()} Aufruf ist "`teuer"'
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zustände}{Von Threads}
+    \begin{itemize}
+        \item Lebenszyklus des Threads besteht aus verschiedenen Phasen:
+        \begin{itemize}
+            \item \textit{Nicht erzeugt}: Der Thread wurde schon definiert (über \texttt{new Thread(...)}), aber noch nicht gestartet
+            \item \textit{Laufend}: Der Thread wurde gestartet (über die \texttt{start()} Methode)und wird aktuell durch den Prozessor bearbeitet
+            \item \textit{Nicht Laufend}: Der Thread wurde gestartet (über die \texttt{start()} Methode), wird aber aktuell nicht bearbeitet
+            \item \textit{Wartend}: Der Thread wartet auf ein bestimmtes Ereignis (Abschluss einer anderen Operation, Freiwerden einer Ressource...)
+            \item \textit{Beendet}: Der Thread wurde fertig bearbeitet
+        \end{itemize}
+        \item Java bildet das über die \texttt{Thread.State} Enumeration ab
+        \item Abrufbar über die \texttt{getState()} Methode
+        \item Methode \texttt{isAlive()} gibt zurück, ob der Thread noch arbeitet oder beendet ist
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zustände}{In \texttt{Thread.State}}
+    \begin{tabular}{|c|p{9cm}|}
+    \hline
+    \textbf{Zustand}&\textbf{Erklärung}\\
+    \hline
+    \hline
+    \texttt{NEW} & Thread ist erzeugt, aber noch nicht gestartet\\\hline
+    \texttt{RUNNABLE} & Thread wurde gestartet und läuft in der JVM\\\hline
+    \texttt{BLOCKED} & Thread wartet auf das freiwerden eines bestimmten Locks um beispielsweise einen synchronisierten Codeabschnitt zu betreten\\\hline
+    \texttt{WAITING} & Wartet etwa auf ein \texttt{notify()}\\\hline
+    \texttt{TIMED\_WAITING} & Zeitgesteuertes Warten beispielsweise durch \texttt{sleep()}\\\hline
+    \texttt{TERMINATED} & Thread wurde beendet\\\hline
+    \end{tabular}
+\end{frame}

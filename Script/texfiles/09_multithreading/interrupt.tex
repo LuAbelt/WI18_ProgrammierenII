@@ -1,0 +1,123 @@
+\begin{frame}{Unterbrechungen}{In Threads}
+    \begin{itemize}
+        \item Threads bieten diverse Möglichkeiten zur Unterbrechung
+        \item Simpelste: Die \texttt{sleep()} Methode
+        \begin{itemize}
+            \item Dieser wird (als \texttt{int}) die Zeit in Millisekunden übergeben, die pausiert werden soll
+            \item Ist \textbf{nur} statisch vorhanden $\rightarrow$ Nur der eigene Thread lässt sich pausieren
+            \item Kann eine \texttt{InterruptedException} auslösen, die über try-catch abgefangen werden muss
+            \item Gleiche Funktionalität kann auch mit der \texttt{TimeUnit} Klasse erreicht werden $\rigtharrow$ Dort eingängliche Definition der Zeit die gewartet wird
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{sleep()}{}
+    \lstset{style=java}
+\begin{lstlisting}
+try {
+  Thread.sleep(5000);
+} catch(InterruptedException e) {}
+//Alternativ:
+try {
+  TimeUnit.SECOND.sleep(5);
+} catch(InterruptedException e) {}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Verzicht}{Von Rechenzeit} 
+    \begin{itemize}
+        \item Ein Thread kann von sich aus auf Rechenzeit verzichten
+        \item Durch Aufruf von \texttt{Thread.yield()};
+        \item Signalisiert dem Betriebssystem, dass auf weitere ggf. bereitgestellte Zeit verzichtet wird und direkt auf einen anderen Prozess geswitched werden kann
+        \item \textbf{Nicht deterministisch} -- Wann der Thread wieder aufgenommen wird ist unklar
+        \item Daher mit Bedacht zu verwenden
+        \item Oft nur für sehr spezielle Anwendungsfälle wirklich praktikabel
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Unterbrechen}{Über Interrupt}
+    \begin{itemize}
+        \item Häufig laufen in nebenläufigen Threads Anwendungen in Endlosschleifen um dauerhaft verfügbar zu sein
+        \begin{itemize}
+            \item Beispielsweise Server, die auf ankommende Verbindungen warten
+            \item Durch die Endlosschleife würden diese auf natürliche Weise nicht beenden
+        \end{itemize}
+        \item Deshalb kann von außen an den Thread eine \textit{Anfrage auf Unterbrechung} gestellt werden
+        \item Über die Methode \texttt{interrupt()}
+        \item Anders als der Name ggf. vermuten lässt wird der Thread nicht direkt unterbrochen
+        \item Es wird lediglich ein Flag im Thread gesetzt, die dieser eigenständig überprüfen muss
+        \item Thread kann selbst über \texttt{isInterrupted()} prüfen, ob er unterbrochen wurde
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Interrupt}{Codebeispiel}
+\lstset{style=java}
+\begin{lstlisting}
+Thread t = new Thread(()->{
+  System.out.println("Start");
+  while(!isInterrupted()){
+    System.out.println("Running...");
+  
+    try{
+      Thread.sleep(500);
+    } catch (InterruptedException e){
+      interrupt();
+      System.out.println("Interrupt caught while sleep()");
+    }
+  }
+  System.out.println("Ende");
+});
+t.start();
+Thread.sleep(2000);
+t.interrupt();
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Daemons}{Speziell für Endlosthreads}
+    \begin{itemize}
+        \item Für "`Endlosthreads"' im Hintergrund gibt es einen speziellen Modi
+        \item Man kann den Thread als \textit{Daemon} markieren
+        \item Das bedeutet: Der Thread wird solange ausgeführt, solange noch andere Threads (die keine Daemons sind) laufen
+        \item Sollten nur noch Daemon Threads laufen, so werden diese alle beendet
+        \item Markierung als Daemon über die Methode \texttt{setDaemon(boolean)}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Rendezvous}{Zusammenführen von Threads}
+    \begin{itemize}
+        \item Threads werden unter anderem genutzt, um nebenläufige Berechnungen durchzuführen
+        \item Die Ergebnisse werden an späterer Stelle benötigt
+        \item Zum Verwendungszeitpunkt muss sichergestellt sein, dass die Berechnung abgeschlossen ist
+        \item Dafür wird die Methode \texttt{join()} genutzt
+        \item Diese blockiert die Ausführung so lange, bis der entsprechende Thread beendet ist (Die \texttt{run()} Methode beendet wurde)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{join()}}{Codebeispiel}
+\lstset{style=java}
+\begin{lstlisting}
+public class JoinThread extends Thread{
+  public int result =0;
+  @Override
+  public void run(){
+    result=1;
+  }
+}
+//Anwendung
+JoinThread t = new JoinThread();
+t.start();
+//t.join();
+System.out.println(t.result);
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Rendezvous}{TÜberladungen)
+    \begin{itemize}
+        \item Über verschiedene Überladungen lässt sich eine maximale Wartezeit definieren:
+        \begin{itemize}
+            \item \texttt{join(long millis)} -- Definiert eine Wartezeit in Millisekunden
+            \item \texttt{join(long millis, long nanos)} -- Definiert eine Wartezeit in Milli- und Nanosekunden
+        \end{itemize}
+        \item Nach \texttt{join} Aufruf mit Timeout kann über \texttt{isAlive()} geprüft werden, ob die Berechnung wirklich abgeschlossen wurde
+    \end{itemize}
+\end{frame}
