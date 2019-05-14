@@ -1,0 +1,96 @@
+\begin{frame}{Executor}{Grundlegendes (Vgl. \cite{ullenboom2014java} S. 197f)}
+    \begin{itemize}
+        \item Bisher haben wir die Threads immer direkt erzeugt
+        \item Dies hat jedoch einige Nachteile:
+        \begin{itemize}
+            \item Bei erzeugen muss der Ausführbare Code (Meist als \texttt{Runnable}) übergeben werden $\rightarrow$ Erzeugen eines Threads und späteres festlegen des nebenläufigen Codes nicht möglich
+            \item Jeder Thread kann nur einmal ausgeführt werden. Wiederholtes starten führt zu einem Fehler
+            \item Thread wird immer sofort nach \texttt{start()} ausgeführt - Dies ist ggf. nicht zwangsweise gewollt
+            \item Gesamtanzahl der Threads lässt sich nur schwer begrenzen
+        \end{itemize}
+        \item Hilfreich wäre eine Abstraktion, die die \textit{Runnables} von der technischen Umsetzung trennt
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Executor}{Vorteile}
+    \begin{itemize}
+        \item Bietet eine Methode um beliebige \textit{Runnables} nebenläufig auszuführen:
+        \begin{itemize}
+            \item \texttt{submit(Runnable r)}
+        \end{itemize}
+        \item Java bietet verschiedene Standard-Executor:
+        \begin{itemize}
+            \item \texttt{ThreadPoolExecutor} -- Nutzt eine Sammlung von Threads (\textit{Thread-Pool}) die zur Ausführung wiederverwendet werden können
+            \item \texttt{ScheduledThreadPoolExecutor} -- Erweiterung des normalen Pool Executors. Erlaubt die Ausführung zu einem bestimmten Zeitpunkt oder wiederholte Ausführung
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Executor}{Erzeugung}
+    \begin{itemize}
+        \item Werden am einfachsten erzeugt über die entsprechenden statischen Methoden:
+        \begin{itemize}
+            \item \texttt{static ExecutorService newCachedThreadPool()} -- Liefert einen Thread Pool mit wachsender Größe
+            \item \texttt{static ExecutorService newFixedThreadPool(int nThreads)} -- Liefert einen Thread Pool mit fest definierter Größe
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Thread-Pools}{}
+    \begin{itemize}
+        \item Großer Vorteil der Executors: Thread Pools
+        \item Das erzeugen neuer Threads ist sehr aufwändig
+        \item Threads in Thread Pools können wiederverwendet werden
+        \item Dadurch muss nicht für jedes \texttt{Runnable} ein neuer Thread erzeugt werden
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Callable}{Rückgabewerte von Nebenläufigkeiten}
+    \begin{itemize}
+        \item \texttt{Runnable} kann keinen Wert zurückgeben -- Für Nebenläufige Berechnungen äußerst ungünstig
+        \item Daher gibt es weiterhin das (generische) \texttt{Callable<V>}
+        \item Auch wieder ein \textit{funktionales Interface}:
+        \begin{itemize}
+            \item \texttt{V call()} -- Äquivalent zur run Methode im Runnable, jedoch jetzt mit Rückgabewert
+        \end{itemize}
+        \item Auch wieder über Lambda Funktionen definierbar
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Callable}{Als eigene Klasse}
+\lstset{style=java}
+\begin{lstlisting}
+public class MyCallable implements Callable<Integer>{
+  @Override
+  public void call(){
+    return 42;
+  }
+}
+//Alternativ:
+Callable<Integer> c = ()->{return 42;};
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Future}{Ein Blick in die Zukunft}
+    \begin{itemize}
+        \item \texttt{Callable} Objekte werden auch über \texttt{submit} an den Executor gegeben
+        \item Dieser gibt ein \texttt{Future<V>} Objekt zurück
+        \item Darüber lassen sich verschiedene Aspekte prüfen:
+        \begin{itemize}
+            \item Ob die Berechnung abgeschlossen wurde
+            \item Welches Ergebnis zurückgegeben wurde
+            \item Ob die Bearbeitung abgebrochen wurde
+        \end{itemize}
+        \item Das \texttt{Future} Objekt kann die Berechnung auch abbrechen
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Future}{Interface}
+    \begin{itemize}
+        \item \texttt{V get()} -- Gibt den Rückgabewert des \texttt{Callables} zurück
+        \item \texttt{V get(long timeout, TimeUnit unit)} -- Gibt den Rückgabewert des \texttt{Callables} zurück mit einer maximalen Wartezeit
+        \item \texttt{boolean isDone()} -- Überprüft, ob die Berechnung abgeschlossen ist
+        \item \texttt{boolean cancel(boolean)} -- Bricht die Arbeit ab
+        \item \texttt{boolean isCencelled()} -- Gibt an, ob die Arbeit unterbrochen wurde
+    \end{itemize}
+\end{frame}

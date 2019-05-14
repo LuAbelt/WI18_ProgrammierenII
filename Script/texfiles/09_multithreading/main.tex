@@ -1,0 +1,73 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Description:		This is an example presentation using the beamerthemedhbw
+%%
+%%					The beamerthemedhbw is based on jacksbeamertheme
+%%					(https://github.com/JacknJo/jacksbeamertheme)
+%%
+%% Author:			Hannes Bartle																				
+%% 					DHBW Ravensburg Campus Friedrichshafen		
+%%					September 2016	
+%% 
+%% The beamerthemedhbw is free software: you can redistribute it and/or modify
+%% it under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 3 of the License, or
+%% (at your option) any later version.
+%% 
+%% The beamerthemedhbw is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU General Public License for more details.
+%% 
+%% You should have received a copy of the GNU General Public License
+%% along with the beamerthemedhbw.  If not, see <http://www.gnu.org/licenses/>.
+%% 
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\documentclass[	12pt, 				
+				t,					
+				aspectratio=169,
+				%handout-PLACEHOLDER
+				]{beamer}
+
+\usepackage{dhbwstyle}
+
+\title{Nebenläufigkeit}
+
+\begin{document}
+	
+	\begin{frame}[noframenumbering]
+		\titlepage
+	\end{frame}
+
+	\begin{frame}{Inhalt}
+		\tableofcontents
+	\end{frame}
+    
+    \outlineFrame{Allgemeines}
+    \input{texfiles/\jobname/overview}
+    
+    \outlineFrame{Threads}
+    
+    \outlineSubframe{Thread\&Runnable}
+    \input{texfiles/\jobname/thread}
+    
+    \outlineSubframe{Eigenschaften und Zustände}
+    \input{texfiles/\jobname/states}
+    
+    \outlineSubframe{Unterbrechen und Beenden}
+    \input{texfiles/\jobname/interrupt}
+    
+    \outlineFrame{Executors}
+    \input{texfiles/\jobname/executor}
+    
+    
+    \printbibliographyframe
+    
+	\section*{Kontakt}
+	\input{texfiles/contact}
+	
+
+\end{document}

@@ -1,0 +1,92 @@
+\begin{frame}{Multithreading}{Allgemeines (Vgl. \cite{ullenboom2018java} S. 948)}
+    \begin{itemize}
+        \item Moderne Betriebssysteme unterstützen \textit{Multitasking}
+        \item Bedeutet: Mehrere Programme können gleichzeitig laufen
+        \item Man spricht in der Regel von \textit{Nebenläufigkeit}
+        \item Wie diese erreicht wird steuert das Betriebssystem (und ggf. Hardware)
+        \item Auf Mehrkernprozessoren können "`echt parallel"' arbeiten
+        \item Auf Einkernsystemen wird eine Parallelität "`simulisert"' (\textit{Quasiparallelität})
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Multithreading}{Technische Umsetzung (Vgl. \cite{ullenboom2018java} S. 948)}
+    \begin{itemize}
+        \item Jeder Prozessorkern kann (in der Regel) zu einem Zeitpunkt einen Prozess bearbeiten
+        \item In der Regel gibt es deutlich mehr laufende Prozesse als Kerne
+        \item Lösung: Aktiver Prozess wird auf den Kernen hochfrequent (im Millisekundenbereich) umgeschalten
+        \item Umschaltung erfolgt durch den \textit{Scheduler}
+        \item Zur Umschaltung der Prozesse gibt es diverse Strategien mit diversen Parametern:
+        \begin{itemize}
+            \item Priorität
+            \item Bearbeitungsdauer
+            \item "`Fail-Count"' -- Wie oft wurde der Prozess schon versucht zu bearbeiten
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Prozesse}{Grundlegende Eigenschaften (Vgl. \cite{ullenboom2018java} S. 948)}
+    \begin{itemize}
+        \item Jeder Prozess besteht im Grunde aus:
+        \begin{itemize}
+            \item Dem auszuführenden Programmcode
+            \item Den dazugehörigen Daten
+            \item Einem \textit{eigenen} (isolierten) Speicherbereich
+            \item Ggf. Verwendete Ressourcen wie Dateien oder Laufwerke
+        \end{itemize}
+        \item Durch die Trennung des Speicherbereichs können Prozesse nicht auf die Daten anderer Prozesse zugreifen!
+        \item Ist doch ein Datenaustausch zwischen Prozessen erforderlich, ist ein spezielle \textit{Shared Memory} Bereich notwendig
+        \item Prozesse können aus mehreren parallelen Threads bestehen $\rightarrow$ Diese können die gleichen Ressourcen nutzen
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Nebenläufigkeit}{Geschwindigkeitsgewinn (Vgl. \cite{ullenboom2018java} S. 949ff)}
+    \begin{itemize}
+        \item Nebenläufigkeit führt in der Regel zu Geschwindigkeitsgewinn
+        \item In Mehrkernsystemen sowieso...
+        \item ...aber auch in Einkernsystemen
+        \item Beispiel: Software zur Erstellung von Datenbank-Reports:
+        \begin{itemize}
+            \item Baue ein Fenster auf
+            \item Öffnen der Datenbank vom Server, lesen der Datensätze
+            \item Analyse der Daten, Visualisierung des Fortschritts
+            \item Datei öffnen, Analyseergebnisse in Datei schreiben
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Nebenläufigkeit}{Beispiel für Geschwindigkeitsgewinn (Vgl. \cite{ullenboom2018java} S. 949ff)}
+    \begin{itemize}
+        \item Betrachten wir einmal die parallelisierbaren Abschnitte:
+        \begin{itemize}
+            \item Öffnen von Fenster und Datenbank können parallel geschehen
+            \item Lesen neuer Datensätze und Analyse alter Datensätze kann parallel erfolgen
+            \item Analyse neuer Datensätze und schreiben von alten analysierten Daten kann gleichzeitig abgearbeitet werden
+        \end{itemize}
+        \item Hier auch auf einem Einprozessorsystem großer Leistungsgewinn
+        \item Da die parallelen Prozesse verschiedene \textit{Ressourcen} belasten
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Nebenläufigkeit}{Beispiel für Geschwindigkeitsgewinn (Vgl. \cite{ullenboom2018java} S. 949ff)}
+    \begin{itemize}
+        \item Während auf das Fertigstellen einer Ressource gewartet wird, können Aufgaben bearbeitet werden die andere Ressourcen benötigen:
+        \begin{itemize}
+            \item Während der Prozessor ausgelastet ist die GUI zu erstellen kann eine Datei auf der Festplatte geöffnet werden $\rightarrow$ Dateioperationen benötigen wenig Prozessorleistung, eher durch Festplattengeschwindigkeit begrenzt
+            \item Während Daten z.B. aus einer Datenbank abgerufen werden wird hauptsächlich die Netzwerkressource belastet $\rightarrow$ Prozessorleistung kann ggf. anders genutzt werden
+            \item Parallel zu einer Prozessorlastigen Analyse können bereits analysierte Daten in eine Datei geschrieben werden
+        \end{itemize}
+        \item Kurz gesagt: Wir nutzen "`Wartezeiten"' von langsamen Operationen zu unserem Vorteil
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Nebenläufigkeit}{Fazit (Siehe \cite{ullenboom2018java} S. 951)}
+    \begin{itemize}
+        \item Nebenläufigkeit muss gut geplant werden
+        \item Insbesondere für Einkernsysteme
+        \item Geschwindigkeitsgewinn nur vorhanden, wenn die parallelen Aktivitäten unterschiedliche Ressourcen nutzen
+        \item Durch Nebenläufigkeit entsteht auch ggf. zusätzlicher Overhead für Synchronisation
+        \item Zum Beispiel, wenn auf ein Teilergebnis gewartet werden muss
+        \item Hier muss insbesondere auf konkurrierende Zugriffe und gegenseitige Wartebedingungen geachtet werden, um \textit{Deadlocks} zu vermeiden
+    \end{itemize}
+\end{frame}
+
