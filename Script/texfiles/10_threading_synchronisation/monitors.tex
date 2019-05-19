@@ -1,0 +1,27 @@
+\begin{frame}{Monitore}{Allgemein}
+    \begin{itemize}
+        \item Monitor wird nötig, wenn nur ein Thread in einen Block kommen soll
+        \item In Java realisiert über \textit{Locks}
+        \item Diese können einen Codeabschnitt "`abschließen"' und "`öffnen"'
+        \item Das \texttt{Lock} Interface hat zwei wichtige Methoden:
+        \begin{itemize}
+            \item \texttt{lock()} -- Markiert den Beginn des kritischen Abschnitts. Wenn bereits (durch einen anderen Thread) ein kritischer Abschnitt betreten wurde, blockiert die Methode so lange bis dieser das Lock wieder freigibt
+            \item \texttt{unlock()} -- Markiert das Verlassen des kritischen Abschnitts
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Lock Interface}{Wichtige Aspekte}
+    \begin{itemize}
+        \item Zu jedem \texttt{lock} muss auch ein \texttt{unlock} existieren
+        \item Sonst können spätere Threads nie in den kritischen Abschnitt springen
+        \item Das normale \texttt{lock} ignoriert den \texttt{interrupt} Aufruf des Threads
+        \item Spezielle Methode \texttt{lockInterruptedly} realisiert abbrechbaren Aufruf
+        \begin{itemize}
+            \item \textbf{Achtung:} Insbesondere hier ist für den Fall, das unterbrochen wird (und eine Ausnahme ausgelöst wird), der \texttt{unlock} Aufruf wichtig!
+            \item Wird am besten im \texttt{finally}-Block realisiert
+        \end{itemize}
+        \item Weitere Methode: \texttt{tryLock} -- Gibt sofort \texttt{true} oder \texttt{false} zurück und betritt entsprechend den kritischen Abschnitt
+    \end{itemize}
+\end{frame}
+

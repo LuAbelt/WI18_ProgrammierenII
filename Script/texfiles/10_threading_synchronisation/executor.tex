@@ -1,0 +1,46 @@
+\begin{frame}{Executor Service}{Mehrere Callables abarbeiten}
+    \begin{itemize}
+        \item Über \texttt{submit} lässt sich \textit{ein} Callable Objekt bearbeiten
+        \item \texttt{ExecutorService} bietet aber auch Möglichkeiten, mehrere \texttt{Callable} Objekte zu bearbeiten
+        \item Voraussetzung: Callables haben alle den gleichen generischen Typen (Geben beispielsweise alle einen \texttt{int} zurück)
+        \item Hierbei wird eine Liste von Callables übergeben
+        \item Zwei "`Modi"':
+        \begin{itemize}
+            \item Alle Callables werden bis zum Ende bearbeitet
+            \item Die Bearbeitung wird unterbrochen, sobald das erste Objekt fertig bearbeitet wurden
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Executor Service}{Mehrere Callables bearbeiten}
+    \begin{itemize}
+        \item Interface bietet folgende Methoden:
+        \begin{itemize}
+            \item \texttt{List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks)} -- Bearbeitet alle Callables und gibt eine Liste von Future Objekten zurück
+            \item \texttt{List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)} -- Bearbeitet alle Callables für eine maximal angegebene Zeit
+            \item \texttt{T invokeAny(Collection<? extends Callable<T>> tasks)} -- Bearbeitet die gegebenen Callables und gibt das erste Ergebnis zurück
+            \item \texttt{T invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)} -- Bearbeitet alle Callables maximal für die angegebene Zeit und gibt das erste Ergebnis zurück
+        \end{itemize}
+        \item \textbf{Hinweis}: Alle Aufrufe sind blockierend!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zeitsteuerung}{ScheduledExecutorSevice}
+    \begin{itemize}
+        \item Der Start eines bestimmten Kommandos (Als Runnable) lässt sich verzögern
+        \item Oder auch periodisch wiederholen
+        \item Dafür wird spezieller Service genutzt: \texttt{ScheduledExecutorSevice}
+        \begin{itemize}
+            \item \texttt{Executors.newScheduledThreadPool(int nThreads)}
+        \end{itemize}
+        \item Dieser kann \texttt{Runnable} nach einer bestimmten Zeit und ab dann widerholend ausführen
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Zeitsteuerung}{Methoden}
+    \begin{itemize}
+        \item \texttt{schedule (Runnable command, long delay, TimeUnit unit)} -- Führt das gegebene Runnable Objekt nach dem gegebenen Delay aus.
+        \item \texttt{scheduleAtFixedRate (Runnable command, long initialDelay, long period, TimeUnit unit)} -- Führt das gegebene Runnable Objekt nach dem gegebenen Delay aus und startet es dann in dem gegebenen Interval
+        \item \texttt{scheduleWithFixedDelay (Runnable command, long initialDelay, long delay, TimeUnit unit)} -- Führt das gegebene Runnable Objekt nach dem gegebenen Delay aus und wiederholt es dann regelmäßig. \texttt{delay} gibt an, wie viel Zeit zwischen Beendigung und Neustart liegen.
+    \end{itemize}
+\end{frame}

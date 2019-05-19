@@ -1,0 +1,109 @@
+\begin{frame}{Gemeinsame Zugriffe}{Allgemein}
+    \begin{itemize}
+        \item "`Einfache"' Threads kommen sich nur selten in die Quere
+        \item Wenn zur Bearbeitung nur lokale Variablen benötigt werden
+        \item Jeder Thread hat seine eigenen Variablen und Callstack
+        \item Probleme treten bei \textit{gemeinsam genutzten} Daten auf
+        \item ...Oder Ressourcen
+        \item Beispielsweise: Externe Daten(objekte), statische Variablen
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Statischer Zugriff}{Codebeispiel}
+\lstset{style=java}
+\begin{lstlisting}
+class MyThread extends Thread{
+static int result;
+public void run(){ ... }
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Gemeinsame Zugriffe}{Weitere Beispiele}
+    \begin{itemize}
+        \item Parallele Zugriffe könnten auch bei globalen Datenstrukturen auftreten
+        \item Wenn diese aus mehreren Threads aufgerufen und bearbeitet werden
+        \item Lesen ist in der Regel das geringere Problem, schreibende Zugriffe sind aber problematisch
+        \item Abstrakteres Beispiel: \textbf{Was würde passieren, wenn mehrere Prozesse parallel auf einen Drucker zugreifen, ohne dass dieser die Zugriffe einschränken würde?}
+        \item Problematik liegt in der Umschaltung der Threads
+        \item Es ist nicht absehbar, zu welchem Punkt die Bearbeitung umspringt
+        \item Dadurch muss ein Mechanismus geschaffen werden, der sicherstellt, dass eine Ressource oder Datensatz nur durch einen Aktuer genutzt wird.
+        \item Man spricht hierbei von \textbf{kritischen Abschnitten}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Kritische Abschnitte}{Allgemeines}
+    \begin{itemize}
+        \item Beschreiben Codeblöcke, in denen sichergestellt wird, dass nur ein Thread auf sie zugreift
+        \item Man spricht auch von \textit{gegenseitigem Ausschluss} oder \textit{atomar}, wenn nur ein Thread in einem Programmteil arbeitet
+        \item Lesende Zugriffe sind weniger kritisch
+        \item Aber sobald Daten verändert werden, müssen kritische Abschnitte geschützt werden
+        \item Wenn alle kritschen Abschnitte gesichert sind, spricht man von einer \textit{thread-sicheren} Implementierung (\textit{thread-safe})
+        \item Immutable Objekte sind immer threadsicher (Da sie nicht verändert werden können)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Nicht kritische Abschnitte}{}
+    \begin{itemize}
+        \item Nicht kritische Abschnitte sind "`automatisch"' Threadsicher
+        \item Deren parallele Ausführung hat keine unerwünschten Nebeneffekte
+        \item Grundsätzlich alle Abschnitte in denen:
+        \begin{itemize}
+            \item Nur lesende Zugriffe erfolgen
+            \item Keine Objekteigenschaften verändert werden
+            \item Ausschließlich mit lokalen Variablen (Oder Parametervariablen) gearbeitet wird
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Paralleler Zugriff}{Beispiel}
+    \begin{itemize}
+        \item Folgendes Beispiel: Wir haben ein Objekt \texttt{p} vom Typ \texttt{Point}
+        \item Thread \texttt{T1} möchte {p} mit $(1|1)$ belegen
+        \item Thread \texttt{T2} möchte {p} (gleichzeitig) mit $(2|2)$ belegen
+    \end{itemize}
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Thread T1}&\textbf{Thread T2}\\\hline
+    \texttt{p.x=1}&\texttt{p.x=2}\\\hline
+    \texttt{p.y=1}&\texttt{p.y=2}\\\hline
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Paralleler Zugriff}{Beispiel}
+    \begin{itemize}
+        \item Durch Umschaltung der Threads können die einzelnen Anweisungen "`durcheinander"' geraten:
+    \end{itemize}
+    \textbf{Thread T1}&\textbf{Thread T2}&\textbf{(x|y)}\\\hline
+    \texttt{p.x=1}&&(1|0)\\\hline
+    &\texttt{p.x=2}&(2|0)\\\hline
+    &\texttt{p.y=2}&(2|2)\\\hline
+    \texttt{p.y=1}&&(2|1)\\\hline
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Paralleler Zugriff}{}
+    \begin{itemize}
+        \item Durch Umschaltung wird somit ungültiges Ergebnis erreicht
+        \item Auch "`kleine"' Operationen sind nicht automatisch atomar
+        \item Beispielsweise Benutzung von \texttt{i++}
+        \item Da diese Operation (auf unterer Ebene) aus mehreren Teilen besteht:
+        \begin{itemize}
+            \item Hole den aktuellen Wert von i
+            \item Deklariere den konstanten Wert 1
+            \item Addiere i mit der Konstante
+            \item Schreibe das neue i zurück in den vorgesehenen Speicherbereich
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Schützen}{Von kritischen Abschnitten}
+    \begin{itemize}
+        \item Wir müssen also einen Mechanismus finden um parallelen Zugriff zu vermeiden
+        \item Java bietet hier zwei Konstrukte, mit denen wir uns beschäftigen:
+        \begin{itemize}
+            \item Das Verwenden von \textit{Lock} Objekten
+            \item Die Nutzung des \texttt{synchronized} Keywords
+        \end{itemize}
+    \end{itemize}
+\end{frame}
