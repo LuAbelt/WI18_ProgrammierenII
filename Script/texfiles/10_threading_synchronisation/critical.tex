@@ -74,6 +74,8 @@ public void run(){ ... }
     \begin{itemize}
         \item Durch Umschaltung der Threads können die einzelnen Anweisungen "`durcheinander"' geraten:
     \end{itemize}
+    \begin{tabular}{|c|c|c|}
+    \hline
     \textbf{Thread T1}&\textbf{Thread T2}&\textbf{(x|y)}\\\hline
     \texttt{p.x=1}&&(1|0)\\\hline
     &\texttt{p.x=2}&(2|0)\\\hline

@@ -8,15 +8,37 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Synchronized}{In der Methodensignatur}
+\begin{frame}[fragile]{Synchronized}{In der Methodensignatur}
 \lstset{style=java}
 \begin{lstlisting}
-synchronized void foo(){ i++; }
+synchronized void foo(){
+  i++;
+}
 \end{lstlisting}
 \end{frame}
 
 \begin{frame}{Synchronized}{}
     \begin{itemize}
-        \item 
+        \item \texttt{synchronized} kann beliebig atomare Codeausschnitte umfassen
+        \item Im Block wird angegeben auf welches Objekt ein Monitor gesetzt wird
+        \item Wie beim Aufruf von \texttt{lock} wird geprüft ob ein anderer Thread in einem synchronized Block mit dem gleichen Monitor ist
+        \item Und es wird ggf. gewartet bis dieser abgeschlossen ist
+        \item Über \texttt{Thread.holdsLock} lässt sich prüfen, ob der aktuelle Thread den Monitor für ein Objekt hält
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Deadlocks}{}
+    \begin{itemize}
+        \item Die Abhängigkeiten von Monitoren müssen unbedingt berücksichtigt werden
+        \item Insbesondere wenn mehrere Locks in verschiedene Methoden verwendet werden
+        \item Sonst kann es im Programm zu einem sog. "`Deadlock"' kommen
+        \begin{itemize}
+            \item Zwei Programmabschnitte warten auf die Freigabe eines Monitors
+            \item Der durch den jeweils anderen blockiert wird
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Deadlocks}
+    \includegraphics[hight=5.5cm]{graph/deadlock}
 \end{frame}
