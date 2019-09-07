@@ -1,0 +1,119 @@
+\documentclass[a4paper,
+			   fontsize=12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english, ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[ngerman]{struktex}
+\usepackage{graphicx}
+\setlength{\parindent}{0.0in}
+
+\begin{document}
+
+\section*{Nachprüfung WWI218 Programmieren II - Programmentwurf}
+
+\vspace{0,75cm}
+
+\subsection*{Allgemeine Informationen}
+Bei der in diesem Dokument beschriebenen Aufgabenstellung handelt es sich um die Nachprüfung der Vorlesung "Programmieren II" des Kurses WWI218 der DHBW Ravensburg. Folgend wird die Aufgabenstellung
+inklusive Anforderungen sowie Bewertungskriterien beschrieben.
+
+\subsection*{Hintergrund zur Aufgabe}
+Bei den \textit{Türmen von Hanoi} handelt es sich um ein bekanntes mathematisches Spiel, welches
+in der Informatik häufig als Anwendung für rekursive Algorithmen betrachtet wird.
+
+\begin{figure}
+%TODO. Abbildung Türme von Hanoi
+\end{figure}
+
+Die Aufgabe besteht darin, einen Stapel aus verschieden großen Scheiben von der linken Stange zur rechten
+zu bewegen. Hierbei ist zu beachten, dass pro Zug nur jeweils eine Scheibe bewegt werden. Außerdem darf zu
+keinem Zeitpunkt des Spiels eine größere Scheibe auf einer kleinen Scheibe liegen. Die mittlere Stange dient
+hierbei als Hilfsmittel. Ziel des Spiels ist es den Stapel in so wenig wie möglich Zügen zu bewegen.
+
+\subsection*{Aufgabestellungen/Anforderungen}
+
+Die \textit{Türme von Hanoi} sollen in Java als Swing-GUI Applikation implementiert werden.
+
+Das Spiel soll sowohl einen Interaktionsmodus sowie einen Autoplay-Modus enthalten. Im Interaktionsmodus kann
+der Anwender selbst Züge durchführen und durch das Programm wird die Anzahl der getätigten Züge gezählt. Im Autoplay-Modus
+werden die Züge eigenständig durch einen implementierten Algorithmus durchgeführt. In beiden Spielmodi sollen die Scheiben sowie
+ihre Position auf den Türmen in der Anwendung dargestellt werden.
+
+Darüber hinaus soll es möglich sein, die Anzahl der Scheiben vor Spielbeginn festzulegen. Dies gilt für beide Spielmodi. Standardmäßig
+wird das Spiel mit vier Scheiben durchgeführt. Zwischen den einzelnen Zügen im Autoplay Modus soll ein Delay von mindestens einer Sekunde
+liegen.
+
+Im Interaktionsmodus soll der Nutzer die Möglichkeit haben, auszuwählen welche Scheibe er auf welche Stange bewegt werden soll. Hierbei reicht es aus, wenn über entsprechende 
+GUI Elemente (z.B. Spinboxen) die entsprechenden Stangen definiert werden und der Zug über einen "Commit" Button bestätigt wird. Die GUI soll das einstellen ungültiger Züge
+grundsätzlich erlauben. Wird jedoch ein unzulässiger Zug bestätigt (über den commit Button) soll eine entsprechende Fehlermeldung erscheinen.
+
+In der GUI soll eine Anzeige der bereits getätigten Züge sichtbar sein. Diese wird bei jedem Commit-Versuch inkrementiert. Darüber hinaus soll es die Möglichkeit geben,
+das Spiel und Zähler über einen Reset Button auf den Ausgangszustand zurückzusetzen. Sollte der Spieler das Spiel beendet haben (d.h. alle Scheiben befinden sich auf
+der letzten Stange) soll dies erkannt werden und eine entsprechende Erfolgsmeldung ausgegeben werden.
+
+Im Autoplay Modus ist keine Nutzerinteraktion möglich. Nach starten des Modus werden die Züge automatisch mit eienr festen Verzögerung ausgeführt.
+
+\textit{Hinweis: Weder im Autoplay-Modus noch im interaktiven Modus muss die Bewegung der Scheiben besonders animiert werden!}
+
+Darüber hinaus gelten folgende weitere Anforderungen an das Programm:
+\begin{itemize}
+	\item Das Programm soll mit bis zu maximal 20 Scheiben gespielt werden können.
+	\item Alle durch den Benutzer verursachten Fehler sollten entsprechend behandelt werden
+	\item Das Projekt ist ausschließlich unter Verwendung der Java SDK zu realisieren. Darüber hinaus dürfen keine externen Frsmeworks und/oder Bibliotheken verwendet werden.
+\end{itemize}
+
+\subsection*{Dokumentation}
+Das gesamte Projekt ist unter Verwendung von Javadoc zu dokumentieren.
+
+Darüber hinaus ist eine Reflexion des Projekts zu erstellen. Aus dieser sollten insbesondere die
+Design-Entscheidungen begründet werden. Auch sollen Alternativen aufgezeigt und ggf. Verbesserungsvorschläge genannt werden.
+Gehen Sie auch auf Probleme ein, die während der Entwicklung auftraten und erläutern Sie, wie diese angegangen wurden. Schätzen
+Sie ihre Lösung kritisch selbstreflektiert ein in Bezug auf die Erweiterbarkeit des Programms.
+
+Die Reflexion sollte 5 DIN A4 Seiten nicht überschreiten.
+
+\subsection*{Bewertungskriterien}
+
+Für die Bewertugn des Programmentwurfs werrden die folgenden Bewertungskriterien herangezogen:
+
+\begin{itemize}
+	\item Vollständige und korrekte Erfüllung der Vorgaben, Funktionsweise des Programms
+	\item Objektorientierter Aufbau des Programms
+	\item Fehlertoleranz und Umsetzung der Fehlerbehandlung
+	\item Codequalität
+	\item Lesbarkeit des Codes, Einhaltung von Java Code Conventionen
+	\item Javadoc-Dokumentation
+	\item Reflexion
+	\item Fristgerechte und komplette Abgabe
+\end{itemize}
+
+\textbf{Wichtiger Hinweis:} Das implementieren von Zusatzfeatures bringt \textit{keine} zusätzlichen Punkte. Bedenken Sie, dass u.U. die
+Gefahr besteht, dass einzelne Muss-Kriterien vernachlässigt werden.
+
+\subsection*{Abgabe}
+
+Die Aufgabe ist \textbf{einzeln} zu bearbeiten, eine Gruppenarbeit ist nicht zulässig. Abgabefrist für den Programmentwurf ist der \textbf{25.11.2019 23:59:59 MEZ}.
+
+In der Abgabe müssen folgende Informationen und Anhänge enthalten sein:
+\begin{itemize}
+	\item Informationen zur verwendeten Java-Version
+	\item Informationen zur verwendeten IDE
+	\item Startfähige Anwendung
+	\item Alle benötigten Quelldateien zum kompilieren
+	\item Reflexion im \textbf{PDF} Format
+\end{itemize}
+
+Die Abgabe \textbf{muss per Mail} an lukas.abelt@airbus.com erfolgen. Zur Abgabe können die benötigten Dateien \textbf{entweder als ZIP Datei} komprimiert und abgegeben werden. In diesem Fall bitte jedoch nicht die ZIP Datei als Anhang zur Mail hinzufügen,
+sondern auf einem externen Fileshare(Dropbox, Google Drive, Nextcloud etc.) ablegen und den Link zum Download bereitstellen (Anhänge im ZIP Format werden durch den Mailfilter gelöscht). Sofern während der Entwicklung mit einem Git Repository gearbeitet wurde,
+kann die Abgabe auch erfolgen, indem ich zum entsprechenden Repository hinzugefügt werde (GitLab bzw. GitHub Accounts könnt ihr den Folien entnehmen). \textbf{Bitte in diesem Fall auch unbedingt trotzdem die Abgabe per Mail bestätigen!} Bei der Abgabe als
+Git Repository wird zur Bewertung der letzte Commit vor Maileingang genutzt.
+
+Die Umsetzung der Aufgabe \textbf{muss} in Java als Swing Anwendung erfolgen. Auch in allen weiteren Aspekten ist eine Abweichung von der Aufgabenstellung nicht vorgesehen. Jegliche Abweichung von der Aufgabenstellung ist vorher
+per E-Mail zu erfragen und wird nur bei triftigem Grund gestattet. Rückfragen und Unklarheiten in der Aufgabenstellung sind ebenfalls per Mail zu klären.
+
+
+\end{document}
